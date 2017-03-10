@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/101.o
+	${OBJECTDIR}/_ext/6e812cb1/101.o
 
 
 # C Compiler Flags
@@ -62,10 +62,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/uva: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/uva ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/101.o: 101.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/_ext/6e812cb1/101.o: ../../work/101.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/6e812cb1
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/101.o 101.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/6e812cb1/101.o ../../work/101.cpp
 
 # Subprojects
 .build-subprojects:

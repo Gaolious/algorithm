@@ -77,9 +77,8 @@ void print( PDLIST root )
         printf("%d:", root->block_number );
         
         for ( i = root->next ; i != NULL && i != root ; i = i->next )
-        {
             printf( " %d", i->block_number );
-        }
+	printf("\n");
     }
 }
 
@@ -127,10 +126,6 @@ void move_over(PDLIST a, PDLIST b)
 {
     if ( a != NULL && b != NULL )
     {
-        if ( a->block_number == 9 && b->block_number == 23 )
-        {
-            int a ;a=1;
-        }
         while ( !is_root(a->next) && a->next != a )
             returning_block( a->next );
 
@@ -151,9 +146,6 @@ void pile_onto(PDLIST a, PDLIST b)
     {
         while ( !is_root(b->next) && b->next != b )
             returning_block( b->next );
-
-        if ( a->current_root == b->current_root )
-            return ;
         
         PDLIST curr_node = a ;
         PDLIST end_node = a->current_root->prev ;
@@ -179,9 +171,6 @@ void pile_over(PDLIST a, PDLIST b)
 {
     if ( a != NULL && b != NULL )
     {
-        if ( a->current_root == b->current_root )
-            return ;
-        
         PDLIST curr_node = a ;
         PDLIST end_node = a->current_root->prev ;
         PDLIST target = b->current_root->prev ;
@@ -201,7 +190,7 @@ void process( FILE *fp )
 {
     int i, n;
     
-    fscanf(fp, "%d", &n);
+    i=fscanf(fp, "%d", &n);
     
     PPDLIST Root = new PDLIST[ n + 1 ];
     PPDLIST Node = new PDLIST[ n + 1 ];
@@ -230,12 +219,13 @@ void process( FILE *fp )
     int a, b ;
     while ( fscanf(fp, "%s", cmd1) == 1 && strcmp( cmd1, "quit" ) != 0 )
     {
-        fscanf(fp, "%d %s %d", &a, cmd2, &b);
+        i=fscanf(fp, "%d %s %d", &a, cmd2, &b);
         
 #ifndef ONLINE_JUDGE        
         printf("\n%s %d %s %d\n", cmd1, a, cmd2, b);
 #endif        
         if ( a == b ) continue ;
+        if ( Node[a]->current_root == Node[b]->current_root ) continue ;
         
         if ( strcmp( cmd1, "move") == 0 )
         {
@@ -262,7 +252,6 @@ void process( FILE *fp )
 
     for (  i = 0 ; i < n ; i ++ )
     {
-        if ( i != 0 ) printf("\n");
         print( Root[ i ] );
     }
     
