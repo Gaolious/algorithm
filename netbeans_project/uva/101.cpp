@@ -108,6 +108,9 @@ void move_onto(PDLIST a, PDLIST b)
 {
     if ( a != NULL && b != NULL )
     {
+        
+        if ( a->current_root == b->current_root )
+            return ;        
         while ( !is_root(a->next) && a->next != a )
             returning_block( a->next );
 
@@ -127,6 +130,11 @@ void move_over(PDLIST a, PDLIST b)
 {
     if ( a != NULL && b != NULL )
     {
+        
+        if ( a->current_root == b->current_root )
+            return ;        
+        
+        
         if ( a->block_number == 9 && b->block_number == 23 )
         {
             int a ;a=1;
@@ -149,6 +157,10 @@ void pile_onto(PDLIST a, PDLIST b)
 {
     if ( a != NULL && b != NULL )
     {
+        
+        if ( a->current_root == b->current_root )
+            return ;
+        
         while ( !is_root(b->next) && b->next != b )
             returning_block( b->next );
 
