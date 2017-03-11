@@ -7,6 +7,7 @@ for src in *.cpp
 do
 	filename=${src%.*}
 	${GPP} $src -o $filename ${OP}
+	rm -rf ./output*
 	[ -d output ] || mkdir output
 
 	for fin in ./input/*.txt
