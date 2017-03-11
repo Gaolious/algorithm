@@ -27,5 +27,7 @@
 *.exe
 *.out
 *.app
-/netbeans_project/uva/build/
-/netbeans_project/uva/dist/
+/netbeans_project/
+/work/
+
+
