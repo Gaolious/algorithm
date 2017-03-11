@@ -47,12 +47,12 @@ void process( FILE *fp )
     int sum[3]={0,};
     char bin[] = "BGC" ;
     int map[6][3] = {
-        { 0, 1, 2 },
         { 0, 2, 1 },
-        { 1, 0, 2 },
-        { 1, 2, 0 },
+        { 0, 1, 2 },
         { 2, 0, 1 },
         { 2, 1, 0 },
+        { 1, 0, 2 },
+        { 1, 2, 0 },
     };
     int minMoves ;
     int moves;
