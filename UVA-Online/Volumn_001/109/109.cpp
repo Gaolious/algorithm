@@ -12,8 +12,8 @@ typedef struct _points_
 #define MAX_COORDINATIONS ( 100 )
 
 POINT kingdoms [ MAX_KINGDOM ][ MAX_COORDINATIONS ] = { 0, };
-double area[ MAX_KINGDOM ]={0,};
 int Coordinations[ MAX_KINGDOM ]={0,};
+int isFire[ MAX_KINGDOM ]={0,};
 int nKingdoms = 0;
 
 int qsort_cmp( const void *a, const void *b)
@@ -168,7 +168,48 @@ double get_area( POINT points[], int size)
     return area;
 }
 
-void input(FILE *fp)
+int is_insideof( POINT p, POINT points[], int N )
+{
+    int i;
+    
+    for ( i = 0 ; i <= N ; i ++ )
+    {
+        double t = CCW( points[ ( i - 1 + N ) % N ] , points[ ( i + N ) % N  ], p );
+        
+        if ( t < 0 )
+        {
+#ifndef ONLINE_JUDGE
+            printf(" right side : (%lf, %lf), (%lf, %lf), (%lf, %lf) / (%lf, %lf)\n", 
+                    points[ ( i - 1 + N ) % N ].x,
+                    points[ ( i - 1 + N ) % N ].y,
+                    points[ ( i + N ) % N ].x,
+                    points[ ( i + N ) % N ].y,
+                    points[ ( i+1 + N ) % N ].x,
+                    points[ ( i+1 + N ) % N ].y,
+                    p.x,p.y
+                    );
+#endif            
+            
+            return 0;
+        }
+
+#ifndef ONLINE_JUDGE
+            printf(" left side : (%lf, %lf), (%lf, %lf), (%lf, %lf) / (%lf, %lf)\n", 
+                    points[ ( i - 1 + N ) % N ].x,
+                    points[ ( i - 1 + N ) % N ].y,
+                    points[ ( i + N ) % N ].x,
+                    points[ ( i + N ) % N ].y,
+                    points[ ( i+1 + N ) % N ].x,
+                    points[ ( i+1 + N ) % N ].y,
+                    p.x,p.y
+                    );
+#endif            
+
+    }
+    return 1;
+}
+
+void process( FILE *fp )
 {
     int nCoord ;
     int i ;
@@ -192,15 +233,26 @@ void input(FILE *fp)
         printf("\n");
 #endif
         
-        area[ nKingdoms ] = get_area( kingdoms[ nKingdoms ], nCoord );
-#ifndef ONLINE_JUDGE 
-        printf("\nArea #%d : %lf\n", nKingdoms, area[nKingdoms] );
-#endif
     }
-}
-void process( FILE *fp )
-{
-    input(fp);
+    
+    POINT p;
+    while ( fscanf( fp, "%lf %lf", &(p.x), &(p.y) ) == 2 )
+    {
+        for ( i = 0 ; i < nKingdoms ; i ++ )
+        {
+            if ( isFire[ i ] != 1 && is_insideof(p, kingdoms[ i ], Coordinations[ i ] ) )
+                isFire[ i ] = 1;
+        }
+    }
+    
+    double S = 0 ;
+    for ( i = 0 ; i < nKingdoms ; i ++ )
+    {
+        if ( isFire[ i ]  )
+            S += get_area(kingdoms[ i ], Coordinations[ i ]);
+    }
+    
+    printf("%.2lf\n", S);
 }
 
 

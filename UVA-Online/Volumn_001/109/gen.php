@@ -1,11 +1,17 @@
 <?php
+	$nKingdoms = rand(1, 20 );
+	for ( $i = 0 ; $i<$nKingdoms ; $i ++)
+	{
+		$nCoords = rand( 3, 100 );
+		echo $nCoords . "\n";
 
-    $n = rand(1,100);
+		for ( $j =0 ; $j < $nCoords ; $j ++)
+			echo rand( 0, 500 ) . " " . rand(0, 500 ) . "\n";	
+	}
 
-    echo $n . "\n";
-    for ( $y=0 ; $y < $n ; $y ++)
-    {
-        for ( $x=0 ; $x < $n ; $x ++)
-            echo rand(-127, 127) . " ";
-        echo "\n";
-    }
+	echo "-1\n";
+
+	$nElec = rand(0, 100 );
+	for ( $j =0 ; $j < $nElec ; $j ++)
+		echo rand( 0, 500 ) . " " . rand(0, 500 ) . "\n";	
+
