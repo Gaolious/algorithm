@@ -17,7 +17,6 @@ void process( FILE *fp )
     while ( fscanf(fp, "%d %d ", &size_y, &size_x ) == 2  )
     {
         int bestPath[ MAX_SIZE ] = {size_y+1,};
-        int foundPath[ MAX_SIZE ] = {-1,};
         int map[ MAX_SIZE ][ MAX_SIZE ] = {0, };
         int path[ MAX_SIZE ][ MAX_SIZE ] ={0 ,};
         int y, x, dir ;
@@ -58,23 +57,19 @@ void process( FILE *fp )
         for ( y = 0 ; y < size_y ; y ++)
         if ( min_value == map[y][0])
         {
-            int y_pos = y ;
-            for ( x=0 ; x < size_x ; x++ )
+            int y_pos;
+            for ( x=0, y_pos = y ; x < size_x ; y_pos = path[ y_pos ][ x ], x++ )
             {
-                foundPath[x] = y_pos;
-                y_pos = path[ y_pos ][ x ];
-            }
-
-            for ( x = 0 ; x < size_x ; x ++)
-            {
-                y_pos = y ;
-                if ( bestPath[ x ] > y_pos )
+                if ( bestPath[ x ] >  y_pos )
                 {
-                    for ( ; x < size_x ; x ++)
-                        bestPath[ x ] = foundPath[ x ] ;
+                    for ( ; x < size_x ; y_pos = path[ y_pos ][ x ], x ++ )
+                        bestPath[ x ] = y_pos;
+                    break;
                 }
-                else break;
+                else if ( bestPath[ x ] >  y_pos )
+                    break;
             }
+            break;
         }
         
         for ( x = 0 ; x < size_x ; x ++)
