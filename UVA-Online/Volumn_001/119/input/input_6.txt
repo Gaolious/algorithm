@@ -1,0 +1,338 @@
+3
+ccc aaaaaaaaa bbbbbbbbbbb 
+ccc 535 0
+aaaaaaaaa 1150 1 bbbbbbbbbbb
+bbbbbbbbbbb 1646 1 aaaaaaaaa
+10
+bbb ddddddddddd eeee cccccc ff gggggg jjjjjjjjj hhhhhhhhhhh iiiiiiiiii aaaaaaaaaaa 
+bbb 111 0
+ddddddddddd 551 9 jjjjjjjjj hhhhhhhhhhh bbb eeee iiiiiiiiii gggggg cccccc ff aaaaaaaaaaa
+eeee 356 8 aaaaaaaaaaa cccccc bbb hhhhhhhhhhh iiiiiiiiii ff jjjjjjjjj ddddddddddd
+cccccc 567 3 jjjjjjjjj hhhhhhhhhhh eeee
+ff 966 0
+gggggg 1005 1 jjjjjjjjj
+jjjjjjjjj 1819 2 iiiiiiiiii cccccc
+hhhhhhhhhhh 706 7 eeee iiiiiiiiii aaaaaaaaaaa gggggg ff ddddddddddd bbb
+iiiiiiiiii 1433 7 cccccc ff jjjjjjjjj ddddddddddd hhhhhhhhhhh eeee gggggg
+aaaaaaaaaaa 288 8 ddddddddddd gggggg hhhhhhhhhhh ff jjjjjjjjj iiiiiiiiii bbb eeee
+8
+eeee ccccccc aaa fffffffff ggggggg bbb dddddddd hhhhhhhh 
+eeee 1659 2 ccccccc fffffffff
+ccccccc 278 5 fffffffff bbb dddddddd eeee ggggggg
+aaa 300 6 ggggggg ccccccc dddddddd fffffffff eeee bbb
+fffffffff 876 5 aaa ggggggg ccccccc bbb hhhhhhhh
+ggggggg 885 1 aaa
+bbb 1924 6 hhhhhhhh ccccccc fffffffff eeee dddddddd ggggggg
+dddddddd 1666 0
+hhhhhhhh 1294 1 dddddddd
+8
+bbbbbbbb aaaaaaaa ggggggggggg eeee hh ffffffffffff ddddddddddd cccccccccc 
+bbbbbbbb 1413 4 ffffffffffff cccccccccc hh ddddddddddd
+aaaaaaaa 1455 3 ffffffffffff ggggggggggg eeee
+ggggggggggg 894 3 eeee ffffffffffff bbbbbbbb
+eeee 1620 5 bbbbbbbb ggggggggggg hh cccccccccc ddddddddddd
+hh 127 4 ffffffffffff aaaaaaaa ddddddddddd cccccccccc
+ffffffffffff 305 6 cccccccccc hh bbbbbbbb ggggggggggg eeee aaaaaaaa
+ddddddddddd 312 4 hh cccccccccc aaaaaaaa ggggggggggg
+cccccccccc 497 1 ddddddddddd
+1
+aaaaaaaaaaa 
+aaaaaaaaaaa 595 0
+6
+fffffffffff aaa ccccccccc dddddddddddd bbbbbbbbbb eeeeeeee 
+fffffffffff 902 2 aaa bbbbbbbbbb
+aaa 683 1 fffffffffff
+ccccccccc 1833 1 dddddddddddd
+dddddddddddd 34 3 ccccccccc aaa fffffffffff
+bbbbbbbbbb 889 1 eeeeeeee
+eeeeeeee 382 3 ccccccccc bbbbbbbbbb fffffffffff
+4
+aaaaaa bbbbbbbbbbb dddddddddd ccccc 
+aaaaaa 1897 0
+bbbbbbbbbbb 1548 2 dddddddddd aaaaaa
+dddddddddd 975 0
+ccccc 547 2 bbbbbbbbbbb aaaaaa
+9
+bbbbbbbbbbb ggggggggg hhhhh ccccccc ddddd fff eeeeeeeeeeee aaaaaaaaaaa ii 
+bbbbbbbbbbb 1414 7 aaaaaaaaaaa ii hhhhh fff eeeeeeeeeeee ccccccc ddddd
+ggggggggg 1605 0
+hhhhh 1951 5 ccccccc eeeeeeeeeeee fff aaaaaaaaaaa ii
+ccccccc 165 7 ggggggggg eeeeeeeeeeee ii hhhhh fff aaaaaaaaaaa ddddd
+ddddd 211 5 bbbbbbbbbbb eeeeeeeeeeee ggggggggg ccccccc ii
+fff 1547 5 ii ddddd hhhhh aaaaaaaaaaa eeeeeeeeeeee
+eeeeeeeeeeee 447 1 ii
+aaaaaaaaaaa 405 2 ddddd ii
+ii 535 6 aaaaaaaaaaa fff ccccccc ggggggggg eeeeeeeeeeee hhhhh
+2
+aaaaaaaaaa bbbbbbb 
+aaaaaaaaaa 69 1 bbbbbbb
+bbbbbbb 268 0
+9
+gggggggggg bbbbbbb ffffffffff iii hhhh ccccccc aaaaaaaa eeeeeeeee ddddddddd 
+gggggggggg 641 0
+bbbbbbb 1587 6 ccccccc iii eeeeeeeee ffffffffff aaaaaaaa hhhh
+ffffffffff 251 8 ccccccc bbbbbbb aaaaaaaa hhhh eeeeeeeee ddddddddd iii gggggggggg
+iii 1313 0
+hhhh 286 0
+ccccccc 1261 2 ddddddddd iii
+aaaaaaaa 1076 5 gggggggggg eeeeeeeee hhhh ccccccc ffffffffff
+eeeeeeeee 583 5 ccccccc gggggggggg iii ffffffffff ddddddddd
+ddddddddd 459 6 gggggggggg iii hhhh ccccccc bbbbbbb aaaaaaaa
+8
+eee gggggg cccccccccccc aaaaaa dddddddddddd bbbbbbb ffffff hhhhhh 
+eee 1903 4 bbbbbbb ffffff aaaaaa hhhhhh
+gggggg 342 1 ffffff
+cccccccccccc 501 5 aaaaaa ffffff gggggg hhhhhh bbbbbbb
+aaaaaa 1597 2 cccccccccccc eee
+dddddddddddd 1879 4 eee cccccccccccc ffffff bbbbbbb
+bbbbbbb 30 7 aaaaaa eee gggggg hhhhhh ffffff dddddddddddd cccccccccccc
+ffffff 683 6 eee cccccccccccc bbbbbbb dddddddddddd aaaaaa hhhhhh
+hhhhhh 186 7 dddddddddddd ffffff aaaaaa bbbbbbb gggggg cccccccccccc eee
+1
+aaaaaaaa 
+aaaaaaaa 1082 0
+4
+cccccc bbbbbbbbbb dddddddddddd aaaaaaaaaaaa 
+cccccc 1614 2 dddddddddddd bbbbbbbbbb
+bbbbbbbbbb 851 0
+dddddddddddd 1991 3 bbbbbbbbbb cccccc aaaaaaaaaaaa
+aaaaaaaaaaaa 1546 3 dddddddddddd cccccc bbbbbbbbbb
+4
+bbbbb cccccc aaa dddddddddd 
+bbbbb 1660 0
+cccccc 570 3 dddddddddd bbbbb aaa
+aaa 735 2 dddddddddd cccccc
+dddddddddd 1413 2 bbbbb cccccc
+5
+aaaaaaaaa ccc eeeee dddddddd bbbbbbbbbb 
+aaaaaaaaa 742 1 bbbbbbbbbb
+ccc 465 3 eeeee dddddddd aaaaaaaaa
+eeeee 1558 3 ccc dddddddd bbbbbbbbbb
+dddddddd 758 4 aaaaaaaaa ccc eeeee bbbbbbbbbb
+bbbbbbbbbb 1096 1 aaaaaaaaa
+2
+bbbbbbbbbb aaaaaaaa 
+bbbbbbbbbb 195 0
+aaaaaaaa 985 0
+8
+gggggggggggg cccccccccccc ff bbbbbbbbbb dddddddddddd hhhhhhh aaa eeeeeeeeee 
+gggggggggggg 922 4 bbbbbbbbbb aaa dddddddddddd eeeeeeeeee
+cccccccccccc 246 1 hhhhhhh
+ff 282 2 bbbbbbbbbb dddddddddddd
+bbbbbbbbbb 1771 1 eeeeeeeeee
+dddddddddddd 794 3 aaa gggggggggggg ff
+hhhhhhh 993 3 ff dddddddddddd aaa
+aaa 292 4 gggggggggggg hhhhhhh bbbbbbbbbb ff
+eeeeeeeeee 1594 0
+1
+aaaaaaa 
+aaaaaaa 1794 0
+9
+fffff aaaaaaaaaaa gggggggg dddd ccccc eeee hh iiiiiiii bbbbbbbbbbbb 
+fffff 1387 1 hh
+aaaaaaaaaaa 1345 6 fffff iiiiiiii hh dddd gggggggg bbbbbbbbbbbb
+gggggggg 1612 1 iiiiiiii
+dddd 917 8 aaaaaaaaaaa fffff gggggggg iiiiiiii hh bbbbbbbbbbbb eeee ccccc
+ccccc 340 3 dddd gggggggg bbbbbbbbbbbb
+eeee 878 1 aaaaaaaaaaa
+hh 798 8 aaaaaaaaaaa ccccc fffff iiiiiiii eeee gggggggg bbbbbbbbbbbb dddd
+iiiiiiii 1262 8 dddd ccccc gggggggg aaaaaaaaaaa eeee fffff bbbbbbbbbbbb hh
+bbbbbbbbbbbb 1435 0
+8
+gggggg bbbbbbbbbb eeeeeeeee dddddddddddd fffffffff hh cccc aaaaaaa 
+gggggg 1889 2 eeeeeeeee cccc
+bbbbbbbbbb 1743 4 eeeeeeeee cccc dddddddddddd gggggg
+eeeeeeeee 1334 4 cccc dddddddddddd gggggg aaaaaaa
+dddddddddddd 770 2 cccc gggggg
+fffffffff 1558 4 eeeeeeeee bbbbbbbbbb gggggg hh
+hh 956 6 dddddddddddd aaaaaaa bbbbbbbbbb cccc fffffffff gggggg
+cccc 1204 0
+aaaaaaa 1163 4 eeeeeeeee cccc fffffffff dddddddddddd
+3
+aaaaaaaaaaaa bbbbbbbbbb cccccccccccc 
+aaaaaaaaaaaa 997 0
+bbbbbbbbbb 1682 1 aaaaaaaaaaaa
+cccccccccccc 1833 2 bbbbbbbbbb aaaaaaaaaaaa
+6
+eeeeeeeeee ccccc ddd aaaaaaaaaaa bbbbbbb fffffff 
+eeeeeeeeee 130 5 ddd fffffff ccccc bbbbbbb aaaaaaaaaaa
+ccccc 1303 0
+ddd 516 2 eeeeeeeeee aaaaaaaaaaa
+aaaaaaaaaaa 468 5 fffffff ccccc eeeeeeeeee bbbbbbb ddd
+bbbbbbb 1025 4 eeeeeeeeee ccccc fffffff aaaaaaaaaaa
+fffffff 200 4 eeeeeeeeee ccccc aaaaaaaaaaa bbbbbbb
+10
+fffffff jj ddddddddddd eeeee ggg hhhhhhhhhh aaaaa cc iiiii bbbbbbbbb 
+fffffff 1909 5 ddddddddddd iiiii cc hhhhhhhhhh eeeee
+jj 382 0
+ddddddddddd 1837 5 eeeee aaaaa hhhhhhhhhh ggg bbbbbbbbb
+eeeee 1030 3 bbbbbbbbb ggg jj
+ggg 1337 6 iiiii bbbbbbbbb fffffff aaaaa ddddddddddd cc
+hhhhhhhhhh 1625 1 eeeee
+aaaaa 990 9 ggg iiiii eeeee jj fffffff hhhhhhhhhh cc ddddddddddd bbbbbbbbb
+cc 1734 1 bbbbbbbbb
+iiiii 1678 4 cc fffffff hhhhhhhhhh jj
+bbbbbbbbb 52 1 eeeee
+2
+bbbbbb aaaaa 
+bbbbbb 1503 1 aaaaa
+aaaaa 377 1 bbbbbb
+6
+ffffffffff bb aaaaaaaaaa cccccc eeeeeee dddd 
+ffffffffff 163 0
+bb 1009 5 cccccc aaaaaaaaaa ffffffffff dddd eeeeeee
+aaaaaaaaaa 653 3 cccccc eeeeeee dddd
+cccccc 1735 5 dddd aaaaaaaaaa ffffffffff eeeeeee bb
+eeeeeee 858 0
+dddd 1903 5 bb cccccc eeeeeee aaaaaaaaaa ffffffffff
+9
+hhhhhhhhhh eee dddddddddd gg fffffff aaaaaaaaaa cccccccc iiiiiiiiiii bbbbbbbbbbbb 
+hhhhhhhhhh 98 3 dddddddddd fffffff bbbbbbbbbbbb
+eee 447 3 aaaaaaaaaa fffffff iiiiiiiiiii
+dddddddddd 922 4 gg aaaaaaaaaa fffffff cccccccc
+gg 787 1 cccccccc
+fffffff 478 3 hhhhhhhhhh aaaaaaaaaa cccccccc
+aaaaaaaaaa 1613 2 eee hhhhhhhhhh
+cccccccc 1414 3 dddddddddd bbbbbbbbbbbb eee
+iiiiiiiiiii 658 4 dddddddddd cccccccc bbbbbbbbbbbb eee
+bbbbbbbbbbbb 1310 6 iiiiiiiiiii cccccccc fffffff dddddddddd hhhhhhhhhh gg
+7
+ccccccccccc dddddddd aaaaaaaaaaa fffffffff bbbbbbbbbb eee gggggg 
+ccccccccccc 1638 5 gggggg eee aaaaaaaaaaa bbbbbbbbbb fffffffff
+dddddddd 1099 0
+aaaaaaaaaaa 45 0
+fffffffff 1062 6 dddddddd gggggg aaaaaaaaaaa bbbbbbbbbb eee ccccccccccc
+bbbbbbbbbb 310 6 ccccccccccc dddddddd fffffffff aaaaaaaaaaa gggggg eee
+eee 1084 2 aaaaaaaaaaa bbbbbbbbbb
+gggggg 1558 2 dddddddd ccccccccccc
+6
+dddddd cc ffffffffffff aaaaaaa ee bbbbbbbbbbb 
+dddddd 1665 2 ffffffffffff cc
+cc 1920 0
+ffffffffffff 350 5 dddddd aaaaaaa bbbbbbbbbbb ee cc
+aaaaaaa 823 5 bbbbbbbbbbb ee dddddd cc ffffffffffff
+ee 754 5 ffffffffffff aaaaaaa bbbbbbbbbbb cc dddddd
+bbbbbbbbbbb 589 5 dddddd ffffffffffff cc aaaaaaa ee
+2
+bbbbbbbbbbb aaaaaaa 
+bbbbbbbbbbb 1858 0
+aaaaaaa 333 0
+4
+aaaaaaa ddddddd cccccccccc bb 
+aaaaaaa 1618 3 cccccccccc ddddddd bb
+ddddddd 1595 0
+cccccccccc 1173 3 aaaaaaa ddddddd bb
+bb 1586 1 aaaaaaa
+10
+ii aaaaa gg hhh ccccccccccc bbbbbbb ddddddddd jjjjjjjjjjj eeeeeeeee ffffffffffff 
+ii 768 0
+aaaaa 1248 2 ffffffffffff gg
+gg 1975 8 hhh ii aaaaa jjjjjjjjjjj ffffffffffff ddddddddd eeeeeeeee ccccccccccc
+hhh 523 7 eeeeeeeee jjjjjjjjjjj ffffffffffff ii ddddddddd aaaaa bbbbbbb
+ccccccccccc 267 4 jjjjjjjjjjj ii ffffffffffff bbbbbbb
+bbbbbbb 358 8 eeeeeeeee ffffffffffff jjjjjjjjjjj ii hhh ccccccccccc gg ddddddddd
+ddddddddd 941 9 ii hhh aaaaa bbbbbbb ccccccccccc eeeeeeeee gg ffffffffffff jjjjjjjjjjj
+jjjjjjjjjjj 795 7 hhh eeeeeeeee bbbbbbb aaaaa ddddddddd ccccccccccc ii
+eeeeeeeee 1418 2 ccccccccccc ii
+ffffffffffff 971 9 eeeeeeeee ii jjjjjjjjjjj bbbbbbb gg ddddddddd ccccccccccc aaaaa hhh
+5
+aaaaaaaaaaa eeeeeeeeeeee ddd bbbbbbbbbbb cccccccccc 
+aaaaaaaaaaa 763 0
+eeeeeeeeeeee 1782 2 aaaaaaaaaaa cccccccccc
+ddd 1984 4 bbbbbbbbbbb aaaaaaaaaaa eeeeeeeeeeee cccccccccc
+bbbbbbbbbbb 1222 0
+cccccccccc 1552 4 aaaaaaaaaaa bbbbbbbbbbb eeeeeeeeeeee ddd
+8
+eeeeeeeeee hhhhhhhhhh gg cc bbb dddddddddddd aaaaaaaa ffffff 
+eeeeeeeeee 1246 7 cc ffffff dddddddddddd bbb hhhhhhhhhh aaaaaaaa gg
+hhhhhhhhhh 203 5 ffffff cc dddddddddddd eeeeeeeeee gg
+gg 1471 4 bbb ffffff cc aaaaaaaa
+cc 399 6 dddddddddddd eeeeeeeeee ffffff bbb hhhhhhhhhh gg
+bbb 1680 7 dddddddddddd gg hhhhhhhhhh ffffff cc aaaaaaaa eeeeeeeeee
+dddddddddddd 1711 0
+aaaaaaaa 1614 1 gg
+ffffff 253 0
+1
+aaaaaaa 
+aaaaaaa 1397 0
+7
+ddddd aaaaa fffffffff bbbbbbbbb ccccccc ggggggg eeeeee 
+ddddd 1322 4 ccccccc aaaaa fffffffff eeeeee
+aaaaa 1739 0
+fffffffff 213 3 bbbbbbbbb ddddd aaaaa
+bbbbbbbbb 309 0
+ccccccc 373 4 eeeeee fffffffff bbbbbbbbb aaaaa
+ggggggg 1730 6 ddddd aaaaa fffffffff ccccccc bbbbbbbbb eeeeee
+eeeeee 1055 5 ggggggg ddddd fffffffff aaaaa bbbbbbbbb
+2
+bbbbbbbbb aaaaa 
+bbbbbbbbb 635 1 aaaaa
+aaaaa 1893 0
+3
+bbbb cccccccccccc aa 
+bbbb 686 1 cccccccccccc
+cccccccccccc 415 1 bbbb
+aa 1883 1 bbbb
+7
+eeeeeeeeeee aaaaaaaaaaaa fff bbbbbbb dddddddd ccccccc gggggggggggg 
+eeeeeeeeeee 417 5 bbbbbbb aaaaaaaaaaaa ccccccc gggggggggggg fff
+aaaaaaaaaaaa 102 5 bbbbbbb fff dddddddd eeeeeeeeeee gggggggggggg
+fff 1995 4 aaaaaaaaaaaa eeeeeeeeeee ccccccc gggggggggggg
+bbbbbbb 305 5 ccccccc gggggggggggg fff dddddddd eeeeeeeeeee
+dddddddd 83 3 fff bbbbbbb ccccccc
+ccccccc 464 6 fff eeeeeeeeeee gggggggggggg bbbbbbb aaaaaaaaaaaa dddddddd
+gggggggggggg 1766 5 eeeeeeeeeee fff bbbbbbb aaaaaaaaaaaa dddddddd
+10
+eeeeeeeeeeee aaaaaa jj ffff dddd gggggggggggg hhhhhhhhh ccc iiiiiiiiiiii bbbbbbbbb 
+eeeeeeeeeeee 1743 2 jj ffff
+aaaaaa 1076 0
+jj 889 0
+ffff 993 7 jj eeeeeeeeeeee bbbbbbbbb ccc aaaaaa iiiiiiiiiiii hhhhhhhhh
+dddd 631 1 hhhhhhhhh
+gggggggggggg 505 5 hhhhhhhhh eeeeeeeeeeee iiiiiiiiiiii dddd bbbbbbbbb
+hhhhhhhhh 1946 0
+ccc 192 0
+iiiiiiiiiiii 1175 6 eeeeeeeeeeee jj ccc dddd aaaaaa ffff
+bbbbbbbbb 1159 3 ccc iiiiiiiiiiii aaaaaa
+4
+dd cc aaaaaaa bbb 
+dd 1401 1 bbb
+cc 344 0
+aaaaaaa 1548 2 cc bbb
+bbb 1031 3 dd aaaaaaa cc
+5
+bbbb dddd eeeeeeeee cccccccccccc aaaaaa 
+bbbb 1252 0
+dddd 506 0
+eeeeeeeee 1657 3 cccccccccccc bbbb aaaaaa
+cccccccccccc 1336 3 aaaaaa bbbb dddd
+aaaaaa 606 0
+9
+ccccccc eeeee bb iiiiiiiiii ff ddddd ggggggg aaaa hhhhhhhhhhh 
+ccccccc 1159 0
+eeeee 1745 7 iiiiiiiiii ggggggg hhhhhhhhhhh ff bb ddddd aaaa
+bb 425 2 ff hhhhhhhhhhh
+iiiiiiiiii 1554 1 ff
+ff 1562 7 hhhhhhhhhhh aaaa iiiiiiiiii eeeee ggggggg ddddd bb
+ddddd 1165 4 iiiiiiiiii ccccccc bb ggggggg
+ggggggg 733 8 eeeee iiiiiiiiii ddddd aaaa hhhhhhhhhhh ff ccccccc bb
+aaaa 367 3 iiiiiiiiii hhhhhhhhhhh eeeee
+hhhhhhhhhhh 290 6 aaaa ddddd eeeee iiiiiiiiii ccccccc bb
+1
+aaaaaaaaaaa 
+aaaaaaaaaaa 1026 0
+3
+bbbbbbbbbb cccc aaaaaa 
+bbbbbbbbbb 612 2 cccc aaaaaa
+cccc 980 0
+aaaaaa 1195 1 cccc
+8
+hhhhhhhh aaaaaaaaaa cccccccccccc ffffffffff ggggggggggg bb dddddddd eeeeeee 
+hhhhhhhh 1031 1 eeeeeee
+aaaaaaaaaa 1312 4 bb cccccccccccc ffffffffff dddddddd
+cccccccccccc 1422 5 ggggggggggg bb hhhhhhhh ffffffffff dddddddd
+ffffffffff 544 4 aaaaaaaaaa cccccccccccc eeeeeee ggggggggggg
+ggggggggggg 218 7 ffffffffff eeeeeee dddddddd hhhhhhhh bb cccccccccccc aaaaaaaaaa
+bb 1526 1 ggggggggggg
+dddddddd 1247 5 eeeeeee ffffffffff cccccccccccc ggggggggggg aaaaaaaaaa
+eeeeeee 1887 6 dddddddd aaaaaaaaaa hhhhhhhh cccccccccccc ffffffffff bb
