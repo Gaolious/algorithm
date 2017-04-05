@@ -26,13 +26,13 @@
 * in case of i = 1
 *
 *  [ 1, 2, 3, 4, 5 ]
-*      start [1] /  k-th person=2 to kill /  further k-th people( 4 ) replace / next start 3 (left 4)
+*      start [1] /  k-th person=2 to kill /  further k-th people( 4 ) replace / next start 3 (right side of 2(killed) )
 *
 *  [ 1, 4, 3,  , 5 ]
-*      start [3] /  k-th person=5 to kill /  further k-th people( 4 ) replace / next start 1 (left 4)
+*      start [3] /  k-th person=5 to kill /  further k-th people( 4 ) replace / next start 1 (right side of 5(killed) )
 *
 *  [ 1,  , 3,  , 4 ]
-*      start [1] /  k-th person=3 to kill /  further k-th people( 1 ) replace / next start 4 (left 1)
+*      start [1] /  k-th person=3 to kill /  further k-th people( 1 ) replace / next start 4 (right side of 3(killed) )
 *
 *  [  ,  , 1,  , 4 ]
 *      start [4] /  k-th person=1 to kill /  one person remained : 4.
@@ -41,13 +41,13 @@
 * in case of i = 2
 *
 *  [ 1, 2, 3, 4, 5 ]
-*      start [2] /  k-th person=3 to kill /  further k-th people( 5 ) replace / next start 4 (left 5)
+*      start [2] /  k-th person=3 to kill /  further k-th people( 5 ) replace / next start 4 (right side of 3(killed))
 *
 *  [ 1, 2, 5, 4,   ]
-*      start [4] /  k-th person=1 to kill /  further k-th people( 5 ) replace / next start 2 (left 5)
+*      start [4] /  k-th person=1 to kill /  further k-th people( 5 ) replace / next start 2 (right side of 1(killed))
 *
 *  [ 5, 2,  , 4,   ]
-*      start [2] /  k-th person=4 to kill /  further k-th people( 2 ) replace / next start 5 (left 2)
+*      start [2] /  k-th person=4 to kill /  further k-th people( 2 ) replace / next start 5 (right side of 4(killed))
 *
 *  [ 5,  ,  , 2,   ]
 *      start [5] /  k-th person=2 to kill /  one person remained : 5.
@@ -56,13 +56,13 @@
 * in case of i = 3
 *
 *  [ 1, 2, 3, 4, 5 ]
-*      start [3] /  k-th person=4 to kill /  further k-th people( 1 ) replace / next start 5 (left 1)
+*      start [3] /  k-th person=4 to kill /  further k-th people( 1 ) replace / next start 5 (right side of 4(killed))
 *
 *  [  , 2, 3, 1, 5 ]
-*      start [5] /  k-th person=2 to kill /  further k-th people( 1 ) replace / next start 3 (left 1)
+*      start [5] /  k-th person=2 to kill /  further k-th people( 1 ) replace / next start 3 (right side of 2(killed))
 *
 *  [  , 1, 3,  , 5 ]
-*      start [3] /  k-th person=5 to kill /  further k-th people( 3 ) replace / next start 1 (left 3)
+*      start [3] /  k-th person=5 to kill /  further k-th people( 3 ) replace / next start 1 (right side of 5(killed))
 *
 *  [  , 1,  ,  , 3 ]
 *      start [1] /  k-th person=3 to kill /  one person remained : 1.
@@ -74,36 +74,36 @@
 
 int nth_pos(int arr[], int start_pos, int len, int nth)
 {
-	int i;
-	int cnt = 0;
+    int i;
+    int cnt = 0;
 
-	for (i = 0;; i++)
-	{
-		if (arr[(start_pos + len + i) % len] > 0) cnt++;
-		if (nth <= cnt) return (start_pos + len + i) % len;
-	}
-	return -1;
+    for (i = 0;; i++)
+    {
+        if (arr[(start_pos + len + i) % len] > 0) cnt++;
+        if (nth <= cnt) return (start_pos + len + i) % len;
+    }
+    return -1;
 }
 
 int nth_inverse_pos(int arr[], int start_pos, int len, int nth)
 {
-	int i;
-	int cnt = 0;
+    int i;
+    int cnt = 0;
 
-	for (i = 0;; i++)
-	{
-		if (arr[(start_pos + len - i) % len] > 0) cnt++;
-		if (nth <= cnt) return (start_pos + len - i) % len;
-	}
-	return -1;
+    for (i = 0;; i++)
+    {
+        if (arr[(start_pos + len - i) % len] > 0) cnt++;
+        if (nth <= cnt) return (start_pos + len - i) % len;
+    }
+    return -1;
 }
 #ifndef ONLINE_JUDGE
 void print(int arr[], int len)
 {
-	int i;
-	for (i = 0; i < len; i++)
-		printf("%3d ", arr[i]);
-	printf("\n");
+    int i;
+    for (i = 0; i < len; i++)
+        printf("%3d ", arr[i]);
+    printf("\n");
 }
 #endif
 void process( FILE *fp )
@@ -124,63 +124,62 @@ void process( FILE *fp )
             {
                 for ( j = 0 ; j < n ; j ++)
                     circle[ j ] = j + 1 ;
-
-
-				int first_number_is_killed = 0;
+                
+                int first_number_is_killed = 0;
                 int start_idx = i ;
                 int kill_idx ;
                 int replace_idx ;
                 int circle_size = n ;
-				int remains = n;
+                int remains = n;
 #ifdef _MBCS_DEBUG_
-				printf("Size : %d , k : %d\n", n, k );
+                printf("Size : %d , k : %d\n", n, k );
 #endif
 
                 while (remains > 1 )
                 {
-					kill_idx = nth_pos(circle, start_idx, circle_size, k);
-					if (kill_idx < 0) break;
+                    kill_idx = nth_pos(circle, start_idx, circle_size, k);
+                    if (kill_idx < 0) break;
 
                     int kill_number = circle[ kill_idx ] ;
 #ifdef _MBCS_DEBUG_
-					printf("Start Idx : %d\n", start_idx);
-					print(circle, circle_size);
-					printf("Kill Number : %d\n", kill_number);
+                    printf("Start Idx : %d\n", start_idx);
+                    print(circle, circle_size);
+                    printf("Kill Number : %d\n", kill_number);
 #endif
-					if (kill_number == 1)
-					{
-						first_number_is_killed = 1;
-						break;
-					}
+                    if (kill_number == 1)
+                    {
+                        first_number_is_killed = 1;
+                        break;
+                    }
 
                     circle[ kill_idx ] = -1;
+                    
+                    remains--;
 
-					remains--;
+                    if (remains <= 1)
+                            break;
 
-					if (remains <= 1)
-						break;
-
-					replace_idx = nth_pos(circle, kill_idx, circle_size, k);
-					int replace_number = circle[replace_idx];
+                    replace_idx = nth_pos(circle, kill_idx, circle_size, k);
+                    int replace_number = circle[replace_idx];
 #ifdef _MBCS_DEBUG_
-					print(circle, circle_size);
-					printf("replace_number : %d\n", replace_number);
+                    print(circle, circle_size);
+                    printf("replace_number : %d\n", replace_number);
 #endif
-					circle[replace_idx] = -1;
+                    circle[replace_idx] = -1;
 
                     circle[ kill_idx ] = replace_number;
-					start_idx = (kill_idx + 1) % circle_size;
+                    start_idx = (kill_idx + 1) % circle_size;
 #ifdef _MBCS_DEBUG_
-					print(circle, circle_size);
+                    print(circle, circle_size);
 #endif
-				}
-            
-				if (first_number_is_killed == 0)
-				{
-					printf("%d\n", i + 1);
-					break;
-				}
-			}
+                }
+
+                if (first_number_is_killed == 0)
+                {
+                    printf("%d\n", i + 1);
+                    break;
+                }
+            }
         }
     }
 }
