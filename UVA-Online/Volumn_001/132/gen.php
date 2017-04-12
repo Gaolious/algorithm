@@ -21,8 +21,9 @@ for ( $i = 0 ; $i < $n ; $i ++)
 	}
 	for ( $j = 0 ; $j < $cnt ; $j ++ )
 	{
-		$avg_x = $avg_x * (float)$j / (float)($j+1) + $x[ $j ] / (float)($j+1) ;
-		$avg_y = $avg_y * (float)$j / (float)($j+1) + $y[ $j ] / (float)($j+1) ;
+		$rate = (float)$j / (float)($j+1) ;
+		$avg_x = $avg_x * $rate + $x[ $j ] / (float)($j+1) ;
+		$avg_y = $avg_y * $rate + $y[ $j ] / (float)($j+1) ;
 	}
 
 	$cx = (int)( $avg_x );
