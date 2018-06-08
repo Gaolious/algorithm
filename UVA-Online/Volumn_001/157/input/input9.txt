@@ -1,0 +1,13 @@
+6
+A:abcdefghij
+B:abcd
+C:a=Dabcd
+D:abcd
+E:abcdefg
+F:ab
+EcFb
+DaEf
+BaFb
+BaCc
+AeCb
+#
