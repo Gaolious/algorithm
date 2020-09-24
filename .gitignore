@@ -27,7 +27,10 @@
 *.exe
 *.out
 *.app
-/netbeans_project/
-/work/
+netbeans_project/
+
+bin/UVA
 
 
+IDE/cpp/bin
+IDE/cpp/obj
