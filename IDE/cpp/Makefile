@@ -1,7 +1,6 @@
 CC = g++
-# CFLAGS = -g -lm -lcrypt -O2 -pipe -DONLINE_JUDGE
 CFLAGS = -g  -lm -lcrypt -O0 -std=c++11 -pipe -Wno-unused-result -DONLINE_JUDGE
-# -lm -lcrypt -O2 -std=c++11 -pipe -DONLINE_JUDGE
+# CFLAGS = -g  -lm -lcrypt -O0 -std=c++11 -pipe -Wno-unused-result -DONLINE_JUDGE -DAJAVA_DEBUG
 LDFLAGS =
 LIBS = 
 TARGET = ./bin/UVA
