@@ -6,7 +6,7 @@ cd "${UVA_PATH}"
 
 TEMPLATE_PATH="$( cd "${UVA_PATH}"; cd ../code_template; pwd -P )"
 
-UVA_EXTERNAL_PREFIX="https://onlinejudge.org/external/1"
+EXTERNAL_PREFIX="https://onlinejudge.org/external/1"
 
 cd "${HOME_PATH}"
 
@@ -19,7 +19,7 @@ function gen_uva_readme()
 ## UVA - ${PARAM}
 
 ### Problem        
-    PDF :  ${UVA_EXTERNAL_PREFIX}/1/${PARAM}.pdf       
+    PDF :  ${EXTERNAL_PREFIX}/${PARAM}.pdf       
 
 ### Compile
 \`\`\`bash
@@ -53,4 +53,4 @@ echo "Generate readme.md"
 gen_uva_readme
 
 echo "code"
-/usr/bin/code ${UVA_PATH}/${PARAM}
+/usr/bin/code ${UVA_PATH}/${PARAM} ${UVA_PATH}/${PARAM}/src/src.cpp
