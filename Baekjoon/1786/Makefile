@@ -10,6 +10,7 @@ SRC = $(wildcard src/*.cpp)
 OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC))
 
 $(TARGET): $(OBJ)
+	[ -d bin ] || mkdir -p bin
 	$(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) $(OBJ) -o $(TARGET)
 	echo "Complete"
 
@@ -18,4 +19,4 @@ obj/%.o: src/%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ) $(TARGET) core
+	rm -rf $(OBJ) $(TARGET) core bin obj

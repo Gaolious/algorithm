@@ -12,8 +12,6 @@
             "args": [
                 "<", 
                 "input/input.txt", 
-                ">",
-                "output/output.txt",
                 // "|", "tee", "output/output.txt", 
             ],
             "stopAtEntry": false,
