@@ -1,0 +1,10 @@
+{
+    "editor.fontSize": 20,
+    "files.associations": {
+        "vector": "cpp",
+        "future": "cpp",
+        "random": "cpp",
+        "sstream": "cpp",
+        "regex": "cpp"
+    }
+}
