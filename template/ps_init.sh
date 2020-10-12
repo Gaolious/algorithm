@@ -136,8 +136,12 @@ if [[ "${WORK_PATH}" == *"Baekjoon"* ]]; then
     PROBLEM_URL="url : https://www.acmicpc.net/problem/${PARAM}"
     check_param
 elif [[ "${WORK_PATH}" == *"UVA"* ]]; then
+
     README_TITLE="UVA - ${PARAM}"
-    PROBLEM_URL="url : https://onlinejudge.org/external/1/${PARAM}.pdf"
+
+    [[ "${WORK_PATH}" =~ Volume_[0]*([0-9]+) ]]
+    PROBLEM_URL="url : https://onlinejudge.org/external/${BASH_REMATCH[1]}/${PARAM}.pdf"
+
     check_param
 else
         README_TITLE="${PARAM}"
