@@ -29,8 +29,5 @@
 *.app
 netbeans_project/
 
-bin/UVA
-
-
-IDE/cpp/bin
-IDE/cpp/obj
+bin
+obj
