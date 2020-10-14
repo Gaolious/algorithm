@@ -135,12 +135,21 @@ if [[ "${WORK_PATH}" == *"Baekjoon"* ]]; then
     README_TITLE="BAEJOON - ${PARAM}"
     PROBLEM_URL="url : https://www.acmicpc.net/problem/${PARAM}"
     check_param
+
 elif [[ "${WORK_PATH}" == *"UVA"* ]]; then
 
     README_TITLE="UVA - ${PARAM}"
+    SUBPATH=`echo "${PARAM}/100" | bc`
+    SUBPATH=`printf "%03d" ${SUBPATH}`
 
-    [[ "${WORK_PATH}" =~ Volume_[0]*([0-9]+) ]]
-    PROBLEM_URL="url : https://onlinejudge.org/external/${BASH_REMATCH[1]}/${PARAM}.pdf"
+    WORK_PATH="${HOME_PATH}/../UVA-Online/Volume_${SUBPATH}"
+    [ -d "${WORK_PATH}" ] || mkdir -p "${WORK_PATH}"
+
+    PROBLEM_URL="
+Problem PDF : https://onlinejudge.org/external/${SUBPATH}/${PARAM}.pdf
+udebug : https://www.udebug.com/UVa/${PARAM}
+vjudge : https://vjudge.net/problem/UVA-${PARAM}
+"
 
     check_param
 else

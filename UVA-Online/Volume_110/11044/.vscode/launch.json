@@ -11,10 +11,7 @@
             "program": "${workspaceFolder}/bin/UVA",
             "args": [
                 "<", 
-                "input/input.txt", 
-                ">",
-                "output/output.txt",
-                // "|", "tee", "output/output.txt", 
+                "input/input.txt"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
