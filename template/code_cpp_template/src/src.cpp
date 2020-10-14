@@ -146,6 +146,7 @@ int main()
 
 #ifndef ONLINE_JUDGE 
     t = clock() - t;
+    printf ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
     printf ("Estimated Time : %f seconds.\n",((float)t)/CLOCKS_PER_SEC);    
     printf("\n[Press Enter to Continue ...]");
     fflush(stdout);
