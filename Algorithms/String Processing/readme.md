@@ -3,7 +3,6 @@
 - Refer https://cp-algorithms.com/
 
 ## Fundamentals
-- String Hasing
 - String Hashing
 - Rabin-Karp for String Matching
 - Prefix function - Knuth-Morris-Pratt
