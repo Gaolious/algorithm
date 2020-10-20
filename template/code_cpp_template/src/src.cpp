@@ -58,10 +58,11 @@ public :
     template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
 };
 
-#define MAX_N (100)
 void process()
 {
-    
+    FIO fin ;    
+
+
 }
 
 int main() 
@@ -75,11 +76,7 @@ int main()
 
 #ifndef ONLINE_JUDGE 
     t = clock() - t;
-    printf ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
     printf ("Estimated Time : %f seconds.\n",((float)t)/CLOCKS_PER_SEC);    
-    printf("\n[Press Enter to Continue ...]");
-    fflush(stdout);
-    fflush(stdin);
 #else 
 #endif 
     return 0; 
