@@ -61,6 +61,14 @@ public :
 void process()
 {
     FIO fin ;    
+    unsigned long long n, t, i ;
+
+    while ( fin.Int(n) && n )
+    {
+        for ( ; n >= 10 ; n = t )
+            for ( t = 0, i = n ; i ; t += i%10, i/=10);
+        printf("%llu\n", n);
+    }
 
 
 }

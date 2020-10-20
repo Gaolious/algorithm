@@ -61,8 +61,14 @@ public :
 void process()
 {
     FIO fin ;    
-
-
+    int N, x,y,z;
+    int i ;
+    fin.Int(N);
+    for ( i = 1 ; i <= N ; i ++ )
+    {
+        fin.Int(x,y,z);
+        printf("Case %d: %s\n", i, ( x <= 20 && y <= 20 && z <= 20 ) ? "good" : "bad" );
+    }
 }
 
 int main() 

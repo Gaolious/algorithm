@@ -107,8 +107,8 @@ $ code --version
 
 ### Compile
 \`\`\`bash
-$ gcc --version
-`gcc --version`
+$ g++ --version
+`g++ --version`
 
 $ make
 \`\`\`
@@ -146,9 +146,9 @@ elif [[ "${WORK_PATH}" == *"UVA"* ]]; then
     [ -d "${WORK_PATH}" ] || mkdir -p "${WORK_PATH}"
 
     PROBLEM_URL="
-Problem PDF : https://onlinejudge.org/external/${SUBPATH}/${PARAM}.pdf
-udebug : https://www.udebug.com/UVa/${PARAM}
-vjudge : https://vjudge.net/problem/UVA-${PARAM}
+- Problem PDF : https://onlinejudge.org/external/${SUBPATH}/${PARAM}.pdf
+- udebug : https://www.udebug.com/UVa/${PARAM}
+- vjudge : https://vjudge.net/problem/UVA-${PARAM}
 "
 
     check_param

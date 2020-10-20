@@ -45,7 +45,7 @@ public :
             if ( ! this->Char(c) ) return false ;
         }
 
-        while ( c > ' ' )
+        while ( '0' <= c && c <= '9' )
         {
             n = n * 10 + c - 48 ;
             if ( ! this->Char(c) ) break;
@@ -58,11 +58,25 @@ public :
     template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
 };
 
+#define MAX_N (100)
 void process()
 {
-    FIO fin ;    
+    char str[100];
+    int N, len, i;
+    FIO fin ;
 
+    fin.Int(N);
+    while (N -- )
+    {
+        int cnt[64]={0,}; 
+        fin.line(str, len, sizeof(str)-1);
+        for ( i = 0 ; i < len; i ++ )
+            cnt[str[i] - 'a'] = 1;
+        if (len == 3 &&  cnt['o'-'a'] + cnt['n'-'a'] + cnt['e'-'a'] >= 2 ) printf("1\n");
+        else if (len == 3 &&  cnt['t'-'a'] + cnt['w'-'a'] + cnt['o'-'a'] >= 2 ) printf("2\n");
+        else printf("3\n");
 
+    }
 }
 
 int main() 
@@ -76,7 +90,11 @@ int main()
 
 #ifndef ONLINE_JUDGE 
     t = clock() - t;
+    printf ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
     printf ("Estimated Time : %f seconds.\n",((float)t)/CLOCKS_PER_SEC);    
+    printf("\n[Press Enter to Continue ...]");
+    fflush(stdout);
+    fflush(stdin);
 #else 
 #endif 
     return 0; 

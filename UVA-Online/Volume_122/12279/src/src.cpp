@@ -4,8 +4,8 @@
 #include <sys/mman.h>
 #include <sys/syscall.h>
 #include <sys/stat.h>
-using namespace std;
 
+using namespace std;
 class FIO
 {
     char *p;
@@ -57,11 +57,20 @@ public :
     template<typename T> bool Int(T &a, T &b, T &c) { return this->Int(a, b) && this->Int(c); }
     template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
 };
+int max(int a, int b, int c) { return max(a, max(b,c)); }
+int min(int a, int b, int c) { return min(a, min(b,c)); }
+
 
 void process()
 {
-    FIO fin ;    
+    FIO fio ;
+    int T, n, ret , i;
 
+    for ( i = 1 ; fio.Int(T) && T ; i ++ )
+    {
+        for ( ret=0 ; T-- && fio.Int(n)  ; ret += n == 0 ? -1 : 1);
+        printf("Case %d: %d\n", i, ret);
+    }
 
 }
 
@@ -76,7 +85,11 @@ int main()
 
 #ifndef ONLINE_JUDGE 
     t = clock() - t;
+    printf ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
     printf ("Estimated Time : %f seconds.\n",((float)t)/CLOCKS_PER_SEC);    
+    printf("\n[Press Enter to Continue ...]");
+    fflush(stdout);
+    fflush(stdin);
 #else 
 #endif 
     return 0; 

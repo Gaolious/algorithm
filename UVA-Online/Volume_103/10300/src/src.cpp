@@ -61,7 +61,21 @@ public :
 void process()
 {
     FIO fin ;    
+    int T, t, a, b, c; 
+    int s ;
 
+    fin.Int(T);
+    while ( T -- )
+    {
+        s = 0 ;
+        fin.Int(t);
+        while ( t--)
+        {
+            fin.Int(a,b,c);
+            s += a * c ;
+        }
+        printf("%d\n", s);
+    }
 
 }
 

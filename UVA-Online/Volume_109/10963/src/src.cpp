@@ -62,7 +62,39 @@ void process()
 {
     FIO fin ;    
 
+    /*
+5    number of columns W
+2 1   east-to-west order,  Each line contains y1, the north-most row of the gap in this column, and y2, the south-most row of the gap in this column
+0 -1
+1 0
+1 0
+2 1    
 
+    2  1    1   0   2                
+-------------------------
+    2   1   1   0   2
+    
+    0   1   2   3   4
+
+    */
+    int i, T, a, b, gap, t  ;
+    bool result ;
+    fin.Int(T);
+    for ( i = 0 ; i < T ; i ++ )
+    {
+        fin.Int(t);
+        fin.Int(a,b);
+        gap = a - b ;
+        result = true ;
+        while ( t-- > 1 )
+        {
+            fin.Int(a,b);
+            if ( gap != a - b ) result = false ;
+        }
+
+        if ( i ) printf("\n");
+        printf("%s\n", result ? "yes" : "no");
+    }
 }
 
 int main() 

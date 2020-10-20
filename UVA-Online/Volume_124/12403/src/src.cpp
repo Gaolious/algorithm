@@ -32,6 +32,16 @@ public :
         *s = 0x00;
         return c || len > 0;
     }
+    bool word(char *s, int &len, const int maxLen)
+    {
+        char c = 0 ;
+        this->skip();
+        
+        for ( len = 0 ; this->Char(c) && c > ' ' && len < maxLen ; len++ )
+            *s++ = c ;
+        *s = 0x00;
+        return c || len > 0;
+    }
     template<typename T> bool Int(T &n)
     {
         char c ;
@@ -61,8 +71,22 @@ public :
 void process()
 {
     FIO fin ;    
+    int N, len, m, money ;
+    char str[1024];
 
-
+    money = 0 ;
+    fin.Int(N);
+    while ( N -- )
+    {
+        fin.word(str, len, sizeof(str)-1);
+        if ( str[0] == 'd' )
+        {
+            fin.Int(m);
+            money += m ;
+        }
+        else if ( str[0] == 'r' )
+            printf("%d\n", money);
+    }
 }
 
 int main() 

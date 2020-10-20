@@ -4,8 +4,8 @@
 #include <sys/mman.h>
 #include <sys/syscall.h>
 #include <sys/stat.h>
-using namespace std;
 
+using namespace std;
 class FIO
 {
     char *p;
@@ -57,12 +57,30 @@ public :
     template<typename T> bool Int(T &a, T &b, T &c) { return this->Int(a, b) && this->Int(c); }
     template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
 };
+int max(int a, int b, int c) { return max(a, max(b,c)); }
+int min(int a, int b, int c) { return min(a, min(b,c)); }
+
 
 void process()
 {
-    FIO fin ;    
+    int T , len;
+    char str[1024], *p;
+    FIO fio ;
 
-
+    fio.Int(T);
+    while( T-- )
+    {
+        fio.line(str, len, sizeof(str)-1);
+        
+        if ( strcmp(str, "1") == 0 || strcmp(str, "4") == 0 || strcmp(str, "78") == 0 ) 
+            printf("+\n");
+        else if ( len >= 2 && strncmp( str+len-2, "35", 2 ) == 0 )
+            printf("-\n");
+        else if ( len >= 2 && str[0] == '9' && str[len-1] == '4' ) 
+            printf("*\n");
+        else 
+            printf("?\n");
+    }
 }
 
 int main() 
@@ -76,7 +94,11 @@ int main()
 
 #ifndef ONLINE_JUDGE 
     t = clock() - t;
+    printf ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
     printf ("Estimated Time : %f seconds.\n",((float)t)/CLOCKS_PER_SEC);    
+    printf("\n[Press Enter to Continue ...]");
+    fflush(stdout);
+    fflush(stdin);
 #else 
 #endif 
     return 0; 

@@ -60,9 +60,13 @@ public :
 
 void process()
 {
-    FIO fin ;    
+    FIO fin ;   
+    int n ; 
+    char S[1024];
+    int i ;
 
-
+    for ( i = 1 ; fin.line(S, n, sizeof(S)-1) && S[0] != '*' ; i ++)
+        printf("Case %d: %s\n", i, S[0] == 'H' ? "Hajj-e-Akbar" : "Hajj-e-Asghar");
 }
 
 int main() 
