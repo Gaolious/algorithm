@@ -1,133 +1,62 @@
 #include <bits/stdc++.h>
 #include <math.h>
 #include <unistd.h>
+#include <sys/mman.h>
 #include <sys/syscall.h>
-
+#include <sys/stat.h>
 using namespace std;
 
-namespace FIO 
+class FIO
 {
-    const int FD_STDIN = 0;
-    const int FD_STDOUT = 1;
-    const int FD_STDERR = 2;
-
-    const static int BUFF_SIZE = 1<<21;
-    static char buf[BUFF_SIZE];
-    static char *p = buf + BUFF_SIZE;
-    static int last_read = 0 ;
-    inline static bool readByte(char &ret)
+    char *p;
+public :
+    FIO()
     {
-        if ( p - buf >= BUFF_SIZE )
+        struct stat rstat;
+        this->p = NULL ;
+        
+        if ( fstat(0, &rstat) == 0 && rstat.st_size > 0 )
+            this->p = (char*)mmap(0, rstat.st_size, PROT_READ, MAP_SHARED, 0, 0) ;
+        
+        if ( this->p == MAP_FAILED ) this->p = NULL ;
+    }
+    void skip() { while ( this->p && *this->p && *this->p <= ' ' ) this->p++; }
+    bool Char(char &c)  { if ( !this->p || *this->p <= 0 ) return false ; c = *this->p++; return true ; }
+    bool line(char *s, int &len, const int maxLen)
+    {
+        char c = 0 ;
+        this->skip();
+        
+        for ( len = 0 ; this->Char(c) && c > 0 && c != '\n' && len < maxLen ; len++ )
+            *s++ = c ;
+        *s = 0x00;
+        return c || len > 0;
+    }
+    template<typename T> bool Int(T &n)
+    {
+        char c ;
+        bool flag = true ;
+        n = 0 ;
+        this->skip();
+        if ( ! this->Char(c) )  return false ;
+        if ( c == '-' )
         {
-            last_read = (int)read(FD_STDIN, (void *)buf, sizeof(buf));
-            p = buf ;
+            flag = false;
+            if ( ! this->Char(c) ) return false ;
         }
-        else if ( last_read < BUFF_SIZE )
+
+        while ( c > ' ' )
         {
-            if ( (int)( p - buf) >= last_read ) // EOF
-                return false;
+            n = n * 10 + c - 48 ;
+            if ( ! this->Char(c) ) break;
         }
-        ret = *p++;
+        if ( !flag ) n = -n;
         return true ;
     }
-
-    inline bool readInt(int *ret)
-    {
-        int n = 0 ;
-        int flag = 0 ;
-        register char c ;
-        if (!readByte(c)) return false;
-        
-        while (c <= ' ') 
-            if ( !readByte(c) ) return false;
-        
-        if (c == '-') 
-        {
-            flag = 1;
-            if ( !readByte(c) ) return false;
-        }
-
-        while ( c > ' ' ) {
-            n = n * 10 + c - '0';
-            if (!readByte(c) ) break;
-        }
-        *ret = flag ? -n : n;
-        return true ;
-    }
-
-    inline bool readChar(FILE *fp, char *ret)
-    {
-        register char c;
-        if ( !readByte(c) ) return false ;
-        
-        while (c <= ' ') 
-            if (!readByte(c) ) return false ;
-
-        *ret = c;
-        return true ;
-    }
-
-    inline static int readLine(char *str, int maxLen )
-    {
-        register char c = 0x00 ;
-        int i ;
-
-        while (c < ' ' )
-            if ( !readByte(c) ) return false ;
-
-        for ( i = 0 ; i < maxLen && c && c != '\n' ; i ++ )
-        {
-            str[i] = c ;
-            if ( !readByte(c) ) 
-                break;
-        }
-        str[ i ] = 0x00 ;
-        return i;
-    }
-
-    char outbuf[BUFF_SIZE + 20];
-    char* outp = outbuf;
-
-    void printInt(int n)
-    {
-        unsigned nn;
-        if (n < 0) nn = -n, *outp++ = '-';
-        else nn = n;
-        char *end = outp;
-        do
-        {
-            *end++ = nn % 10 + '0';
-            nn /= 10;
-        } while (nn);
-        reverse(outp, end);
-        if (end < outbuf + BUFF_SIZE) outp = end;
-        else
-        {
-            syscall(0x01, 1, outbuf, end - outbuf);
-            outp = outbuf;
-        }
-    }
-
-    void printChar(char c)
-    {
-        char *end = outp;
-        *end++ = c;
-        if (end < outbuf + BUFF_SIZE) outp = end;
-        else
-        {
-            syscall(0x01, 1, outbuf, end - outbuf);
-            outp = outbuf;
-        }
-    }
-    void printNewline()
-    {
-        printChar('\n');
-    }
-    void flush()
-    {
-        syscall(0x01, 1, outbuf, outp - outbuf);
-    }    
-} 
+    template<typename T> bool Int(T &a, T &b) { return this->Int(a) && this->Int(b); }
+    template<typename T> bool Int(T &a, T &b, T &c) { return this->Int(a, b) && this->Int(c); }
+    template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
+};
 
 #define MAX_N (100)
 void process()
