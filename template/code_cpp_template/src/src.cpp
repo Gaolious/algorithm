@@ -8,7 +8,10 @@ using namespace std;
 
 class FIO
 {
+    #define BUFF_LEN (1<<22)
     char *p;
+    char out[BUFF_LEN];
+    int nOut ;
 public :
     FIO()
     {
@@ -19,15 +22,29 @@ public :
             this->p = (char*)mmap(0, rstat.st_size, PROT_READ, MAP_SHARED, 0, 0) ;
         
         if ( this->p == MAP_FAILED ) this->p = NULL ;
+        nOut = 0;
+    }
+    ~FIO() {
+        this->write_flush();
     }
     void skip() { while ( this->p && *this->p && *this->p <= ' ' ) this->p++; }
     bool Char(char &c)  { if ( !this->p || *this->p <= 0 ) return false ; c = *this->p++; return true ; }
-    bool line(char *s, int &len, const int maxLen)
+    bool Line(char *s, int &len, const int maxLen)
     {
         char c = 0 ;
         this->skip();
         
         for ( len = 0 ; this->Char(c) && c > 0 && c != '\n' && len < maxLen ; len++ )
+            *s++ = c ;
+        *s = 0x00;
+        return c || len > 0;
+    }
+    bool Word(char *s, int &len, const int maxLen)
+    {
+        char c = 0 ;
+        this->skip();
+        
+        for ( len = 0 ; this->Char(c) && c > 0 && c > ' ' && len < maxLen ; len++ )
             *s++ = c ;
         *s = 0x00;
         return c || len > 0;
@@ -56,11 +73,62 @@ public :
     template<typename T> bool Int(T &a, T &b) { return this->Int(a) && this->Int(b); }
     template<typename T> bool Int(T &a, T &b, T &c) { return this->Int(a, b) && this->Int(c); }
     template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
+
+    void write_flush(){
+        if ( this->nOut > 0 )
+        {
+            fwrite(this->out, 1, this->nOut, stdout);
+            this->nOut = 0;
+        }
+    }
+    void write_Char(char c) { 
+        if ( this->nOut >= BUFF_LEN )
+            this->write_flush();
+        this->out[ this->nOut ++ ] = c ;
+    }
+    void write_CharLn(char c) { 
+        this->write_Char(c);
+        this->write_Char('\n');
+    }
+    void write_Str(char *c) { 
+        while ( c && *c)
+            this->write_Char(*c++);
+    }
+    void write_Str(const char *c) { 
+        while ( c && *c)
+            this->write_Char(*c++);
+    }
+    template<typename T> void write_Int(T a) 
+    {
+        if ( a < 0 ) 
+        {
+            this->write_Char('-');
+            a *= -1;
+        }
+        else if ( a == 0 ) 
+        {
+            this->write_Char('0');
+        }
+        char buff[30];
+        int nBuff = 0;
+        for ( int i = 0 ; a > 0; a /= 10 )
+        {
+            buff[nBuff++] = '0' + (a%10);
+        }
+        while ( nBuff > 0 )
+            write_Char(buff[--nBuff]);
+    }
+    template<typename T> void write_IntLn(T a) 
+    {
+        write_Int(a);
+        write_Char('\n');
+    }
 };
+
 
 void process()
 {
-    FIO fin ;    
+    FIO fio ;    
 
 
 }
