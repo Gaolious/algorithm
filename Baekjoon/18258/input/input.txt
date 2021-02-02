@@ -1,0 +1,6 @@
+3
+push 3
+pop
+back
+1
+empty

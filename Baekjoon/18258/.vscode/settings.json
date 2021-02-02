@@ -1,0 +1,12 @@
+{
+    "editor.fontSize": 20,
+    "editor.fontFamily": "나눔고딕코딩, Consolas",
+    "editor.mouseWheelZoom": true,
+    "files.associations": {
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "istream": "cpp",
+        "regex": "cpp",
+        "typeinfo": "cpp"
+    }
+}
