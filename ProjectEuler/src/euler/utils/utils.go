@@ -47,12 +47,35 @@ func GetPrimes( N int ) []int {
 }
 
 func MaxInt( a, b int ) int {
+	return int(MaxInt64( int64(a), int64(b) ))
+}
+
+func MaxInt64( a, b int64 ) int64 {
+	if a > b { return a }
+	return b
+}
+func AbsInt64(a int64) int64 {
+	if a < 0 { return -a}
+	return a
+}
+func MaxUint64( a, b uint64 ) uint64 {
 	if a > b { return a }
 	return b
 }
 
 func MinInt( a, b int ) int {
-	return -MaxInt(-a,-b)
+	if a < b { return a }
+	return b
+}
+
+func MinInt64( a, b int ) int {
+	if a < b { return a }
+	return b
+}
+
+func MinUint64( a, b uint64 ) uint64 {
+	if a < b { return a }
+	return b
 }
 
 func GcdInt(a, b int ) int {
@@ -74,3 +97,4 @@ func GetDigit(n int64) int64 {
 		return GetDigit(n/10) + 1
 	}
 }
+

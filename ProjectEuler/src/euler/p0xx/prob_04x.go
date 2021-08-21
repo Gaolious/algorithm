@@ -5,7 +5,6 @@ import "fmt"
 func find_ndigit(n int64) int {
 	const MAX_DIGIT = 10
 
-	var COUNT [MAX_DIGIT + 1 ] int64
 	var POW10 [MAX_DIGIT + 1 ] int64
 
 	var ten, digits int64
@@ -21,13 +20,12 @@ func find_ndigit(n int64) int {
 		ten = ten * 10
 	}
 
-	COUNT[0] = 1
 	for digits = 1 ; digits <= MAX_DIGIT ; digits ++ {
-		COUNT[digits] = POW10[digits-1] * digits * 9
-		if n <= COUNT[digits] {
+		cnt := POW10[digits-1] * digits * 9
+		if n <= cnt {
 			break
 		} else {
-			n -= COUNT[digits]
+			n -= cnt
 		}
 	}
 
