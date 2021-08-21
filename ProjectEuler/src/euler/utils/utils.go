@@ -26,17 +26,6 @@ func GetPrimes( N int ) []int {
 	for i = 3 ; i <= N ; i += 2 {
 		if check[ i ] == 1 { continue }
 
-		//found = false
-		//length = len(primes)
-
-		//for j = 0 ; j < length && primes[j] <= i ; j ++ {
-		//	if i % primes[ j ] == 0 {
-		//		found = true
-		//		break
-		//	}
-		//}
-		//if found { continue }
-
 		for j = i ; j <= N ; j += i {
 			check[ j ] = 1
 		}

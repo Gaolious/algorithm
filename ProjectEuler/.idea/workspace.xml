@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_08x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_08x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,13 +96,19 @@
       <item itemvalue="Go Build.go build euler" />
       <item itemvalue="Go Build.go build src/" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build src/" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="" />
+      <created>1629550471016</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629550471016</updated>
+      <workItem from="1629550472400" duration="3000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
