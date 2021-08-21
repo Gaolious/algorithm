@@ -87,3 +87,71 @@ func GetDigit(n int64) int64 {
 	}
 }
 
+func PowInt64(n, p int64 ) int64{
+	// n^p
+	switch p {
+	case 0: return 1
+	case 1: return n
+	default:
+		if p % 2 == 0 {
+			ret := PowInt64(n, p/2)
+			return ret*ret
+		} else {
+			ret := PowInt64(n, p-1)
+			return ret * n
+		}
+	}
+}
+
+func PowInt64_Mod(n, p, m int64 ) int64{
+	// n^p
+	switch p {
+	case 0: return 1 % m
+	case 1: return n % m
+	default:
+		if p % 2 == 0 {
+			ret := PowInt64_Mod(n, p/2, m)
+			return (ret * ret) % m
+		} else {
+			ret := PowInt64_Mod(n, p-1, m)
+			return (ret * n) % m
+		}
+	}
+}
+
+func GetDivisorCount(primes []int, n int) int {
+	var ret, r, i int
+	var length = len(primes)
+	ret = 1
+
+	for i = 0 ; i < length && primes[i] * primes[i] <= n ; i ++ {
+		if n % primes[i] != 0 { continue }
+		r = 1
+		for n >= primes[i] && n % primes[i] == 0 {
+			r += 1
+			n /= primes[i]
+		}
+		ret = ret * r
+	}
+
+	return ret
+}
+
+
+func GetDivisorCountSquare(primes []int, n int) int {
+	var ret, r, i int
+	var length = len(primes)
+	ret = 1
+
+	for i = 0 ; i < length && primes[i] <= n ; i ++ {
+		if n % primes[i] != 0 { continue }
+		r = 1
+		for n >= primes[i] && n % primes[i] == 0 {
+			r += 2
+			n /= primes[i]
+		}
+		ret = ret * r
+	}
+
+	return ret
+}

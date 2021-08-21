@@ -62,3 +62,89 @@ func P100() int64 {
 	}
 	return minB
 }
+
+
+func P108() int {
+	// In the following equation x, y, and n are positive integers.
+	// 1/x + 1/y = 1/n
+	// For n = 4 there are exactly three distinct solutions:
+	// What is the least value of n for which the number of distinct solutions exceeds one-thousand?
+
+	// 1/x + 1/y = 1/n
+	// yn + xn = xy
+	// xn = y(x-n)
+	// n^2 = y(x-n) - xn + n^2
+	// n^2 = y(x-n) - n(x-n)
+	// n^2 = (x-n)(y-n)
+
+	// divisors of [n^2] = (x-n) and (y-n)
+	// and distinct .
+
+	const MAX_N = 200000
+	var primes = utils.GetPrimes(MAX_N)
+	//var l, r, m int
+	var ret = 0
+
+	for n :=1 ; n <=MAX_N ; n++ {
+		cnt := utils.GetDivisorCountSquare(primes, n) + 1
+		cnt /= 2
+		if cnt > 1000 {
+			fmt.Printf("n=%d, ret=%d\n", n, cnt)
+			return n
+		}
+	}
+
+	return ret
+}
+
+
+func P108_2() uint64 {
+	// In the following equation x, y, and n are positive integers.
+	// 1/x + 1/y = 1/n
+	// For n = 4 there are exactly three distinct solutions:
+	// What is the least value of n for which the number of distinct solutions exceeds one-thousand?
+
+	// 1/x + 1/y = 1/n
+	// yn + xn = xy
+	// xn = y(x-n)
+	// n^2 = y(x-n) - xn + n^2
+	// n^2 = y(x-n) - n(x-n)
+	// n^2 = (x-n)(y-n)
+
+	// divisors of [n^2] = (x-n) and (y-n)
+	// and distinct .
+
+	const CUT = 1000
+	const MAX_N = 100
+	var primes = utils.GetPrimes(MAX_N)
+	var nPrimes = len(primes)
+	var F func (prime_idx int, count uint64, N uint64)
+	var bestN uint64
+
+	F = func (prime_idx int, count uint64, N uint64) {
+
+		var i uint64
+		var next_n uint64
+
+		if prime_idx >= nPrimes { return }
+		if bestN > 0 && N > bestN { return }
+
+		if ( count + 1 ) / 2 > CUT {
+			if bestN == 0 || bestN > N {
+				fmt.Printf("updated best N = %d / cnt = %d\n", N, count)
+				bestN = N
+			}
+			return
+		}
+
+		next_n = 1
+		for i = 1 ; i <=5 ; i ++ {
+			next_n *= uint64(primes[prime_idx])
+			F( prime_idx + 1 , count * ( 2 * i + 1 ), N * next_n )
+		}
+	}
+
+	F(0, 1, 1)
+
+	return bestN
+}
