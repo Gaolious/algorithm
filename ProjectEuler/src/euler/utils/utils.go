@@ -1,10 +1,10 @@
-package main
+package utils
 
 import (
 	"math"
 )
 
-func get_primes( N int ) []int {
+func GetPrimes( N int ) []int {
 	// N 이하 소수 개수
 	var primes []int
 	var check []byte
@@ -44,4 +44,33 @@ func get_primes( N int ) []int {
 	}
 
 	return primes
+}
+
+func MaxInt( a, b int ) int {
+	if a > b { return a }
+	return b
+}
+
+func MinInt( a, b int ) int {
+	return -MaxInt(-a,-b)
+}
+
+func GcdInt(a, b int ) int {
+	if b == 0 {
+		return a
+	} else {
+		return GcdInt(b, a%b)
+	}
+}
+
+func GetDigit(n int64) int64 {
+	// 몇자리 수 인가 ?
+	if n < 0 {
+		n = -n
+	}
+	if n < 10 {
+		return 1
+	} else {
+		return GetDigit(n/10) + 1
+	}
 }

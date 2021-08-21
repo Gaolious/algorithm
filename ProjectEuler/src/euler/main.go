@@ -1,25 +1,28 @@
 package main
 
 import (
+	"euler/io"
+	"euler/p0xx"
 	"fmt"
 	"time"
 )
 
-var startTime time.Time
-var elapsedTime time.Duration
-func finish() {
-	wr.Flush()
-	elapsedTime = time.Since(startTime)
-	fmt.Printf("elapsedTime: %f seconds.\n", elapsedTime.Seconds())
-}
 func main() {
 	defer finish()
 
-	ret := problem_17()
+	ret := p0xx.P80()
 	fmt.Println("Answer : ", ret )
 
 }
+
 func init() {
 	startTime = time.Now()
+}
 
+var startTime time.Time
+var elapsedTime time.Duration
+func finish() {
+	io.End()
+	elapsedTime = time.Since(startTime)
+	fmt.Printf("elapsedTime: %f seconds.\n", elapsedTime.Seconds())
 }

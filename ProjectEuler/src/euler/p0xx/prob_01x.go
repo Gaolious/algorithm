@@ -1,14 +1,17 @@
-package main
+package p0xx
 
 import (
+	"euler/io"
+	"euler/utils"
 	"fmt"
 	"math/big"
 	"strings"
+	"time"
 )
 
-func problem_10() {
+func P10() {
 	var s int64
-	primes := get_primes(2000000)
+	primes := utils.GetPrimes(2000000)
 
 	for _, v := range primes {
 		s += int64(v)
@@ -16,7 +19,7 @@ func problem_10() {
 	fmt.Printf("problem 10 : %d\n", s)
 }
 
-func problem_11() {
+func P11() {
 	input := `08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -88,7 +91,7 @@ func problem_11() {
 
 }
 
-func problem_12(){
+func P12(){
 	var s, i, j, cnt uint64
 
 	s = 0
@@ -116,7 +119,7 @@ func problem_12(){
 		}
 	}
 }
-func problem_13() {
+func P13() {
 	input := `37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
 74324986199524741059474233309513058123726617309629
@@ -251,7 +254,7 @@ func problem_13() {
 }
 
 
-func problem_14() int {
+func P14() int {
 	const CacheSize = 5000000
 	var S [CacheSize] int
 	var F func(n int ) int
@@ -292,7 +295,7 @@ func problem_14() int {
 	return max_i
 }
 
-func problem_15() int {
+func P15() int {
 	var D[21][21]int
 	var i, j int
 	for i = 0 ; i < 21 ; i ++ {
@@ -311,7 +314,7 @@ func problem_15() int {
 	return D[20][20]
 }
 
-func problem_16() int {
+func P16() int {
 
 	var b1, b2 *big.Int
 	var F  func( N *big.Int, p int) *big.Int
@@ -346,7 +349,7 @@ func problem_16() int {
 
 }
 
-func problem_17() int {
+func P17() int {
 	var ret int
 	var F func(n int) int
 
@@ -394,4 +397,64 @@ func problem_17() int {
 		ret += F(i)
 	}
 	return ret
+}
+
+func P18() int {
+	input := `
+75
+95 64
+17 47 82
+18 35 87 10
+20 04 82 47 65
+19 01 23 75 03 34
+88 02 77 73 07 63 67
+99 65 04 28 06 16 70 92
+41 41 26 56 83 40 80 70 33
+41 48 72 33 47 32 37 16 94 29
+53 71 44 65 25 43 91 52 97 51 14
+70 11 33 28 77 73 17 78 39 68 17 57
+91 71 52 38 17 14 91 43 58 50 27 29 48
+63 66 04 68 89 53 67 30 73 16 69 87 40 31
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
+`
+	in := io.GetStringInput(input)
+	var D[2][100] int
+	var i, j, idx, prev int
+
+	for i = 0 ; i < 15 ; i ++ {
+		idx = i % 2
+		for j = 0 ; j <= i ; j ++ {
+			D[ idx ][ j ] = in.ReadInt()
+
+			prev = 0
+			if j != 0 { prev = utils.MaxInt(prev, D[ 1 - idx ][ j - 1 ] ) }
+			if j != i { prev = utils.MaxInt(prev, D[ 1 - idx ][ j ] ) }
+
+			D[ idx ][ j ] += prev
+		}
+		fmt.Println(D[idx])
+	}
+
+	prev = -100000
+	for j = 0 ; j < 14 ; j ++ {
+		prev = utils.MaxInt(prev, D[idx][j])
+	}
+	return prev
+}
+
+func P19() int {
+	var year int
+	var month time.Month
+	var cnt int
+
+	for year = 1901 ; year <= 2000 ; year ++ {
+		for month = 1 ; month <= 12 ; month ++ {
+			t := time.Date(year, month, 1, 0, 0, 0, 0, time.UTC)
+			if t.Weekday() == time.Sunday {
+				cnt ++
+			}
+		}
+	}
+
+	return cnt
 }

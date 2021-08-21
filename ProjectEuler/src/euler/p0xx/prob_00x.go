@@ -1,8 +1,8 @@
-package main
+package p0xx
 
 import "fmt"
 
-func problem_1 () {
+func P1 () {
 	// If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 	// Find the sum of all the multiples of 3 or 5 below 1000.
 	N := 1000
@@ -14,7 +14,7 @@ func problem_1 () {
 	fmt.Printf("problem 1 : %d\n", F(3) + F(5) - F(15))
 }
 
-func problem_2() {
+func P2() {
 	var a, b, c, s int64
 	a = 1
 	b = 2
@@ -30,7 +30,7 @@ func problem_2() {
 	fmt.Printf("problem 2 : %d\n", s)
 }
 
-func problem_9(){
+func P9(){
 	var m, n int
 	var a, b, c int
 
