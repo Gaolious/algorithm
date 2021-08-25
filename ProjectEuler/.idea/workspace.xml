@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_11x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_12x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_10x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_10x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_02x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_02x.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +21,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file:///usr/local/Cellar/go/1.16.3/libexec" />
+  <component name="GOROOT" url="file://$USER_HOME$/go_sdk/go1.17" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -48,7 +45,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../myfranchise-inc/200.django-project/source" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -118,16 +115,6 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Go Build.go build euler" />
-      <item itemvalue="Go Build.go build src/" />
-      <item itemvalue="Go Build.go build prob_11x.go" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build prob_11x.go" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -138,6 +125,7 @@
       <option name="presentableId" value="Default" />
       <updated>1629550471016</updated>
       <workItem from="1629550472400" duration="3000" />
+      <workItem from="1629711161931" duration="179000" />
     </task>
     <servers />
   </component>
@@ -154,6 +142,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -162,19 +151,22 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/euler/utils/utils.go</url>
-          <line>155</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/src/euler/p0xx/prob_02x.go</url>
+          <line>45</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GoApplicationRunConfiguration">
-        <watch expression="count.String()" language="go" />
-        <watch expression="N.String()" language="go" />
-        <watch expression="check_cnt.String()" language="go" />
-        <watch expression="next_n.String()" language="go" />
-        <watch expression="next_c.String()" language="go" />
+        <watch expression="count.String()" />
+        <watch expression="N.String()" />
+        <watch expression="check_cnt.String()" />
+        <watch expression="next_n.String()" />
+        <watch expression="next_c.String()" />
+        <watch expression="D[ 220 ]" language="go" />
+        <watch expression="D[ 284 ]" language="go" />
+        <watch expression="D[ i ]" language="go" />
       </configuration>
     </watches-manager>
   </component>
