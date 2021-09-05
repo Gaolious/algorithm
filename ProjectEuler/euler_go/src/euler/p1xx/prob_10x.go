@@ -1,8 +1,13 @@
 package p1xx
 
 import (
+	"bufio"
 	"euler/utils"
 	"fmt"
+	"math"
+	"os"
+	"strconv"
+	"strings"
 )
 
 func P100() int64 {
@@ -63,6 +68,69 @@ func P100() int64 {
 	return minB
 }
 
+func P101() int64 {
+	//  1 − n + n2 − n3 + n4 − n5 + n6 − n7 + n8 − n9 + n10
+	//  1 − n(1-n) − n3(1-n) − n5(1-n) − n7(1-n) − n9(1 - n)
+	//  1 - n * ( 1 - n ) ( 1 + n^2 + n^4 + n^6 + n^8 )
+	//  1 - n * ( 1 - n ) ( 1 + n^2 * ( 1 + n^2) + n^6 * ( 1 + n^2 ) )
+	//  1 - n * ( 1 - n ) ( 1 + n^2 * ( 1 + n^4 ) * ( 1 + n^2 ) )
+	// a + b = 1
+	// 2a + b = 683
+	// a = 682
+	// b = -681
+	var F = func(n int64) int64 {
+		var n2 = n * n
+		var n4 = n2 * n2
+
+		return 1 - n * ( 1 - n ) * ( 1 + n2 * ( 1 + n4 ) * ( 1 + n2 ) )
+	}
+	var i int64
+	var r int64
+	for i = 2 ; i <= 10 ; i ++ {
+		fmt.Printf("%d=%d\n", i, F(i))
+		r += F(i)
+	}
+
+	return r
+}
+
+func P102() int {
+	var i int
+	var count int
+	fp, _ := os.Open("/Users/ajava/github/algorithm/algorithm/ProjectEuler/euler_go/src/euler/p1xx/p102.in")
+	defer fp.Close()
+
+	fin := bufio.NewReader(fp)
+
+	for {
+		buffer, _, err := fin.ReadLine()
+		if err != nil {
+			break
+		}
+		tmp := strings.Split(string(buffer),",")
+		pos := make([]utils.Vector2d, 3)
+		for i = 0 ; i < 3 ; i ++ {
+			x, _ := strconv.Atoi(tmp[i*2])
+			y, _ := strconv.Atoi(tmp[i*2+1])
+			pos[i] = utils.Vector2d{ X:float64(x), Y:float64(y) }
+		}
+		var cnt[3] int
+		for i = 0 ; i < 3 ; i ++ {
+			ret := pos[ i % 3 ].Cross(&pos[(i+1)%3])
+			if math.Abs(ret) < utils.EPSILON {
+				cnt[1] ++
+			} else if ret < 0 {
+				cnt [0] ++
+			} else if ret > 0 {
+				cnt[2]++
+			}
+		}
+		if cnt[0] == 3 || cnt[2] == 3 {
+			count++
+		}
+	}
+	return count
+}
 
 func P108() int {
 	// In the following equation x, y, and n are positive integers.
