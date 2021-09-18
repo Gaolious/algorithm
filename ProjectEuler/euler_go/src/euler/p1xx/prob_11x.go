@@ -4,6 +4,7 @@ import (
 	"euler/utils"
 	"fmt"
 	"math/big"
+	"sort"
 )
 
 func P110() string {
@@ -64,6 +65,44 @@ func P110() string {
 	F(0, b1, b1)
 
 	return bestN.String()
+}
+
+func P119() int {
+	type DATA struct {
+		number, value uint64
+	}
+	var maxN uint64
+	var data []*DATA
+	var count, i int
+	var S = func(n uint64) uint64 {
+		var ret uint64
+		for n > 0 {
+			ret += n % 10
+			n /= 10
+		}
+		return ret
+	}
+	data = make([]*DATA, 1)
+	data[0] = &DATA{number: 2, value:4}
+
+	maxN = 2
+	for count < 30 {
+		sort.Slice(data, func(i, j int) bool { return data[i].value < data[j].value })
+		for data[0].value >= maxN*maxN {
+			maxN ++
+			data = append(data, &DATA{number:maxN, value: maxN*maxN })
+		}
+		sort.Slice(data, func(i, j int) bool { return data[i].value < data[j].value })
+
+		for i = 0 ; i < len(data) ; i ++ {
+			if S(data[i].value) == data[i].number {
+				count++
+				fmt.Printf("%d-th number : %d\n", count, data[i].value)
+			}
+			data[i].value *= data[i].number
+		}
+	}
+	return count
 }
 
 func P140() int64 {

@@ -9,10 +9,8 @@ import (
 
 func main() {
 	defer finish()
-
-	ret := p1xx.P102()
+	ret := p1xx.P161()
 	fmt.Println("Answer : ", ret )
-
 }
 
 func init() {

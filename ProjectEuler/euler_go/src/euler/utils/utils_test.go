@@ -29,3 +29,15 @@ func TestGetPrimes(t *testing.T) {
 	//}
 	//t.Fatalf("Error ret=%d", ret)
 }
+
+func Test64Digit(t *testing.T) {
+
+	for i := 72 ; i <= 10000 ; i ++ {
+		s := ConvertNto64Str(i)
+		v := Convert64StrToN([]byte(s))
+		if i != v {
+			t.Fatalf("ConvertNto64Str(%d) = %s; Convert64StrToN(%s) = %d\n",i, s, s, v)
+		}
+	}
+
+}

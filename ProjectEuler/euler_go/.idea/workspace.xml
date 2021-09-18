@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/euler/utils/maths.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../euler_python/P101/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../euler_python/P101/prob_p1xx.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p0xx/p42.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_16x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_10x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_10x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../euler_python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../euler_python/utils/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/utils/help.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_11x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_11x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/utils/utils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +28,17 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file:///usr/local/Cellar/go/1.16.3/libexec" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -90,25 +98,19 @@
       <output_directory value="$PROJECT_DIR$/bin" />
       <method v="2" />
     </configuration>
-    <configuration name="go build prob_11x.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Test64Digit in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="ProjectEuler" />
-      <working_directory value="$PROJECT_DIR$/src/euler" />
+      <working_directory value="$PROJECT_DIR$/src/euler/utils" />
       <envs>
         <env name="GOPATH" value="$PROJECT_DIR$" />
       </envs>
-      <kind value="FILE" />
+      <root_directory value="$PROJECT_DIR$/src/euler" />
+      <kind value="PACKAGE" />
+      <package value="euler/utils" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/src/euler/p1xx/prob_11x.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build src/" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="ProjectEuler" />
-      <working_directory value="$PROJECT_DIR$" />
-      <envs>
-        <env name="GOPATH" value="$PROJECT_DIR$" />
-      </envs>
-      <kind value="DIRECTORY" />
-      <directory value="$PROJECT_DIR$/src" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTest64Digit\E$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -123,14 +125,9 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Go Build.go build euler" />
-      <item itemvalue="Go Build.go build src/" />
-      <item itemvalue="Go Build.go build prob_11x.go" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build prob_11x.go" />
+        <item itemvalue="Go Test.Test64Digit in euler/utils" />
       </list>
     </recent_temporary>
   </component>
@@ -180,9 +177,9 @@
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
-      <configuration name="GoApplicationRunConfiguration">
-        <watch expression="F(3)" language="go" />
-        <watch expression="F(5)" language="go" />
+      <configuration name="GoTestRunConfiguration">
+        <watch expression="ret * N64_MOD " language="go" />
+        <watch expression="int(s[i] - 'a') + 10" language="go" />
       </configuration>
     </watches-manager>
   </component>
