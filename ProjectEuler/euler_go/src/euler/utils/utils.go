@@ -249,20 +249,34 @@ func MinUint64( a, b uint64 ) uint64 {
 	return b
 }
 
-func GcdInt(a, b int ) int {
+func GcdInt2(a, b int ) int {
 	if b == 0 {
 		return a
 	} else {
-		return GcdInt(b, a%b)
+		return GcdInt2(b, a%b)
 	}
 }
 
-func GcdUInt64(a, b uint64 ) uint64 {
+func LcdUint64_2(a, b uint64) uint64 {
+	g := GcdUInt64_2(a, b)
+	return a / g * b
+}
+
+func GcdUInt64_2(a, b uint64 ) uint64 {
 	if b == 0 {
 		return a
 	} else {
-		return GcdUInt64(b, a%b)
+		return GcdUInt64_2(b, a%b)
 	}
+}
+
+func GcdUint64_3(a, b, c uint64) uint64 {
+	return LcdUint64_2(a, LcdUint64_2(b, c) )
+}
+
+func LcdUint64_3(a, b, c uint64) uint64 {
+	g := GcdUInt64_2(a, b)
+	return a / g * b
 }
 
 func GetDigit(n int64) int64 {

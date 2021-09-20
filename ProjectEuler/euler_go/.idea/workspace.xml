@@ -5,28 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_13x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_14x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_15x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_17x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_18x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_19x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_20x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_21x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../euler_python/P10x/prob_p17x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_07x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_23x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_06x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_06x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_08x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_08x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_11x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_11x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_12x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_12x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_16x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_16x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/utils/maths.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/maths.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_14x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_14x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p3xx/prob_35x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p3xx/prob_35x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../euler_python/P101/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/P10x/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../euler_python/P101/prob_p1xx.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/P10x/prob_p10x.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../euler_python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../euler_python/utils/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/utils/help.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/utils/utils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +177,8 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GoApplicationRunConfiguration">
-        <watch expression="t * t == n" language="go" />
+        <watch expression="divisorList[t][i]" language="go" />
+        <watch expression="Primes[ divisorList[t][i] ]" language="go" />
       </configuration>
       <configuration name="GoTestRunConfiguration">
         <watch expression="ret * N64_MOD " language="go" />

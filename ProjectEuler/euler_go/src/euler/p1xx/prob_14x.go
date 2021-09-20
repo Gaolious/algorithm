@@ -44,7 +44,7 @@ func P141() uint64 {
 
 	for q = 1 ; q + q * q <= MaxN ; q ++ {
 		for p = 1 ; q*q*p*p + q*p <= MaxN ; p ++ {
-			if utils.GcdUInt64(p, q) != 1 { continue }
+			if utils.GcdUInt64_2(p, q) != 1 { continue }
 			for t = 1 ; ; t ++ {
 				N1 = (t*q*p) * (t*p*p) + t*q*q
 				// t^2*q*p^3 + t*q^2

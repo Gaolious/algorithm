@@ -22,7 +22,7 @@ func P351() int64 {
 
 	for x = 1 ; x <= N ; x ++ {
 		for y = x - 2 ; y > 0 ; y -= 2 {
-			g = utils.GcdInt(x, y)
+			g = utils.GcdInt2(x, y)
 			key := Key(x/g, y/g)
 			_, ok := Hash[key]
 

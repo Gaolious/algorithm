@@ -17,17 +17,12 @@ func TestGetPrimes(t *testing.T) {
 	}
 
 	for _, p := range params {
-		ret := GcdInt( p.a, p.b )
+		ret := GcdInt2( p.a, p.b )
 
 		if ret != p.expected {
-			t.Fatalf("GcdInt( %d, %d )=%d != %d\n", p.a, p.b, ret, p.expected)
+			t.Fatalf("GcdInt2( %d, %d )=%d != %d\n", p.a, p.b, ret, p.expected)
 		}
 	}
-
-	//} {
-	//	{2, }, {3, },
-	//}
-	//t.Fatalf("Error ret=%d", ret)
 }
 
 func Test64Digit(t *testing.T) {
@@ -39,5 +34,5 @@ func Test64Digit(t *testing.T) {
 			t.Fatalf("ConvertNto64Str(%d) = %s; Convert64StrToN(%s) = %d\n",i, s, s, v)
 		}
 	}
-
 }
+

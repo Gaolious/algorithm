@@ -103,7 +103,7 @@ func P33() int {
 					fmt.Printf("%d/%d (%d/%d)\n", c, d, a, b)
 					ret1 *= a
 					ret2 *= b
-					m := utils.GcdInt(ret1, ret2)
+					m := utils.GcdInt2(ret1, ret2)
 					ret1 /= m
 					ret2 /= m
 				}
@@ -305,9 +305,9 @@ func P39() int {
 			a = m*m - n*n
 			b = 2*m*n
 			c = m*m + n*n
-			if utils.GcdInt(a, b) != 1 { continue }
-			if utils.GcdInt(b, c) != 1 { continue }
-			if utils.GcdInt(a, c) != 1 { continue }
+			if utils.GcdInt2(a, b) != 1 { continue }
+			if utils.GcdInt2(b, c) != 1 { continue }
+			if utils.GcdInt2(a, c) != 1 { continue }
 			if a + b + c > 1000 { continue }
 
 			for k = 1 ; k * (a+b+c) <= 1000 ; k ++ {
