@@ -1,3 +1,8 @@
+def factorial(n: int) -> int:
+    ret = 1
+    for i in range(1, n+1):
+        ret *= i
+    return ret
 
 def gcd(a: int, b: int) -> int:
     while b > 0:

@@ -106,6 +106,70 @@ func GetPrimes( N int) []int {
 	return primes
 }
 
+func GetUint64Primes( N uint64) []uint64 {
+	// N 이하 소수
+	var primes = make([]uint64, 0, 0)
+	// var i, j int
+	var line []byte
+	var n uint64
+
+	var is = func(p uint64 ) bool {
+		length := len(primes)
+		for i := 0 ; i < length && primes[i] * primes[i] <= N ; i ++ {
+			if p % primes[ i ] == 0 {
+				return false
+			}
+		}
+		return true
+	}
+
+	var ReadPrimes = func(filename string, maxN uint64){
+		fin, err := os.Open(filename)
+		if err != nil {
+			return
+		}
+		defer fin.Close()
+		bin := bufio.NewReader(fin)
+
+		for {
+			line, _, err = bin.ReadLine()
+			if err != nil { return }
+			n := uint64(Convert64StrToN(line))
+			if n > maxN {
+				return
+			}
+			primes = append(primes, uint64(n))
+		}
+	}
+
+	ex, _ := os.Executable()
+	exPath := filepath.Dir(ex)
+	filename := filepath.Join(exPath, "primes.txt")
+
+	ReadPrimes(filename, N)
+
+	fout, _ := os.OpenFile(filename, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0644)
+	defer fout.Close()
+	bout := bufio.NewWriter(fout)
+	defer bout.Flush()
+
+	if len(primes) < 1 {
+		primes = append(primes, 2)
+		bout.WriteString(ConvertNto64Str(2))
+		bout.WriteString("\n")
+	}
+	n = primes[ len(primes) - 1] + 1
+	if n % 2 == 0 { n ++ }
+	for  ; n <= N ; n += 2 {
+		if is(n) {
+			primes = append(primes, n)
+			bout.WriteString(ConvertNto64Str(int(n)))
+			bout.WriteString("\n")
+		}
+	}
+	return primes
+}
+
 func GetPrimesPanDigital( N int) []int {
 	// N 이하 소수
 	var primes = make([]int, 0, 0)
@@ -190,6 +254,14 @@ func GcdInt(a, b int ) int {
 		return a
 	} else {
 		return GcdInt(b, a%b)
+	}
+}
+
+func GcdUInt64(a, b uint64 ) uint64 {
+	if b == 0 {
+		return a
+	} else {
+		return GcdUInt64(b, a%b)
 	}
 }
 

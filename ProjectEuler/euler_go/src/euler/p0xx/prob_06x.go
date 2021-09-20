@@ -6,6 +6,94 @@ import (
     "fmt"
 )
 
+func P61() int {
+    var numbers [9][][]int
+    var ans [10]int
+    var i, j int
+    var F = func(a, n int ) int {
+        switch a {
+        case 3:
+            return n * ( n + 1 ) / 2
+        case 4:
+            return n * n
+        case 5:
+            return n * ( 3 * n - 1 ) / 2
+        case 6:
+            return n * ( 2 * n - 1 )
+        case 7:
+            return n * ( 5*n -  3 ) / 2
+        case 8:
+            return n * ( 3 * n - 2 )
+        }
+        return 0
+    }
+    var Set = func(a, n int ) {
+        var p = F(a,n)
+        if p < 1000 || p > 9999 { return }
+        if numbers[a] == nil { numbers[a] = make([][]int, 100)}
+        if numbers[a][p/100] == nil { numbers[a][p/100] = make([]int, 0)}
+        // numbers[a][p/100][p] = 1
+        numbers[a][p/100] = append(numbers[a][p/100], p)
+    }
+    var Find func(sum int, init int, prev int ) int
+    Find = func(sum int, init int,  prev int ) int {
+        if ans[3]>0 && ans[4]>0 &&ans[5]>0 &&ans[6]>0 && ans[7]>0 && ans[8]>0 {
+            if init == prev {
+                return sum
+
+            }
+            return 0
+        }
+        for a := 3 ; a <= 8 ; a ++ {
+            if ans[a] > 0 { continue }
+            for j := 0; j < len(numbers[a][prev]); j++ {
+                ans[a] = numbers[a][prev][j]
+                var ret = Find(sum+numbers[a][prev][j], init, numbers[a][prev][j]%100)
+                if ret > 0 {
+                    return ret
+                }
+                ans[a] = 0
+            }
+        }
+        return 0
+    }
+
+    for i = 1 ; i <= 3333 ; i ++ {
+        for j = 3 ; j <= 8 ; j ++ {
+            Set(j, i)
+        }
+    }
+
+    var ret int
+
+    exitFoor:
+    for a := 3 ; a <= 8 ; a ++ {
+        for i = 1 ; i <= 99 ; i ++ {
+            for j = 0 ; j < len(numbers[a][i]) ; j ++ {
+                ans[a] = numbers[a][i][j]
+                ret = Find(numbers[a][i][j], numbers[a][i][j] / 100, numbers[a][i][j] % 100)
+                if ret > 0 {
+                    break exitFoor
+                }
+                ans[a] = 0
+
+            }
+        }
+    }
+
+    fmt.Println(ans)
+    for i = 3 ; i <= 8 ; i ++ {
+        for j = 0 ; ; j ++ {
+            if F(i, j) == ans[i] {
+                fmt.Printf("P(%d,%d) = %d / Ans[%d] = %d\n", i, j, ans[i], i, ans[i])
+                break
+            }
+        }
+    }
+
+    return ret
+}
+
 func P67() int {
     input := `59
 73 41
@@ -133,4 +221,3 @@ func P67() int {
     }
     return prev
 }
-

@@ -67,6 +67,59 @@ func P110() string {
 	return bestN.String()
 }
 
+func P111() int64 {
+	const N = 10
+	var Primes = utils.GetPrimes(1_000_000)
+	var recur func( idx, digit, expectCnt, n int64 ) int64
+	var isPrime = func(n int64) bool {
+		var i int
+		var p int64
+		for i = 0 ; ; i++ {
+			p = int64(Primes[i])
+			if p*p > n { break }
+			if n % p == 0 { return false }
+		}
+		return true
+	}
+	recur = func( idx, digit, expectCnt, n int64 ) int64{
+		if idx >= N {
+			if expectCnt == 0 && isPrime(n) {
+				return n
+			}
+			return 0
+		}
+		if N - idx < expectCnt {
+			return 0
+		}
+
+		var s, ret int64
+		for i := 9 ; i >= 0 ; i -- {
+			if idx == 0 && i == 0 { continue }
+			if int64(i) == digit {
+				s = recur(idx+1, digit, expectCnt-1, n * 10 + int64(i))
+			} else {
+				s = recur(idx+1, digit, expectCnt, n * 10 + int64(i))
+			}
+			if s > 0 {
+				ret += s
+			}
+		}
+		return ret
+	}
+
+	var result, s int64
+	for d := 0 ; d < 10 ; d ++ {
+		for i := 10 ; i >= 0 ; i -- {
+			s = recur(0, int64(d), int64(i), 0)
+			if s > 0 {
+				fmt.Printf("digit d=%d, M(10,d)=%d, S(10,d)=%d\n", d, i, s)
+				break
+			}
+		}
+		result += s
+	}
+	return result
+}
 func P119() int {
 	type DATA struct {
 		number, value uint64

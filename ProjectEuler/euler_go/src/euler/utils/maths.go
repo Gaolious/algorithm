@@ -39,3 +39,14 @@ func CCW3(c *Vector2d, a *Vector2d, b *Vector2d) float64 {
     b1 := b.Sub(c)
     return CCW2(a1, b1)
 }
+
+func IsPrime(n int64) bool {
+    var i int64
+    if n < 2 { return false }
+    if n == 2 { return true }
+    if n % 2 == 0 { return false }
+    for i = 3 ; i*i <= n ; i ++ {
+        if n % i == 0 { return false }
+    }
+    return true
+}

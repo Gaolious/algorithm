@@ -37,3 +37,26 @@ func P120() int64 {
 	}
 	return S
 }
+func P121() float64 {
+	const N = 16
+	var D[N+1][N+1] uint64
+	var round, j, total, blue uint64
+
+	D[0][0] = 1
+	for round = 0 ; round < N; round ++ {
+		for j = 0 ; j < N ; j ++ {
+			D[round+1][j] += D[round][j]
+			D[round+1][j+1] += D[round][j] * round
+		}
+	}
+	for j = 0 ; j <= N ; j ++ {
+		fmt.Println(D[j])
+		total += D[N][j]
+		if j < N / 2 {
+			blue += D[N][j]
+		}
+	}
+	fmt.Printf("Total : %d\n",  total)
+	fmt.Printf("blue : %d\n",  blue)
+	return float64(total) / float64(blue)
+}
