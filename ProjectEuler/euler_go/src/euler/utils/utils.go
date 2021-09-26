@@ -279,7 +279,7 @@ func LcdUint64_3(a, b, c uint64) uint64 {
 	return a / g * b
 }
 
-func GetDigit(n int64) int64 {
+func GetDigitLength(n int64) int64 {
 	// 몇자리 수 인가 ?
 	if n < 0 {
 		n = -n
@@ -287,7 +287,7 @@ func GetDigit(n int64) int64 {
 	if n < 10 {
 		return 1
 	} else {
-		return GetDigit(n/10) + 1
+		return GetDigitLength(n/10) + 1
 	}
 }
 
@@ -372,5 +372,59 @@ func GetDivisorCountSquare(primes []int, n int) int {
 		ret = ret * r
 	}
 
+	return ret
+}
+
+func NtoByte(n int) []byte {
+	var ret = make([]byte, 0)
+	for n > 0 {
+		ret = append(ret, byte(n % 10) )
+		n /= 10
+	}
+	return ret
+}
+func InverseByte(n []byte) []byte{
+	var length = len(n)
+	var ret = make([]byte, length)
+	for i := 0 ; i < length ; i ++ {
+		ret[ i ] = n[ length - i - 1 ]
+	}
+	return ret
+}
+func SumTwoByteInteger(a []byte, b []byte) []byte {
+	var ret = make([]byte, 0)
+	var length1 = len(a)
+	var length2 = len(b)
+	var i int
+	var c byte
+	for i = 0 ; i < length1 || i < length2 ; i ++ {
+		if i < length1 { c += a[i] }
+		if i < length2 { c += b[i] }
+
+		ret = append(ret, c % 10)
+		c /= 10
+	}
+	if c > 0 {
+		ret = append(ret, c % 10)
+	}
+	return ret
+}
+func IsPalindromeByte(n []byte) bool {
+	var length = len(n)
+	for i := 0 ; i < length / 2 ; i ++ {
+		if n[i] != n[length-i-1] {
+			return false
+		}
+	}
+	return true
+}
+
+func GetDigitCount(n int64) [10]int {
+	var ret[10]int
+
+	for n > 0 {
+		ret [ n % 10 ] ++
+		n /= 10
+	}
 	return ret
 }

@@ -43,3 +43,24 @@ func P131() int {
 	}
 	return ret
 }
+
+
+func P139() int {
+	//
+	const MaxDist = 100_000_000
+	var a, b, c, n, m, ret int
+
+	for n = 1 ; n*n + n <= MaxDist ; n ++ {
+		for m = n+1 ; ; m ++ {
+			a = m*m - n*n
+			b = 2 * m * n
+			c = m*m + n*n
+			if a + b + c >= MaxDist { break }
+			if utils.GcdInt2(a, b) != 1 || utils.GcdInt2(b, c) != 1 { continue }
+			if c % ( utils.MaxInt(a, b) - utils.MinInt(a,b) ) != 0 { continue }
+
+			ret += MaxDist / (a+b+c)
+		}
+	}
+	return ret
+}

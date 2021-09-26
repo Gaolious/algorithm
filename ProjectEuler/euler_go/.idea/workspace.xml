@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_07x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_23x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_05x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_25x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_26x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p3xx/prob_16x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_14x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_14x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p3xx/prob_35x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p3xx/prob_35x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_06x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_06x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_12x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_12x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_13x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_13x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/utils/utils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils_test.go" afterDir="false" />
     </list>
@@ -112,6 +116,66 @@
       <pattern value="^\QTest64Digit\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestInverseByte in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ProjectEuler" />
+      <working_directory value="$PROJECT_DIR$/src/euler/utils" />
+      <envs>
+        <env name="GOPATH" value="$PROJECT_DIR$" />
+      </envs>
+      <root_directory value="$PROJECT_DIR$/src/euler" />
+      <kind value="PACKAGE" />
+      <package value="euler/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestInverseByte\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestIsPalindromeByte in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ProjectEuler" />
+      <working_directory value="$PROJECT_DIR$/src/euler/utils" />
+      <envs>
+        <env name="GOPATH" value="$PROJECT_DIR$" />
+      </envs>
+      <root_directory value="$PROJECT_DIR$/src/euler" />
+      <kind value="PACKAGE" />
+      <package value="euler/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestIsPalindromeByte\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestNtoByte in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ProjectEuler" />
+      <working_directory value="$PROJECT_DIR$/src/euler/utils" />
+      <envs>
+        <env name="GOPATH" value="$PROJECT_DIR$" />
+      </envs>
+      <root_directory value="$PROJECT_DIR$/src/euler" />
+      <kind value="PACKAGE" />
+      <package value="euler/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestNtoByte\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestSumTwoByteInteger in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ProjectEuler" />
+      <working_directory value="$PROJECT_DIR$/src/euler/utils" />
+      <envs>
+        <env name="GOPATH" value="$PROJECT_DIR$" />
+      </envs>
+      <root_directory value="$PROJECT_DIR$/src/euler" />
+      <kind value="PACKAGE" />
+      <package value="euler/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestSumTwoByteInteger\E$" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="ProjectEuler" />
       <working_directory value="$PROJECT_DIR$" />
@@ -126,6 +190,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestSumTwoByteInteger in euler/utils" />
+        <item itemvalue="Go Test.TestIsPalindromeByte in euler/utils" />
+        <item itemvalue="Go Test.TestInverseByte in euler/utils" />
+        <item itemvalue="Go Test.TestNtoByte in euler/utils" />
         <item itemvalue="Go Test.Test64Digit in euler/utils" />
       </list>
     </recent_temporary>
@@ -173,12 +241,23 @@
           <line>155</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/euler/p0xx/prob_04x.go</url>
+          <line>354</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GoApplicationRunConfiguration">
-        <watch expression="divisorList[t][i]" language="go" />
-        <watch expression="Primes[ divisorList[t][i] ]" language="go" />
+        <watch expression="Primes[i]" language="go" />
+        <watch expression="arr" language="go" />
+        <watch expression="Primes[l]" language="go" />
+        <watch expression="Primes[r]" language="go" />
+        <watch expression="check[1811]" language="go" />
+        <watch expression="key" language="go" />
+        <watch expression="'!'" language="go" />
+        <watch expression="' '" language="go" />
       </configuration>
       <configuration name="GoTestRunConfiguration">
         <watch expression="ret * N64_MOD " language="go" />

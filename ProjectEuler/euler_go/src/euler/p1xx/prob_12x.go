@@ -1,6 +1,9 @@
 package p1xx
 
-import "fmt"
+import (
+	"euler/utils"
+	"fmt"
+)
 
 func P120() int64 {
 	// Let r be the remainder when (a−1)^n + (a+1)^n is divided by a^2.
@@ -37,6 +40,7 @@ func P120() int64 {
 	}
 	return S
 }
+
 func P121() float64 {
 	const N = 16
 	var D[N+1][N+1] uint64
@@ -59,4 +63,27 @@ func P121() float64 {
 	fmt.Printf("Total : %d\n",  total)
 	fmt.Printf("blue : %d\n",  blue)
 	return float64(total) / float64(blue)
+}
+
+func P122() int {
+	const N = 15
+	var D[N+1]int
+	var i, j int
+	var P[N+1]int
+	for i = 1 ; i <= N ; i ++ {
+		D[i] = i - 1
+		P[i] = i - 1
+		for j = 1 ; j * 2 <= i ; j ++ {
+			t := utils.MaxInt(D[j], D[i-j]) + 1
+			if t < D[ i ] {
+				D[ i ] = t
+				P[ i ] = j
+			}
+		}
+	}
+	var ret int
+	for i = 1 ; i <= N ; i ++ {
+		ret += D[i]
+	}
+	return ret
 }

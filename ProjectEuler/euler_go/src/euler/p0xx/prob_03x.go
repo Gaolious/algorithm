@@ -156,7 +156,7 @@ func P35() int {
 	var ret int
 
 	for _, n := range primes {
-		ndigit := int(utils.GetDigit(int64(n)))
+		ndigit := int(utils.GetDigitLength(int64(n)))
 
 		for n > d * 10 { d *= 10 }
 
@@ -256,7 +256,7 @@ func P38() int64 {
 
 		for a = 1 ; cnt < 9 ; a ++ {
 			n = n1 * a
-			cnt += utils.GetDigit(n)
+			cnt += utils.GetDigitLength(n)
 			if cnt > 9 { return false }
 			for n > 0 {
 				if n % 10 == 0 { return false }
@@ -279,7 +279,7 @@ func P38() int64 {
 		if is(n) {
 			var N, cnt int64
 			for i = 1 ; cnt < 9 ; i ++ {
-				t := utils.GetDigit(n*i)
+				t := utils.GetDigitLength(n*i)
 				N = N * utils.PowInt64(10, t) + n*i
 				cnt += t
 				fmt.Printf("%d x %d = %d\n", n, i, n*i)

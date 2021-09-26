@@ -254,7 +254,59 @@ func P44() int {
 
 	return minDiff
 }
+func P46() int {
+	var Primes = utils.GetPrimes(100000)
+	var isPrime = func (n int) bool {
+		l, r := 0, len(Primes)-1
+		for l <= r {
+			m := (l+r)/2
+			if Primes[m] == n {
+				return true
+			} else if Primes[m] < n {
+				l = m + 1
+			} else {
+				r = m - 1
+			}
+		}
+		return false
+	}
 
+	var i, primeIdx int
+	var j int
+
+	for i = 9 ; ; i += 2 {
+		for ; Primes[primeIdx] < i ; primeIdx++ {}
+		if Primes[primeIdx] == i { continue }
+
+		found := false
+		for j = 1 ; i - j*j+2 >= 2 ; j ++ {
+			if isPrime(i - 2*j*j) {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return i
+		}
+	}
+}
+func P47() int {
+	var Primes = utils.GetPrimes(1000)
+	var D [200000]int
+	var i, j int
+
+	for i = 0 ; i < len(Primes) ; i ++ {
+		for j = 1 ; Primes[i] * j < len(D) ; j ++ {
+			D[ Primes[i] * j ] ++
+		}
+	}
+	for i = 3 ; i < len(D) ; i ++ {
+		if D[i-3] == 4 && D[i-2] == 4 && D[i-1] == 4 && D[i] == 4 {
+			return i-3
+		}
+	}
+	return -1
+}
 func P48() uint64 {
 	var i, j, s, t uint64
 	var MOD uint64
@@ -268,4 +320,40 @@ func P48() uint64 {
 		s = ( s + t ) % MOD
 	}
 	return s
+}
+func P49() uint64 {
+	var Primes = utils.GetPrimes(9999)
+	var i, j int
+	var check[10000] byte
+	for i = 0 ; i < len(Primes) ; i ++ {
+		check[Primes[i]] = 1
+	}
+	var getCheck = func(n int) [10]byte {
+		var ret [10]byte
+		for n > 0 {
+			ret[ n % 10 ]++
+			n /= 10
+		}
+		return ret
+	}
+
+	for i = 0 ; i < len(Primes) ; i ++ {
+		if Primes[i] < 1000 { continue }
+		cI := getCheck(Primes[i])
+
+		for j = i + 1 ; j < len(Primes) ; j ++ {
+			k := Primes[j] * 2 - Primes[i]
+			if k >= 10000 { break }
+			if check[k] == 0 { continue }
+
+			cJ := getCheck(Primes[j])
+			cK := getCheck(k)
+
+			if cI != cJ { continue }
+			if cK != cJ { continue }
+
+			fmt.Printf("%04d %04d %04d\n", Primes[i], Primes[j], k)
+		}
+	}
+	return 0
 }

@@ -9,7 +9,7 @@ import (
 
 func main() {
 	defer finish()
-	ret := p0xx.P71()
+	ret := p0xx.P59()
 	fmt.Println("Answer : ", ret )
 }
 

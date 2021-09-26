@@ -94,6 +94,36 @@ func P61() int {
     return ret
 }
 
+func P62() int64 {
+    type data struct {
+        cnt int
+        list []int64
+    }
+    var D = make(map[ [10]int ]*data )
+    var i int64
+
+    for i = 1 ; i < 1000000 ; i ++ {
+        key := utils.GetDigitCount(i*i*i)
+        if _, ok := D[key]; !ok {
+            D[key] = &data{0, make([]int64, 0)}
+        }
+        D[key].cnt++
+        D[key].list = append(D[key].list, i*i*i)
+    }
+    k2 := utils.GetDigitCount(345*345*345)
+    fmt.Println(D[k2])
+    min_value := int64(0)
+    for _, v := range D {
+        if v.cnt == 5 {
+            for j := 0 ; j < v.cnt ; j ++ {
+                if min_value == 0 || min_value > v.list[j] {
+                    min_value = v.list[j]
+                }
+            }
+        }
+    }
+    return min_value
+}
 func P67() int {
     input := `59
 73 41
