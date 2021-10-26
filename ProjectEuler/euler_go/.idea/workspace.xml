@@ -5,19 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_05x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_25x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_26x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/euler/p3xx/prob_16x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/22343/.idea/22343.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/22343/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/22343/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/22343/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/22343/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_09x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/p6xx/prob_68x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/euler/utils/maths_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P0xx/p82.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P0xx/p83.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P0xx/prob_p06x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P0xx/prob_p07x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P0xx/prob_p08x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/boj/22343.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/boj/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_03x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_04x.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_06x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_06x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_12x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_12x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/euler/p1xx/prob_13x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p1xx/prob_13x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p0xx/prob_08x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p0xx/prob_08x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p2xx/prob_25x.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p2xx/prob_25x.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/p7xx/prob_7xx.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/p7xx/prob_7xx.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/petc/quiz.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/petc/quiz.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/euler/utils/maths.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/maths.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/euler/utils/utils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/euler/utils/utils_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../euler_python/P0xx/prob_p05x.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/P0xx/prob_p05x.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../euler_python/P10x/prob_p10x.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/P10x/prob_p10x.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../euler_python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../euler_python/utils/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/utils/help.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../euler_python/utils/tests/test_help.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/utils/tests/test_help.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +118,7 @@
       <output_directory value="$PROJECT_DIR$/bin" />
       <method v="2" />
     </configuration>
-    <configuration name="Test64Digit in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestContinuedFraction in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="ProjectEuler" />
       <working_directory value="$PROJECT_DIR$/src/euler/utils" />
       <envs>
@@ -113,7 +130,7 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTest64Digit\E$" />
+      <pattern value="^\QTestContinuedFraction\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestInverseByte in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -146,7 +163,7 @@
       <pattern value="^\QTestIsPalindromeByte\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestNtoByte in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPowInt64WithMod in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="ProjectEuler" />
       <working_directory value="$PROJECT_DIR$/src/euler/utils" />
       <envs>
@@ -158,7 +175,7 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestNtoByte\E$" />
+      <pattern value="^\QTestPowInt64WithMod\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestSumTwoByteInteger in euler/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -190,11 +207,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestPowInt64WithMod in euler/utils" />
+        <item itemvalue="Go Test.TestContinuedFraction in euler/utils" />
         <item itemvalue="Go Test.TestSumTwoByteInteger in euler/utils" />
         <item itemvalue="Go Test.TestIsPalindromeByte in euler/utils" />
         <item itemvalue="Go Test.TestInverseByte in euler/utils" />
-        <item itemvalue="Go Test.TestNtoByte in euler/utils" />
-        <item itemvalue="Go Test.Test64Digit in euler/utils" />
       </list>
     </recent_temporary>
   </component>
@@ -249,16 +266,6 @@
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
-      <configuration name="GoApplicationRunConfiguration">
-        <watch expression="Primes[i]" language="go" />
-        <watch expression="arr" language="go" />
-        <watch expression="Primes[l]" language="go" />
-        <watch expression="Primes[r]" language="go" />
-        <watch expression="check[1811]" language="go" />
-        <watch expression="key" language="go" />
-        <watch expression="'!'" language="go" />
-        <watch expression="' '" language="go" />
-      </configuration>
       <configuration name="GoTestRunConfiguration">
         <watch expression="ret * N64_MOD " language="go" />
         <watch expression="int(s[i] - 'a') + 10" language="go" />

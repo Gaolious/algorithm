@@ -122,3 +122,30 @@ func TestSumTwoByteInteger(t *testing.T) {
 		}
 	}
 }
+
+func TestPowInt64WithMod(t *testing.T) {
+	params := []struct {
+		n, p, m int64
+		expected int64
+	} {
+		{ 2, 0, 1000, 1},
+		{ 2, 1, 1000, 2},
+		{ 2, 2, 1000, 4},
+		{ 2, 3, 1000, 8},
+		{ 2, 4, 1000, 16},
+		{ 2, 5, 1000, 32},
+		{ 2, 6, 1000, 64},
+		{ 2, 7, 1000, 128},
+		{ 2, 8, 1000, 256},
+		{ 2, 9, 1000, 512},
+		{ 2, 10, 1000, 24},
+		{ 2, 11, 1000, 48},
+	}
+
+	for _, param := range params {
+		ret := PowInt64_Mod(param.n, param.p, param.m)
+		if ret != param.expected {
+			t.Fatal("PowInt64_Mod(", param.n, ", ", param.p, ", ", param.m, ") =", ret, " / Expected : ", param.expected)
+		}
+	}
+}

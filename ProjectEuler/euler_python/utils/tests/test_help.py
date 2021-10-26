@@ -1,6 +1,6 @@
 import pytest
 
-from utils.help import gcd, get_digits
+from utils.help import gcd, get_digits, ContinuedFraction, Prime
 
 
 @pytest.mark.parametrize(
@@ -30,3 +30,22 @@ def test_gcd(a, b, expected):
 )
 def test_get_digits(a, expected):
     assert get_digits(a) == expected
+
+
+@pytest.mark.parametrize(
+    'b, c, d, e, expected_a', [
+        (1, 23, 0, 1, 4),
+        (1, 23, 4, 7, 1),
+        (1, 23, -3, 7, 3),
+        (1, 23, -3, 2, 1),
+        (1, 23, -4, 7, 8),
+    ]
+)
+def test_continued_fraction(b, c, d, e, expected_a):
+    cf = ContinuedFraction(b=b, c=c, d=d, e=e)
+    assert cf.extract() == expected_a
+
+def test_prime():
+    P = Prime (100000)
+    P.sieve()
+    assert P.phi(87109) == 79180

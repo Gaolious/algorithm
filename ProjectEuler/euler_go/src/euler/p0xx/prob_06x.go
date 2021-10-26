@@ -4,8 +4,69 @@ import (
     "euler/io"
     "euler/utils"
     "fmt"
+    "math"
+    "math/big"
 )
+func P60() int {
 
+    var primes = utils.GetPrimes(50000)
+    var isPrime = func(n int) bool {
+        var i int
+        if n < 0 {
+            panic("negative")
+        }
+        if n < 2 {
+            return false
+        }
+        for i = 0 ; primes[i] * primes[i] <= n && i < len(primes) ; i ++ {
+            if n % primes[i] == 0 {
+                return false
+            }
+        }
+        if i == len(primes) && primes[i] * primes[i] < n {
+            panic("over")
+        }
+        return true
+    }
+    var merge = func(a, b int) int {
+        var i int
+        for i = 1 ; i < b ; i *= 10 {}
+        return a * i + b
+    }
+    var isPrime2 = func(a, b int) bool {
+        return isPrime( merge(a, b) ) && isPrime( merge(b, a))
+    }
+
+    var i, j, k, m, n, ret int
+    ret = 26033
+    for i = 0 ; i < len(primes) && primes[i]*5 < ret ; i ++ {
+        for j = i + 1 ; j <len(primes) ; j ++ {
+            if !isPrime2( primes[i], primes[j]) { continue }
+            if primes[i] + primes[j]*4 >= ret { break }
+            for k = j + 1 ; k < len(primes) ; k ++ {
+                if !isPrime2( primes[i], primes[k] ) { continue }
+                if !isPrime2( primes[j], primes[k] ) { continue }
+                if primes[i] + primes[j] + primes[k]*3 >= ret { break }
+                for m = k + 1 ; m < len(primes) ; m ++ {
+                    if !isPrime2( primes[i], primes[m] ) { continue }
+                    if !isPrime2( primes[j], primes[m] ) { continue }
+                    if !isPrime2( primes[k], primes[m] ) { continue }
+                    if primes[i] + primes[j] + primes[k] + primes[m]*2 >= ret { break }
+                    for n = m + 1 ; n < len(primes) ; n ++ {
+                        if !isPrime2( primes[i], primes[n] ) { continue }
+                        if !isPrime2( primes[j], primes[n] ) { continue }
+                        if !isPrime2( primes[k], primes[n] ) { continue }
+                        if !isPrime2( primes[m], primes[n] ) { continue }
+                        if primes[i] + primes[j] + primes[k] + primes[m] + primes[n] >= ret { break }
+                        ret = primes[i] + primes[j] + primes[k] + primes[m] + primes[n]
+                        fmt.Printf("%d %d %d %d %d : %d\n", primes[i], primes[j], primes[k], primes[m], primes[n],  ret)
+                    }
+                }
+            }
+        }
+    }
+    return ret
+}
 func P61() int {
     var numbers [9][][]int
     var ans [10]int
@@ -123,6 +184,177 @@ func P62() int64 {
         }
     }
     return min_value
+}
+
+func P63() int {
+    var n, log float64
+    var i, j, cnt int
+
+    for i = 1 ; i <= 9 ; i ++ {
+        log = math.Log10( float64(i) )
+        n = 0
+        for j = 1 ; ; j ++ {
+            n += log
+            if float64(j-1) <= n && n < float64(j) {
+                cnt++
+            } else {
+                break
+            }
+        }
+    }
+    return cnt
+}
+
+func P64() int {
+    type fraction struct {
+        //   b * root(c) + d
+        //  -----------------
+        //          e
+        b, c, d, e int
+    }
+    var i, j, k int
+    var extract = func( f *fraction ) (int, *fraction) {
+        //      b * root(c) + d
+        // 0 + -----------------
+        //             e
+
+        var a, b, c, d, e, e2 int
+        for a, d = 0, f.d ; ; a ++ {
+            if (d - f.e * (a+1) ) * (d - f.e * (a+1) ) < f.c {
+                continue
+            } else {
+                break
+            }
+        }
+
+        //      b * root(c) + d-a*e
+        // a + -----------------
+        //             e
+
+        b = f.b
+        c = f.c
+        d = f.d - a * f.e
+        e = f.e
+
+        //                1
+        // a + -------------------------
+        //                e
+        //        -------------------
+        //        b * root(c) + d'
+
+        //                1
+        // a + --------------------------
+        //         e * [ b * root(c) - (d') ]
+        //        --------------------
+        //          b^2 * c - (d')^2
+        e2 = b*b*c - d*d
+        m := utils.GcdInt3(
+            utils.AbsInt(e*b),
+            utils.AbsInt(-e*d),
+            utils.AbsInt(e2),
+        )
+
+        return a, &fraction{
+            b : e * b / m,
+            c : c,
+            d: (-d) * e / m,
+            e: e2 / m,
+        }
+    }
+
+    var curr, next *fraction
+    var found bool
+    var found_sidx int
+    var ret int
+
+    for i, j = 2, 1 ; i <= 10000 ; i ++ {
+        for j*j < i { j++ }
+        if j * j == i { continue }
+        var check = make([]fraction, 0)
+
+        curr = &fraction{b:1, c:i, d:0, e:1}
+        found = false
+        for ! found {
+            _, next = extract(curr)
+            for k = 0 ; k < len(check) ; k ++ {
+                if check[k].b != next.b { continue }
+                if check[k].c != next.c { continue }
+                if check[k].d != next.d { continue }
+                if check[k].e != next.e { continue }
+                found = true
+                found_sidx = k
+            }
+            if found { break }
+            check = append(check, *next)
+
+            // fmt.Printf("    %d * Root(%d) + %d\n", next.b, next.c, next.d)
+            // fmt.Printf("%3d --------------\n", a)
+            // fmt.Printf("           %d\n", next.e)
+            // fmt.Println("\n")
+            curr = next
+        }
+        fmt.Printf("%d : %d\n", i, len(check) - found_sidx)
+        if (len(check) - found_sidx) % 2 == 1 {
+            ret ++
+        }
+    }
+    return ret
+}
+
+func P65() int {
+    var i int
+    var F = func(n int) int {
+        if n == 0 {
+            return 2
+        }
+        switch n % 3 {
+        case 2 :
+            return 2 + 2 * (n-1)/3
+        default:
+            return 1
+        }
+    }
+    // 2
+    //      1
+    // 2 + ----
+    //      1
+
+    //      1
+    // 2 + -------------
+    //            1
+    //      1 + -----
+    //            2 + 0/1
+
+    // 0 1 2 1
+    var p1, p2, c1, c2 *big.Int
+
+    c1 = big.NewInt(0)
+    p1 = big.NewInt(1)
+
+    for i = 99 ; i >= 0 ; i -- {
+        c2 = p1
+        p2 = big.NewInt(0).Mul(p1, big.NewInt( int64(F(i)) ))
+        p2 = big.NewInt(0).Add(p2, c1)
+
+        c1, p1 = c2, p2
+
+        fmt.Printf("i:%d    => %s/%s\n", i, p1.String() , c1.String())
+    }
+    var ret int
+
+    for _, c := range p1.String(){
+        ret += int(c - '0')
+    }
+
+    return ret
+}
+
+func P66() int {
+    // x^2 – Dy^2 = 1
+    //            sqrt(x^2-1)
+    // sqrt(D) = -------------
+    //             sqrt(y^2)
+    return 0
 }
 func P67() int {
     input := `59

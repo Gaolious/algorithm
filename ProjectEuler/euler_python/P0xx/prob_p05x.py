@@ -1,10 +1,10 @@
-from utils.help import Number
+from utils.help import Fraction
 
 
 def P57():
-    n1 = Number(1)
-    n2 = Number(2)
-    n1_2 = Number(1, 2)
+    n1 = Fraction(1)
+    n2 = Fraction(2)
+    n1_2 = Fraction(1, 2)
 
     prev_t = n1 + n1_2
     cnt = 0

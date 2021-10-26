@@ -1,4 +1,4 @@
-from utils.help import Number
+from utils.help import Fraction
 
 
 def P101():
@@ -32,13 +32,13 @@ def P101():
 
         for i in range(size):
 
-            PowN = Number((i+1) ** (size-1))
+            PowN = Fraction((i + 1) ** (size - 1))
 
             for j in range(size):
                 M[i][j] = PowN
                 PowN = PowN / (i+1)
 
-            M[i][size] = Number(U(i+1))
+            M[i][size] = Fraction(U(i + 1))
 
         # print_matrix(M, size)
 
@@ -50,7 +50,7 @@ def P101():
                     continue
 
                 T = M[j][i] / M[i][i]
-                T = Number(-1) * T
+                T = Fraction(-1) * T
                 addMatrix(M, size, i, j, T)
 
             if M[i][i] != 0:
@@ -61,7 +61,7 @@ def P101():
         print_matrix(M, size)
 
 
-        co = [Number(0) for _ in range(size)]
+        co = [Fraction(0) for _ in range(size)]
 
         for i in range(size):
             for j in range(size):
@@ -70,8 +70,8 @@ def P101():
                     break
 
         for i in range(1, 30):
-            ret = Number(0)
-            PowN = Number( i ** (size-1))
+            ret = Fraction(0)
+            PowN = Fraction(i ** (size - 1))
 
             for j in range(size):
                 ret += co[j] * PowN
@@ -88,9 +88,9 @@ def P101():
                 ))
                 return ret
 
-        return Number(0)
+        return Fraction(0)
 
-    ret = Number(0)
+    ret = Fraction(0)
     for i in range(1, 20):
         ret += solve_equation(i)
 

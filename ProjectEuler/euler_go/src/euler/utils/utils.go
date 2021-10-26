@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"math/big"
 	"os"
 	"path/filepath"
 )
@@ -229,6 +230,10 @@ func AbsInt64(a int64) int64 {
 	if a < 0 { return -a}
 	return a
 }
+func AbsInt(a int) int {
+	if a < 0 { return -a }
+	return a
+}
 func MaxUint64( a, b uint64 ) uint64 {
 	if a > b { return a }
 	return b
@@ -255,6 +260,10 @@ func GcdInt2(a, b int ) int {
 	} else {
 		return GcdInt2(b, a%b)
 	}
+}
+
+func GcdInt3(a, b, c int ) int {
+	return GcdInt2(a, GcdInt2(b, c))
 }
 
 func LcdUint64_2(a, b uint64) uint64 {
@@ -315,14 +324,16 @@ func PowInt64_Mod(n, p, m int64 ) int64{
 	default:
 		if p % 2 == 0 {
 			ret := PowInt64_Mod(n, p/2, m) % m
-			return (ret * ret) % m
+			new_ret := big.NewInt(int64(ret))
+			n2 := big.NewInt(0).Mul(new_ret, new_ret)
+			n3 := big.NewInt(0).Mod(n2, big.NewInt( int64(m) ))
+			return n3.Int64()
 		} else {
 			ret := PowInt64_Mod(n, p-1, m) % m
 			return (ret * n) % m
 		}
 	}
 }
-
 func PowUInt64_Mod(n, p, m uint64 ) uint64{
 	// n^p
 	switch p {
@@ -331,10 +342,16 @@ func PowUInt64_Mod(n, p, m uint64 ) uint64{
 	default:
 		if p % 2 == 0 {
 			ret := PowUInt64_Mod(n, p/2, m) % m
-			return (ret * ret) % m
+			new_ret := big.NewInt(int64(ret))
+			n2 := big.NewInt(0).Mul(new_ret, new_ret)
+			n3 := big.NewInt(0).Mod(n2, big.NewInt( int64(m) ))
+			return n3.Uint64()
 		} else {
 			ret := PowUInt64_Mod(n, p-1, m) % m
-			return (ret * n) % m
+			new_ret := big.NewInt(int64(ret))
+			n2 := big.NewInt(0).Mul(new_ret, big.NewInt(int64(n)))
+			n3 := big.NewInt(0).Mod(n2, big.NewInt( int64(m) ))
+			return n3.Uint64()
 		}
 	}
 }

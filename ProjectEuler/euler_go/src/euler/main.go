@@ -2,14 +2,14 @@ package main
 
 import (
 	"euler/io"
-	"euler/p0xx"
+	"euler/p6xx"
 	"fmt"
 	"time"
 )
 
 func main() {
 	defer finish()
-	ret := p0xx.P59()
+	ret := p6xx.P684()
 	fmt.Println("Answer : ", ret )
 }
 
