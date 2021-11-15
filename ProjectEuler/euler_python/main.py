@@ -1,14 +1,10 @@
-
-
-# Press the green button in the gutter to run the script.
-from P0xx.prob_p06x import *
 import timeit
 
-from P0xx.prob_p08x import P83, P82
+from P0xx.prob_p09x import P98 as prob
 
 if __name__ == '__main__':
     start = timeit.default_timer()
-    ret = P82()
+    ret = prob()
     stop = timeit.default_timer()
 
     print('Answer : ', ret)

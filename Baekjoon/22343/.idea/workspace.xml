@@ -3,41 +3,24 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="ALL" />
   </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e5d67c45-23b5-4115-af6e-d0fb2c7f0a58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/22343.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/p0xx/prob_09x.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/utils/maths_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/p82.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/p83.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/prob_p06x.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/prob_p07x.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/prob_p08x.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/boj/22343.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/boj/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/p0xx/prob_06x.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/p0xx/prob_06x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/p0xx/prob_08x.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/p0xx/prob_08x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/p2xx/prob_25x.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/p2xx/prob_25x.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/petc/quiz.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/petc/quiz.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/utils/maths.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/utils/maths.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/utils/utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/utils/utils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_go/src/euler/utils/utils_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/prob_p05x.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/prob_p05x.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P10x/prob_p10x.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P10x/prob_p10x.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_python/utils/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/utils/help.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_python/utils/tests/test_help.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/utils/tests/test_help.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/prob_p08x.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjectEuler/euler_python/P0xx/prob_p08x.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -63,7 +46,10 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
@@ -81,13 +67,24 @@
       <input_file value="$PROJECT_DIR$/input.txt" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build 22343" />
-      </list>
-    </recent_temporary>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e5d67c45-23b5-4115-af6e-d0fb2c7f0a58" name="Changes" comment="" />
+      <created>1635712375896</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635712375896</updated>
+      <workItem from="1635712378861" duration="60000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>

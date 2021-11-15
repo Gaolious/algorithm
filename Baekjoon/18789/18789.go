@@ -14,10 +14,8 @@ var (
 	dx = []int { 0, 1, 1, 1, 0, -1, -1, -1}
 	dy = []int { -1, -1, 0, 1, 1, 1, 0, -1}
 )
-
 type MAP struct {
 	data [MaxY][MaxX]byte
-	// neighbor [10][11] byte
 	score int
 }
 
@@ -25,30 +23,6 @@ func isRange(y, x int ) bool {
 	return 0 <= y && y < MaxY && 0 <= x && x < MaxX
 }
 
-func (m *MAP)updateNeighbor() {
-	// var y, x, d int
-	// for y = 0 ; y < 10 ; y ++ {
-	// 	for x = 0 ; x < 11 ; x ++ {
-	// 		m.neighbor[y][x] = 0
-	// 	}
-	// }
-	//
-	// for y = 0 ; y < MaxY ; y ++ {
-	// 	for x = 0 ; x < MaxX ; x ++ {
-	// 		for d = 0 ; d < 8 ; d ++ {
-	// 			tx := x + dx[ d ]
-	// 			ty := y + dy[ d ]
-	// 			if ! isRange(ty, tx) {
-	// 				continue
-	// 			}
-	// 			if m.neighbor[ m.data[y][x] ][ m.data[ty][tx] ] == 0 {
-	// 				m.neighbor[ m.data[y][x] ][ m.data[ty][tx] ] = 1
-	// 				m.neighbor[ m.data[y][x] ][ 10 ] ++
-	// 			}
-	// 		}
-	// 	}
-	// }
-}
 func (m *MAP)find(y, x int, n int) bool {
 	var d int
 	var target = byte(n%10)
@@ -71,6 +45,7 @@ func (m *MAP)find(y, x int, n int) bool {
 	}
 	return false
 }
+
 func (m *MAP)isEqual( other *MAP) bool {
 	if m.score != other.score { return false }
 	var y, x int
@@ -84,95 +59,101 @@ func (m *MAP)isEqual( other *MAP) bool {
 	return true
 }
 func (m *MAP)updateScore() {
-	var n, y, x int
-	var found bool
-	var target byte
+	var digit, n, y, x, pow, d int
+	var check [100000]byte
 
 	m.score = 0
+	var available [MaxY][MaxX][5] map[int]byte
 
-	for n = 1 ; ; n ++ {
-		found = false
-		target = byte(n%10)
+	// for y = 0 ; y < MaxY; y++ {
+	// 	for x = 0; x < MaxX; x++ {
+	// 		fmt.Printf("%c ", m.data[y][x] + '0')
+	// 	}
+	// 	fmt.Println()
+	// }
+	for y = 0 ; y < MaxY; y++ {
+		for x = 0; x < MaxX; x++ {
+			for digit = 0 ; digit < 5 ; digit ++ {
+				available[y][x][digit] = make(map[int]byte)
+			}
+		}
+	}
 
-		for y = 0 ; y < MaxY && !found ; y ++ {
-			for x = 0; x < MaxX && !found; x++ {
-				if m.data[y][x] == target {
-					if m.find(y, x, n/10) {
-						found = true
-						break
+	for digit, pow = 0, 1 ; digit < 5 ; digit ++ {
+		for y = 0 ; y < MaxY; y++ {
+			for x = 0; x < MaxX; x++ {
+
+				if digit == 0 {
+					val := int(m.data[y][x])
+					available[y][x][digit][val] = 1
+					check[val] = 1
+				} else {
+					for d = 0 ; d < 8 ; d ++ {
+						tx := x + dx[ d ]
+						ty := y + dy[ d ]
+						if ! isRange(ty, tx) {
+							continue
+						}
+						for prev_val := range available[ty][tx][digit-1] {
+							val := prev_val * 10 + int(m.data[y][x])
+							available[y][x][digit][val] = 1
+							check[val] = 1
+						}
 					}
 				}
 			}
 		}
-
-		if found {
-			m.score = n
-			continue
-		} else {
-			break
+		for n = pow ; n < pow*10 ; n ++ {
+			if check[n] == 0 {
+				m.score = n - 1
+				return
+			}
 		}
+		pow = pow * 10
 	}
 }
 
 func main() {
-	const MaxRepeat = 10000
-	const CandidateSize = 50
-	var candidates = make([]*MAP, 0)
-	var y, x int
-	var n byte
+	const MaxRepeat = 1000
+	var y, x, bit int
 
-	for n = 0 ; n < CandidateSize ; n ++ {
-		var newD MAP
-		for y = 0; y < MaxY; y++ {
-			for x = 0; x < MaxX; x++ {
-				newD.data[y][x] = byte( rand.Int() % 10 )
-			}
+	var sol, best MAP
+	for y = 0; y < MaxY; y++ {
+		for x = 0; x < MaxX; x++ {
+			sol.data[y][x] = byte( rand.Int() % 10 )
 		}
-		newD.updateScore()
-		candidates = append(candidates, &newD)
 	}
+	sol.updateScore()
 
 	for repeat := 0 ; repeat < MaxRepeat ; repeat ++ {
 		var next = make([]*MAP, 0)
-		for _, curr := range candidates {
-			for x = 0; x < MaxX; x++ {
-				for bit := 1<<MaxY ; bit > 0 ; bit -- {
-
-					newD := *curr
-					for y = 0 ; y < MaxY ; y ++ {
-						if bit&(1<<x) == 0 {
-							newD.data[y][x] = byte(rand.Int() % 10)
-						}
-					}
-					newD.updateScore()
-
-					found := false
-					for k := range next {
-						if next[k].isEqual(&newD) {
-							found = true
-							break
-						}
-					}
-					if !found {
-						next = append(next, &newD)
-					}
+		for i := 0 ; i < len(candidates) ; i +=2 {
+			choice := 0 // rand.Int()%10
+			switch choice {
+			case 0 :
+				bit = rand.Int() % ( 1 << MaxY )
+				next1 := *candidates[i]
+				next2 := *candidates[i+1]
+				x = rand.Int() % MaxX
+				for y = 0 ; y < MaxY ; y ++ {
+					if bit & ( 1 << y ) == 0 { continue }
+					next1.data[y][x], next2.data[y][x] = next2.data[y][x], next1.data[y][x]
 				}
+				next1.updateScore()
+				next2.updateScore()
+				next = append(next, &next1)
+				next = append(next, &next2)
 			}
 		}
 		sort.Slice( next, func(i, j int) bool { return next[i].score > next[j].score })
 
-		fmt.Printf("Current Repeat : %d / %d \n", repeat + 1, MaxRepeat)
-		candidates = make([]*MAP, 0)
-		maxSize := CandidateSize
-		if len(next) < maxSize {
-			maxSize = len(next)
+		if next[0].score > best.score {
+			best = *next[0]
 		}
-		candidates = append(candidates,next[:maxSize]...)
-
-		for idx, curr := range candidates {
-			if idx >= 5 { break }
-			fmt.Printf("Score[%d] : %d\n", idx, curr.score)
-			fmt.Println(curr.data)
+		if repeat % 1000 == 0 {
+			fmt.Printf("Best : %d / Repeat : %d / %d \n", best.score, repeat + 1, MaxRepeat)
 		}
 	}
+	fmt.Printf("Best : %d\n", best.score)
+	fmt.Println(best.data)
 }
