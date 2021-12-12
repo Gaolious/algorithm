@@ -31,3 +31,9 @@ netbeans_project/
 
 bin
 obj
+
+__pycache__
+
+cmake-build-debug
+cmake-build-release
+.idea

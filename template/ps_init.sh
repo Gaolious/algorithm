@@ -3,7 +3,7 @@
 HOME_PATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 WORK_PATH=`pwd -P`
 
-CPP_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./code_cpp_template; pwd -P )"
+CPP_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./clion_cpp_template; pwd -P )"
 PYTHON_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./code_python_template; pwd -P )"
 
 #SITE=$1
@@ -183,8 +183,12 @@ case ${TYPE} in
         echo "Generate readme.md"
         gen_gcc_readme
 
-        echo "code"
-        /usr/bin/code "${WORK_PATH}/${PARAM}" "${WORK_PATH}/${PARAM}/src/src.cpp"
+        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            echo "not yet.. "
+        elif [[ "$OSTYPE" == "darwin"* ]]; then
+            open -na "CLion.app" --args "${WORK_PATH}/${PARAM}"
+        fi
+
         ;;
 
     [Pp][Yy][Tt][Hh][Oo][Nn]2)
