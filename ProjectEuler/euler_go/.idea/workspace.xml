@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="" />
+    <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/1422_gp/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/1422_gp/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/17822/17822.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Baekjoon/17822/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P1xx/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P1xx/prob_p10x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P1xx/prob_p11x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P1xx/prob_p12x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P1xx/prob_p13x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../euler_python/P1xx/prob_p14x.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../euler_python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../euler_python/utils/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/../euler_python/utils/help.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../template/ps_init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../template/ps_init.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +63,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -209,7 +224,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>

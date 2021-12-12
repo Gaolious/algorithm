@@ -9,6 +9,10 @@ def factorial(n: int) -> int:
     return ret
 
 
+def combination(n: int, c: int) -> int:
+    return factorial(n) // factorial(n-c) // factorial(c)
+
+
 def gcd(a: int, b: int) -> int:
     while b > 0:
         a, b = b, a % b

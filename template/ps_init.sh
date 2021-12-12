@@ -183,7 +183,12 @@ case ${TYPE} in
         echo "Generate readme.md"
         gen_gcc_readme
 
-        open -na "CLion.app" --args "${WORK_PATH}/${PARAM}"
+        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            echo "not yet.. "
+        elif [[ "$OSTYPE" == "darwin"* ]]; then
+            open -na "CLion.app" --args "${WORK_PATH}/${PARAM}"
+        fi
+
         ;;
 
     [Pp][Yy][Tt][Hh][Oo][Nn]2)

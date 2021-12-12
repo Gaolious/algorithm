@@ -1,6 +1,6 @@
 import timeit
 
-from P0xx.prob_p09x import P98 as prob
+from P1xx.prob_p12x import P126 as prob
 
 if __name__ == '__main__':
     start = timeit.default_timer()
