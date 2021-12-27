@@ -101,10 +101,6 @@ function gen_gcc_readme()
     ${PROBLEM_URL}
 
 ### IDE 
-\`\`\`bash
-$ code --version
-`code --version`
-\`\`\`
 
 ### Compile
 \`\`\`bash
@@ -174,7 +170,7 @@ case ${TYPE} in
         gen_gcc_readme
 
         echo "code"
-        /usr/bin/code "${WORK_PATH}/${PARAM}" "${WORK_PATH}/${PARAM}/src/src.cpp"
+	/home/ajava/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/clion.sh "${WORK_PATH}/${PARAM}"
         ;;
 
     [Cc][Pp][Pp])
@@ -185,7 +181,8 @@ case ${TYPE} in
         gen_gcc_readme
 
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            echo "not yet.. "
+	        /home/ajava/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/clion.sh "${WORK_PATH}/${PARAM}"
+            
         elif [[ "$OSTYPE" == "darwin"* ]]; then
             # open -na "CLion.app" --args "${WORK_PATH}/${PARAM}"
             
