@@ -1,7 +1,7 @@
 import math
 from typing import Tuple, Set
 
-from utils.help import Prime
+from utils.help import Prime, gcd
 
 
 def P122():
@@ -136,3 +136,55 @@ def P126():
         print(i, C[i])
         if C[i] == 1000:
             return i
+
+
+def P127():
+
+    MaxC = 120000
+
+    PRIME = [set() for _ in range(MaxC)]
+    RAD = [1] * MaxC
+
+    def update_rad():
+        n = 2
+        for i in range(n, MaxC, n):
+            PRIME[i].add(n)
+            RAD[i] *= n
+
+        for n in range(3, MaxC, 2):
+            if PRIME[n]: continue
+
+            for i in range(n, MaxC, n):
+                PRIME[i].add(n)
+                RAD[i] *= n
+
+    update_rad()
+
+    numbers = []
+    for i in range(1, len(RAD)):
+        numbers.append( (RAD[i], i) )
+    numbers = sorted(numbers)
+    ans = 0
+    for c in range(2, MaxC):
+        for rad, a in numbers:
+            rad *= RAD[c]
+            if rad >= c:
+                break
+            b = c - a
+            if a < b and rad * RAD[b] < c and gcd(a, b) == 1:
+                ans += c
+
+    return ans
+
+
+def P128():
+    MaxDepth = 4
+    MaxN = MaxDepth * (MaxDepth - 1) * 3 + 1
+    A = [
+        [],
+    ]
+
+    for d in range(MaxDepth):
+        pass
+
+

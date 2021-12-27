@@ -1,0 +1,13 @@
+aaaa
+aa
+
+aabb
+ab
+=>1
+ababaa
+abaa
+=>1
+
+abb abb abb abbc
+b a
+=> 3

@@ -2,6 +2,7 @@
 
 HOME_PATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 WORK_PATH=`pwd -P`
+CLION="/Users/ajava/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/CLion.app/Contents/MacOS/clion"
 
 CPP_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./clion_cpp_template; pwd -P )"
 PYTHON_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./code_python_template; pwd -P )"
@@ -157,17 +158,17 @@ else
         PROBLEM_URL=""
 fi
 
-if [[ -d "${WORK_PATH}/${PARAM}" ]]; then 
-    echo "path ${WORK_PATH}/${PARAM} is exist."; 
-    usage
-fi
+# if [[ -d "${WORK_PATH}/${PARAM}" ]]; then 
+#     echo "path ${WORK_PATH}/${PARAM} is exist."; 
+#     usage
+# fi
 
 
 
 case ${TYPE} in
     [Cc])
         echo "Copy Templates..."
-        cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
+        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
 
         echo "Generate readme.md"
         gen_gcc_readme
@@ -178,7 +179,7 @@ case ${TYPE} in
 
     [Cc][Pp][Pp])
         echo "Copy Templates..."
-        cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
+        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
 
         echo "Generate readme.md"
         gen_gcc_readme
@@ -186,14 +187,17 @@ case ${TYPE} in
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             echo "not yet.. "
         elif [[ "$OSTYPE" == "darwin"* ]]; then
-            open -na "CLion.app" --args "${WORK_PATH}/${PARAM}"
+            # open -na "CLion.app" --args "${WORK_PATH}/${PARAM}"
+            
+            "${CLION}" "${WORK_PATH}/${PARAM}" &
+ 
         fi
 
         ;;
 
     [Pp][Yy][Tt][Hh][Oo][Nn]2)
         echo "Copy Templates..."
-        cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
+        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
 
         echo "Generate readme.md"
         gen_python3_readme
@@ -205,7 +209,7 @@ case ${TYPE} in
 
     [Pp][Yy][Tt][Hh][Oo][Nn]3)
         echo "Copy Templates..."
-        cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
+        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
 
         echo "Generate readme.md"
         gen_python3_readme
