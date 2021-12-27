@@ -4,8 +4,6 @@ using namespace std;
 #ifndef BOJ_UTILS_H
 #define BOJ_UTILS_H
 
-#define fastio do {ios_base::sync_with_stdio(false); cin.tie(NULL); } while (false)
-
     template<typename T> pair<T, T> exGCD(T a, T b) {
         // a * ret.first + b * ret.second = gcd(a,b)
         if (b == 0) return { 1, 0 };

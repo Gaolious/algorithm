@@ -14,5 +14,4 @@ include_directories(
 )
 
 TARGET_LINK_LIBRARIES(boj pthread)
-
 add_subdirectory(templates)
