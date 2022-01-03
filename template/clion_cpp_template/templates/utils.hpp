@@ -21,27 +21,27 @@ using namespace std;
     template <typename T> T GCD( T a, T b ) {
         return b > 0 ? GCD(b, a % b) : a;
     }
+    template <typename T> T POW( T a, T n) {
+        // a^n
+        T ans;
+        for ( ans=1; n > 0 ; n/= 2, a *= a )
+            if ( n % 2 ) ans *= a;
+        return ans;
+    }
     template <typename T> T mPOW( T a, T n, T m) {
         // a^n % m
-        T ans = 1;
+        T ans;
         for ( ans=1; n > 0 ; n/= 2, a = (a * a) % m )
             if ( n % 2 ) ans = ( ans * a ) % m;
         return ans;
     }
     template <typename T> T mMUL( T a, T n, T m) {
-        //  (a*b) % m
-        T ans = 0;
+        // a*n % m
+        T ans;
         for ( ans=0; n > 0 ; n/= 2, a = (a + a) % m )
             if ( n % 2 ) ans = ( ans + a ) % m;
         return ans;
     }
 
-    template <typename T> T POW(T a, T n) {
-        // a^n
-        T ans = 1;
-        for ( ans=1; n > 0 ; n/= 2, a *= a )
-            if ( n % 2 ) ans *= a;
-        return ans;
-    }
 #endif //BOJ_UTILS_H
 
