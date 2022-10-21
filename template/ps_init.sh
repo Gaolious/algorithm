@@ -2,7 +2,8 @@
 
 HOME_PATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 WORK_PATH=`pwd -P`
-CLION="/Users/ajava/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/CLion.app/Contents/MacOS/clion"
+CLION="/usr/local/bin/clion"
+# /Users/ajava/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/CLion.app/Contents/MacOS/clion"
 
 CPP_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./clion_cpp_template; pwd -P )"
 PYTHON_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./code_python_template; pwd -P )"
@@ -131,7 +132,7 @@ function check_param()
 if [[ "${WORK_PATH}" == *"Baekjoon"* ]]; then
     README_TITLE="BAEJOON - ${PARAM}"
     PROBLEM_URL="url : https://www.acmicpc.net/problem/${PARAM}"
-    check_param
+#    check_param
 
 elif [[ "${WORK_PATH}" == *"UVA"* ]]; then
 

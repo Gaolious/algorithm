@@ -76,22 +76,22 @@ public :
 
 class FIN_fread
 {
-    char buf[BUFF_LEN];
+    char buf[BUFF_LEN+1];
     char *p;
     int last_read;
+    bool eof ;
 public :
     FIN_fread()
     {
+        this->eof = false;
         this->p = buf + BUFF_LEN ;
         this->last_read = 0;
     }
-    ~FIN_fread() {
-    }
-    void skip() { while ( this->p && *this->p && *this->p <= ' ' ) this->p++; }
+
     bool _byte(char &c)  {
         if ( p - buf >= BUFF_LEN )
         {
-            last_read = (int)fread(buf, 1, sizeof(buf), stdin);
+            last_read = (int)fread(buf, 1, BUFF_LEN, stdin);
             p = buf ;
         }
         else if ( last_read < BUFF_LEN )
@@ -102,12 +102,20 @@ public :
         c = *p++;
         return true ;
     }
-    bool Char(char &c) { this->skip(); return this->_byte(c); }
+
+    bool Char(char &c) {
+        c = 0;
+        while ( c <= ' ' ) {
+            if ( !this->_byte(c) ) return false ;
+        }
+        return true;
+    }
     bool Line(char *s, int &len, const int maxLen)
     {
         char c = 0 ;
-        this->skip();
-
+        while ( c <= ' ' ) {
+            if ( !this->_byte(c) ) return false ;
+        }
         for ( len = 0 ; this->_byte(c) && c > 0 && c != '\n' && len < maxLen ; len++ )
             *s++ = c ;
         *s = 0x00;
@@ -116,27 +124,29 @@ public :
     bool Word(char *s, int &len, const int maxLen)
     {
         char c = 0 ;
-        this->skip();
+        while ( c <= ' ' ) if ( !this->_byte(c) ) return false ;
 
-        for ( len = 0 ; this->_byte(c) && c > 0 && c > ' ' && len < maxLen ; len++ )
+        for ( len = 0 ; c > ' ' && len < maxLen ; len++ )
+        {
             *s++ = c ;
+            if ( !this->_byte(c) ) return false ;
+        }
         *s = 0x00;
         return c || len > 0;
     }
     template<typename T> bool Int(T &n)
     {
-        char c ;
+        char c = 0;
         bool flag = true ;
         n = 0 ;
-        this->skip();
-        if ( !this->_byte(c) )  return false ;
+        while ( c <= ' ' ) if ( !this->_byte(c) ) return false ;
         if ( c == '-' )
         {
             flag = false;
             if ( !this->_byte(c) ) return false ;
         }
-
-        while ( c > ' ' )
+        if ( c <= ' ' ) return false ;
+        for ( n = 0 ; c > ' ' ; )
         {
             n = n * 10 + c - 48 ;
             if ( !this->_byte(c) ) break;
@@ -148,7 +158,6 @@ public :
     template<typename T> bool Int(T &a, T &b, T &c) { return this->Int(a, b) && this->Int(c); }
     template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
 };
-
 class FOUT
 {
     char out[BUFF_LEN]{};
@@ -188,3 +197,4 @@ public:
 };
 
 class FIO: public FIN_fread, public FOUT {};
+

@@ -131,6 +131,20 @@ class Fraction(object):
         else:
             return self.__eq__(Fraction(other))
 
+    def __gt__(self, other):
+        if isinstance(other, Fraction):
+            t = self - other
+            return t.child > 0
+        else:
+            return self.__gt__(Fraction(other))
+
+    def __lt__(self, other):
+        if isinstance(other, Fraction):
+            t = self - other
+            return t.child < 0
+        else:
+            return self.__lt__(Fraction(other))
+
     def __add__(self, other):
         if isinstance(other, Fraction):
             parent = self.parent * other.parent
@@ -140,7 +154,7 @@ class Fraction(object):
             t = Fraction(child // g, parent // g)
             return t
         else:
-            return self + Fraction(other)
+            return self.__add__(Fraction(other))
 
     def __sub__(self, other):
         if isinstance(other, Fraction):
@@ -151,7 +165,7 @@ class Fraction(object):
             t = Fraction(child // g, parent // g)
             return t
         else:
-            return self - Fraction(other)
+            return self.__sub__(Fraction(other))
 
     def __mul__(self, other):
         if isinstance(other, Fraction):
@@ -162,7 +176,7 @@ class Fraction(object):
             t = Fraction(child // g, parent // g)
             return t
         else:
-            return self * Fraction(other)
+            return self.__mul__(Fraction(other))
 
     def __truediv__(self, other):
         if isinstance(other, Fraction):
@@ -173,7 +187,7 @@ class Fraction(object):
             t = Fraction(child // g, parent // g)
             return t
         else:
-            return self / Fraction(other)
+            return self.__truediv__(Fraction(other))
 
     def __abs__(self):
         if self.child < 0:

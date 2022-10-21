@@ -1,6 +1,7 @@
 package main
 
 import (
+	father "BronzeIV/util"
 	"bufio"
 	"fmt"
 	"os"
@@ -37,14 +38,6 @@ func readInt3() (int, int, int) {
 func readInt4() (int, int, int, int) {
 	return readInt(), readInt(), readInt(), readInt()
 }
-func sum(args ...int) int {
-	var ret int
-	ret = 0
-	for _, n := range args {
-		ret += n
-	}
-	return ret
-}
 func min(args ...int) int {
 	var ret int
 	var first bool
@@ -70,43 +63,17 @@ func max(args ...int) int {
 	}
 	return ret
 }
-func gcd(a, b int) int {
-	if b > 0 {
-		return gcd(b, a%b)
-	} else {
-		return a
-	}
-}
-func abs(a int) int {
-	if a < 0 {
-		return -a
-	}
-	return a
-}
-func ceil(a, b int) int {
-	// ceil(a/b)
-	m := a / b
-	if a%b != 0 {
-		m++
-	}
-	return m
-}
-func ymd(y, m, d int) int {
-	return y*10000 + m*100 + d
-}
+
 func main() {
 	defer out.Flush()
-	cx, cy := readInt2()
-	r := readInt()
+	father.AOFunction()
 
-	sx := cx - r
-	sy := cy - r
-	ex := cx + r
-	ey := cy + r
-
-	fmt.Fprintf(out, "%d %d\n", sx, sy)
-	fmt.Fprintf(out, "%d %d\n", sx, ey)
-	fmt.Fprintf(out, "%d %d\n", ex, ey)
-	fmt.Fprintf(out, "%d %d\n", ex, sy)
-
+	a, b, c := readInt3()
+	if a+b == c {
+		fmt.Println(1)
+	} else if a*a+b*b == c*c {
+		fmt.Println(2)
+	} else {
+		fmt.Println(-1)
+	}
 }

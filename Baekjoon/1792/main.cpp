@@ -1,135 +1,106 @@
 #include <bits/stdc++.h>
-#include <math.h>
-#include <unistd.h>
-#include <sys/mman.h>
-#include <sys/syscall.h>
-#include <sys/stat.h>
+#define fastio do {ios_base::sync_with_stdio(false); cin.tie(NULL);} while (false);
+typedef long long int ll;
+typedef unsigned long long int ull;
 using namespace std;
 
-#define BUFF_LEN ( 1<< 21 )
+#define BUFF_LEN (1<<21)
 
-class FIN_fread
-{
-    char buf[BUFF_LEN];
+struct _FIN {
     char *p;
+    char buf[BUFF_LEN+1];
     int last_read;
-public :
-    FIN_fread()
-    {
-        this->p = buf + BUFF_LEN ;
-        this->last_read = 0;
-    }
-    ~FIN_fread() {
-    }
-    void skip() { while ( this->p && *this->p && *this->p <= ' ' ) this->p++; }
-    bool _byte(char &c)  {
-        if ( p - buf >= BUFF_LEN )
-        {
-            last_read = (int)fread(buf, 1, sizeof(buf), stdin);
-            p = buf ;
-        }
-        else if ( last_read < BUFF_LEN )
-        {
-            if ( (int)( p - buf) >= last_read ) // EOF
-                return false;
-        }
-        c = *p++;
-        return true ;
-    }
-    bool Char(char &c) { this->skip(); return this->_byte(c); }
-    bool Line(char *s, int &len, const int maxLen)
-    {
-        char c = 0 ;
-        this->skip();
+    bool eof;
 
-        for ( len = 0 ; this->_byte(c) && c > 0 && c != '\n' && len < maxLen ; len++ )
-            *s++ = c ;
-        *s = 0x00;
-        return c || len > 0;
+    _FIN() { p=buf+BUFF_LEN; last_read=0; eof=false;}
+    char B() {
+        if ( p - buf >= BUFF_LEN ) last_read = (int)fread(p=buf, 1, BUFF_LEN, stdin);
+        if ( last_read < BUFF_LEN && (int)( p - buf) >= last_read ) { eof = true; return 0; }
+        return *p++;
     }
-    bool Word(char *s, int &len, const int maxLen)
-    {
-        char c = 0 ;
-        this->skip();
-
-        for ( len = 0 ; this->_byte(c) && c > 0 && c > ' ' && len < maxLen ; len++ )
-            *s++ = c ;
-        *s = 0x00;
-        return c || len > 0;
+    char Char() { char c = 0; while ( !eof && (c = B()) <= ' ' ) ; return c; }
+    template <typename T> T Int() {
+        char c = 0; T n; bool flag = true ;
+        while ( !eof && (c = B()) <= ' ' ) ;
+        if ( c == '-' ) flag = false, c = B();
+        for ( n=0 ; !eof && '0' <= c && c <= '9'; c = B() ) n = n * 10 + c - '0' ;
+        return flag ? n : -n ;
     }
-    template<typename T> bool Int(T &n)
-    {
-        char c ;
-        bool flag = true ;
-        n = 0 ;
-        this->skip();
-        if ( !this->_byte(c) )  return false ;
-        if ( c == '-' )
-        {
-            flag = false;
-            if ( !this->_byte(c) ) return false ;
-        }
-
-        while ( c > ' ' )
-        {
-            n = n * 10 + c - 48 ;
-            if ( !this->_byte(c) ) break;
-        }
-        if ( !flag ) n = -n;
-        return true ;
+    template<typename T, typename std::enable_if_t<is_arithmetic_v<T>>* = nullptr>
+    _FIN& operator>> (T &n) { n=this->Int<T>(); return *this; }
+};
+struct _FOUT {
+    char *outp;
+    char outbuf[BUFF_LEN + 20];
+    _FOUT() { outp = outbuf; }
+    ~_FOUT() { if ( outp>outbuf) flush(); }
+    template <typename T> void outInt(T &n) {
+        if ( n < 0 ) n = -n, *outp++ = '-';
+        char *end = outp;
+        do { *end++ = (n%10) + '0'; n/=10; } while ( n > 0 );
+        reverse(outp, end);
+        outp = end ;
+        if ( outp - outbuf >= BUFF_LEN ) flush();
     }
-    template<typename T> bool Int(T &a, T &b) { return this->Int(a) && this->Int(b); }
-    template<typename T> bool Int(T &a, T &b, T &c) { return this->Int(a, b) && this->Int(c); }
-    template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
+    void outChar(char c) { *outp++ = c ; if ( outp - outbuf >= BUFF_LEN ) flush(); }
+    void flush() { fwrite(outbuf, sizeof(char), outp - outbuf, stdout); outp = outbuf; }
+    template<typename T, typename std::enable_if_t<is_arithmetic_v<T>>* = nullptr>
+    _FOUT& operator<< (T n) { outInt<T>(n); return *this; }
+    _FOUT& operator<< (char c) { outChar(c); return *this; }
 };
 
-class FOUT
-{
-    char out[BUFF_LEN]{};
-    int nOut ;
-public:
-    FOUT () { this->nOut = 0; }
-    ~FOUT() { this->write_flush(); }
-    void write_flush(){
-        if ( this->nOut > 0 ) fwrite(this->out, 1, this->nOut, stdout);
-        this->nOut = 0;
-    }
-    void write_Char(char c) { if ( this->nOut >= BUFF_LEN ) this->write_flush(); this->out[ this->nOut ++ ] = c ; }
-    void write_CharLn(char c) { this->write_Char(c); this->write_Char('\n'); }
-    void write_Str(char *c) { while ( c && *c) this->write_Char(*c++); }
-    void write_Str(const char *c) { while ( c && *c) this->write_Char(*c++); }
-    template<typename T> void write_Int(T a)
-    {
-        if ( a < 0 )
-        {
-            this->write_Char('-');
-            a *= -1;
-        }
-        else if ( a == 0 )
-            this->write_Char('0');
-        char buff[30];
-        int nBuff = 0;
-        for ( int i = 0 ; a > 0; a /= 10 )
-            buff[nBuff++] = '0' + (a%10);
-        while ( nBuff > 0 )
-            write_Char(buff[--nBuff]);
-    }
-    template<typename T> void write_IntLn(T a)
-    {
-        write_Int(a);
-        write_Char('\n');
-    }
-};
+_FIN fin ;
+_FOUT fout;
+#ifdef fastio
+#undef fastio
+#endif
+#define fastio {}
+#define cin fin
+#define cout fout
+#define endl ('\n')
 
-class FIO: public FIN_fread, public FOUT {};
 
-set<int> Divisors[50001];
-void gen_divisors() {
-
+template <typename T> T GCD( T a, T b ) {
+    return b > 0 ? GCD(b, a % b) : a;
 }
-void process() {
-    FIO fio;
+const int MaxN = 50'000 ;
+int mobius [ MaxN + 1] ;
 
+void setMobius() {
+    int i, j ;
+    mobius[ 1 ] = 1 ;
+    for ( i = 1 ; i <= MaxN ; i ++ ) {
+        for ( j=i+i ; j<= MaxN ; j += i )
+            mobius[j] -= mobius[i];
+        mobius[i] += mobius[i-1];
+    }
+}
+
+int F(int from, int to) {
+    int i, a, b;
+    int ret = 0, n ;
+    for ( i = 1, n = 0 ; i <= from ; i = n + 1) {
+        a = from / i ;
+        b = to / i ;
+        n = min( from / a, to / b );
+        ret += (mobius[n] - mobius[i-1] ) * a * b;
+    }
+    return ret;
+}
+
+void process() {
+    fastio;
+    int T, a, b, d ;
+
+    cin >> T ;
+    setMobius();
+    while ( T -- ) {
+        cin >> a >> b >> d;
+        int lower = min(a,b);
+        int higher = max(a,b);
+
+        cout << F(lower / d, higher / d) << endl ;
+    }
 }
 
 int main()

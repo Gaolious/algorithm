@@ -6,29 +6,36 @@
 #include <sys/stat.h>
 using namespace std;
 
-class FIO
+#define BUFF_LEN ( 1<< 21 )
+
+class FIN_fread
 {
-    #define BUFF_LEN (1<<22)
+    char buf[BUFF_LEN];
     char *p;
-    char out[BUFF_LEN]{};
-    int nOut ;
+    int last_read;
 public :
-    FIO()
+    FIN_fread()
     {
-        struct stat rstat{};
-        this->p = nullptr ;
-
-        if ( fstat(0, &rstat) == 0 && rstat.st_size > 0 )
-            this->p = (char*)mmap(nullptr, rstat.st_size, PROT_READ, MAP_SHARED, 0, 0) ;
-
-        if ( this->p == MAP_FAILED ) this->p = nullptr ;
-        nOut = 0;
+        this->p = buf + BUFF_LEN ;
+        this->last_read = 0;
     }
-    ~FIO() {
-        this->write_flush();
+    ~FIN_fread() {
     }
     void skip() { while ( this->p && *this->p && *this->p <= ' ' ) this->p++; }
-    bool _byte(char &c)  { if (!this->p || *this->p <= 0 ) return false ; c = *this->p++; return true ; }
+    bool _byte(char &c)  {
+        if ( p - buf >= BUFF_LEN )
+        {
+            last_read = (int)fread(buf, 1, sizeof(buf), stdin);
+            p = buf ;
+        }
+        else if ( last_read < BUFF_LEN )
+        {
+            if ( (int)( p - buf) >= last_read ) // EOF
+                return false;
+        }
+        c = *p++;
+        return true ;
+    }
     bool Char(char &c) { this->skip(); return this->_byte(c); }
     bool Line(char *s, int &len, const int maxLen)
     {
@@ -74,93 +81,146 @@ public :
     template<typename T> bool Int(T &a, T &b) { return this->Int(a) && this->Int(b); }
     template<typename T> bool Int(T &a, T &b, T &c) { return this->Int(a, b) && this->Int(c); }
     template<typename T> bool Int(T &a, T &b, T &c, T &d) { return this->Int(a, b) && this->Int(c, d); }
+};
 
-    void write_flush(){
-        if ( this->nOut > 0 ) fwrite(this->out, 1, this->nOut, stdout);
-        this->nOut = 0;
+
+class FIO: public FIN_fread {};
+typedef long long int ll ;
+
+struct Rect {
+    ll sx, sy, ex, ey;
+};
+struct Data {
+    ll x, sy, ey, diff;
+    bool operator < (Data r) const {
+        if ( x != r.x ) return x < r.x ;
+        return diff > r.diff ;
     }
-    void write_Char(char c) { if ( this->nOut >= BUFF_LEN ) this->write_flush(); this->out[ this->nOut ++ ] = c ; }
-    void write_CharLn(char c) { this->write_Char(c); this->write_Char('\n'); }
-    void write_Str(char *c) { while ( c && *c) this->write_Char(*c++); }
-    void write_Str(const char *c) { while ( c && *c) this->write_Char(*c++); }
-    template<typename T> void write_Int(T a)
-    {
-        if ( a < 0 )
-        {
-            this->write_Char('-');
-            a *= -1;
+};
+
+vector<int> Y;
+vector<Data> R ;
+
+class SegTree {
+public:
+    vector<ll> tree;
+    vector<ll> data;
+    int size;
+    int N ;
+    SegTree(int N ) {
+        this->N = N ;
+        for ( this->size = 1 ; this->size < N ; this->size *= 2 );
+        this->tree.resize(this->size * 2 + 1, 0) ;
+        this->data.resize(this->size * 2 + 1, 0) ;
+    }
+    void update(int treeIdx, int tL, int tR, int vL, int vR, int diff) {
+        if ( tR < vL || vR < tL ) return ;
+
+        if ( vL <= tL && tR <= vR ) {
+            this->data[treeIdx] += diff ;
+        } else {
+            int m = (tL + tR) / 2;
+            update(treeIdx * 2    , tL      , m, vL, vR, diff);
+            update(treeIdx * 2 + 1, m + 1, tR, vL, vR, diff);
         }
-        else if ( a == 0 )
-            this->write_Char('0');
-        char buff[30];
-        int nBuff = 0;
-        for ( int i = 0 ; a > 0; a /= 10 )
-            buff[nBuff++] = '0' + (a%10);
-        while ( nBuff > 0 )
-            write_Char(buff[--nBuff]);
+        if ( this->data[treeIdx] > 0)
+            this->tree[treeIdx] = Y[tR] - Y[tL-1] ;
+        else
+        {
+            if ( tL == tR )
+                this->tree[treeIdx] = 0;
+            else
+                this->tree[treeIdx] = this->tree[treeIdx*2] + this->tree[treeIdx*2+1];
+        }
+
     }
-    template<typename T> void write_IntLn(T a)
-    {
-        write_Int(a);
-        write_Char('\n');
+    void update( int left, int right, int diff ) {
+        this->update(1, 0, this->size-1, left, right, diff);
+    }
+    ll height() {
+        return this->tree[1];
+    }
+    void dump() {
+        int i, j ;
+        for ( i = 1 ; i <= this->size ; i *= 2 ) {
+            for ( j = 0 ; j < i ; j ++ ) {
+                printf("%2lld(%2lld) ", this->tree[i+j], this->data[i+j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
     }
 };
 
-int gcd(int a, int b) {
-    if ( b > 0 ) return gcd (b, a % b);
-    return a;
+long long getLength(vector<Rect> &rect_list) {
+    int i ;
+    ll prev, s ;
+
+    R.clear();
+    Y.clear();
+
+    for ( auto &r: rect_list)
+    {
+        R.push_back(Data{r.sx, r.sy, r.ey, 1});
+        R.push_back(Data{r.ex, r.sy, r.ey, -1});
+        Y.push_back(r.sy);
+        Y.push_back(r.ey);
+    }
+
+    std::sort(Y.begin(), Y.end());
+    Y.erase(std::unique(Y.begin(), Y.end()), Y.end());
+    std::sort(R.begin(), R.end());
+
+    int yIndex[20010]={0,};
+    for ( i = 0 ; i < Y.size() ; i ++ )
+        yIndex[ Y[i] + 10000] = i ;
+
+    for ( auto &r: R ) {
+        r.sy = yIndex[ r.sy + 10000 ] ;
+        r.ey = yIndex[ r.ey + 10000 ] ;
+    }
+
+    SegTree tree(Y.size());
+
+    s = prev = 0;
+    for ( i = 0 ; i < R.size() ; i ++ ) {
+        tree.update(R[i].sy+1, R[i].ey, R[i].diff);
+        s += abs( prev - tree.height() );
+        prev = tree.height();
+#ifdef AJAVA_DEBUG
+        tree.dump();
+        printf("X[%lld] : Y[%lld] (cum:%lld)\n", R[i].x, tree.height(), s);
+#endif
+    }
+    return s ;
 }
-struct POINT {
-    int y, x;
-    bool operator < (POINT o) const {
-        return (this->x == o.x ) ? this->y < o.y : this-> x < o.x;
-    }
-    bool operator == (POINT o) const {
-        return (this->x == o.x && this->y == o.y );
-    }
-};
-struct RECT {
-    POINT sw, ne;
-    bool operator < (RECT r ) const {
-        return this->sw == r.sw ? this->ne < r.ne : this->sw < r.sw ;
-    }
-};
-struct LINE {
-    int x ;
-    int lo, hi ;
-    bool operator < (LINE l) const {
-        if ( this->x != l.x ) return this->x < l.x ;
-        if ( this->lo != l.lo ) return this->lo < l.lo ;
-        return this->hi < l.hi ;
-    }
-};
+
 void process() {
     FIO fio;
+    int sx, sy, ex, ey;
+    int i ;
     int N ;
-    int i, x1, y1, x2, y2 ;
-    int lo, hi;
-    vector<LINE> line ;
-    vector<RECT> Rect;
+    ll ret ;
 
+    vector<Rect> rect_list ;
     fio.Int(N);
     for ( i = 0 ; i < N ; i ++ ) {
-        fio.Int(x1, y1, x2, y2);
-        POINT p1 = POINT{y1,x1};
-        POINT p2 = POINT{y2,x2};
-        if ( p1 < p2 )
-            Rect.push_back(RECT{p1, p2});
-        else
-            Rect.push_back(RECT{p2, p1});
-
-        lo = min(y1, y2);
-        hi = max(y1, y2);
-        line.push_back(LINE{ x1, lo, hi});
-        line.push_back(LINE{ x2, lo, hi});
+        fio.Int(sx, sy, ex, ey);
+        if ( sx > ex ) swap(sx, ex);
+        if ( sy > ey ) swap(sy, ey);
+        rect_list.push_back(Rect{sx, sy, ex, ey});
     }
-    std::sort(Rect.begin(), Rect.end());
-    std::sort(line.begin(), line.end());
 
-    printf("..");
+    // X 축 기준.
+
+    ret = getLength(rect_list);
+    for (auto &r: rect_list){
+        swap(r.sx, r.sy);
+        swap(r.ex, r.ey);
+    }
+
+    ret += getLength(rect_list);
+    cout << ret << endl;
 }
 
 int main()

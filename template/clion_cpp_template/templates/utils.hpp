@@ -4,8 +4,6 @@ using namespace std;
 #ifndef BOJ_UTILS_H
 #define BOJ_UTILS_H
 
-#define fastio do {ios_base::sync_with_stdio(false); cin.tie(NULL); } while (false)
-
     template<typename T> pair<T, T> eGCD(T a, T b) {
         if (b == 0) return { 1, 0 };
         auto t = eGCD(b, a%b);

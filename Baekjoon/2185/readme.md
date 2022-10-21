@@ -5,12 +5,6 @@
     url : https://www.acmicpc.net/problem/2185
 
 ### IDE 
-```bash
-$ code --version
-1.61.1
-c13f1abb110fc756f9b3a6f16670df9cd9d4cf63
-x64
-```
 
 ### Compile
 ```bash

@@ -311,7 +311,7 @@ void process() {
             }
         }
     }
-    fio.write_IntLn(ret);
+    fio.write_Int(ret);
 }
 int main()
 {

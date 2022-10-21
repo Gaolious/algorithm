@@ -10,7 +10,7 @@
 ```bash
 $ g++ --version
 Apple clang version 12.0.5 (clang-1205.0.22.9)
-Target: x86_64-apple-darwin20.6.0
+Target: x86_64-apple-darwin21.2.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 

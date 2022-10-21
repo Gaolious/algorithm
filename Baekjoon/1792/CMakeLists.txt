@@ -7,15 +7,12 @@ project(boj)
 enable_testing()
 
 ADD_COMPILE_OPTIONS(-DAJAVA_DEBUG)
-add_executable(boj main.cpp templates/prime.hpp)
-add_subdirectory(templates)
+add_executable(boj main.cpp)
 
 include_directories(
     /usr/local/include
 )
 
-TARGET_LINK_LIBRARIES(boj
-        /usr/local/lib/libgtest.a
-        /usr/local/lib/libgtest_main.a
-        pthread
-        )
+TARGET_LINK_LIBRARIES(boj pthread)
+
+add_subdirectory(templates)
