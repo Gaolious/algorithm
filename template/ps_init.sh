@@ -2,18 +2,14 @@
 
 HOME_PATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 WORK_PATH=`pwd -P`
-CLION="/usr/local/bin/clion"
+# CLION="/usr/local/bin/clion"
+CLION='/home/ajava/.local/share/JetBrains/Toolbox/scripts/clion1'
 # /Users/ajava/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/213.7172.20/CLion.app/Contents/MacOS/clion"
 
 CPP_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./clion_cpp_template; pwd -P )"
 PYTHON_TEMPLATE_PATH="$( cd "${HOME_PATH}"; cd ./code_python_template; pwd -P )"
-
-#SITE=$1
 TYPE=$1
 PARAM=$2
-
-README_TITLE="BAEKJOON - {$PARAM}"
-PROBLEM_URL="https://www.acmicpc.net/problem/${PARAM}"
 
 function usage()
 {
@@ -24,103 +20,6 @@ Usages :
     exit
 }
 
-function gen_python2_readme()
-{
-    pushd "${WORK_PATH}/${PARAM}" > /dev/null 2>&1 || exit
-    echo " 
-## ${README_TITLE}
-
-### Problem        
-    url :  ${PROBLEM_URL}
-
-### IDE 
-\`\`\`bash
-$ code --version
-`code --version`
-\`\`\`
-
-### Compile
-\`\`\`bash
-$ python3 --version
-`python3 --version`
-
-$ make
-\`\`\`
-
-### run
-\`\`\`bash
-$ python 3 ./src/src.py < ./input/input.txt > ./output/output.txt
-\`\`\`
-
-" > ./readme.md
-
-    popd > /dev/null 2>&1
-}
-
-
-function gen_python3_readme()
-{
-    pushd "${WORK_PATH}/${PARAM}" > /dev/null 2>&1 || exit
-    echo " 
-## ${README_TITLE}
-
-### Problem        
-    url :  ${PROBLEM_URL}
-
-### IDE 
-\`\`\`bash
-$ code --version
-`code --version`
-\`\`\`
-
-### Compile
-\`\`\`bash
-$ python3 --version
-`python3 --version`
-
-$ make
-\`\`\`
-
-### run
-\`\`\`bash
-$ python 3 ./src/src.py < ./input/input.txt > ./output/output.txt
-\`\`\`
-
-" > ./readme.md
-
-    popd > /dev/null 2>&1
-}
-
-
-function gen_gcc_readme()
-{
-    pushd "${WORK_PATH}/${PARAM}" > /dev/null 2>&1 || exit
-    echo " 
-## ${README_TITLE}
-
-### Problem        
-    ${PROBLEM_URL}
-
-### IDE 
-
-### Compile
-\`\`\`bash
-$ g++ --version
-`g++ --version`
-
-$ make
-\`\`\`
-
-### run
-\`\`\`bash
-$ ./bin/UVA < ./input/input.txt > ./output/output.txt
-\`\`\`
-
-" > ./readme.md
-
-    popd > /dev/null 2>&1
-}
-
 function check_param()
 {
     if ! [[ "${PARAM}" =~ ^[0-9]+$ ]]; then
@@ -128,92 +27,57 @@ function check_param()
         usage
     fi
 }
+RANGE_S=`echo "${PARAM}/10000*10000" | bc`
+RANGE_E=`echo "${RANGE_S} + 9999" | bc`
+RANGE=`printf "%06d_%06d" ${RANGE_S} ${RANGE_E}`
 
-if [[ "${WORK_PATH}" == *"Baekjoon"* ]]; then
-    README_TITLE="BAEJOON - ${PARAM}"
-    PROBLEM_URL="url : https://www.acmicpc.net/problem/${PARAM}"
-#    check_param
-
-elif [[ "${WORK_PATH}" == *"UVA"* ]]; then
-
-    README_TITLE="UVA - ${PARAM}"
-    SUBPATH=`echo "${PARAM}/100" | bc`
-    SUBPATH=`printf "%03d" ${SUBPATH}`
-
-    WORK_PATH="${HOME_PATH}/../UVA-Online/Volume_${SUBPATH}"
-    [ -d "${WORK_PATH}" ] || mkdir -p "${WORK_PATH}"
-
-    PROBLEM_URL="
-- Problem PDF : https://onlinejudge.org/external/${SUBPATH}/${PARAM}.pdf
-- udebug : https://www.udebug.com/UVa/${PARAM}
-- vjudge : https://vjudge.net/problem/UVA-${PARAM}
-"
-
-    check_param
-else
-        README_TITLE="${PARAM}"
-        PROBLEM_URL=""
-fi
-
-# if [[ -d "${WORK_PATH}/${PARAM}" ]]; then 
-#     echo "path ${WORK_PATH}/${PARAM} is exist."; 
-#     usage
-# fi
-
-
+[ -d "${WORK_PATH}/${RANGE}" ] || mkdir -p "${WORK_PATH}/${RANGE}"
 
 case ${TYPE} in
     [Cc])
-        echo "Copy Templates..."
-        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
-
-        echo "Generate readme.md"
-        gen_gcc_readme
+		echo "Copy Templates..."
+		[ -d "${WORK_PATH}/${RANGE}/${PARAM}" ] || cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${RANGE}/${PARAM}"
 
         echo "code"
-	/home/ajava/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/clion.sh "${WORK_PATH}/${PARAM}"
+	/home/ajava/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/clion.sh "${WORK_PATH}/${RANGE}/${PARAM}"
         ;;
 
     [Cc][Pp][Pp])
-        echo "Copy Templates..."
-        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
 
-        echo "Generate readme.md"
-        gen_gcc_readme
+		echo "Copy Templates..."
+		[ -d "${WORK_PATH}/${RANGE}/${PARAM}" ] || cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${RANGE}/${PARAM}"
 
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	        /home/ajava/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.5744.254/bin/clion.sh "${WORK_PATH}/${PARAM}"
+	        ${CLION} "${WORK_PATH}/${RANGE}/${PARAM}"
             
         elif [[ "$OSTYPE" == "darwin"* ]]; then
-            # open -na "CLion.app" --args "${WORK_PATH}/${PARAM}"
+            # open -na "CLion.app" --args "${WORK_PATH}/${RANGE}/${PARAM}"
             
-            "${CLION}" "${WORK_PATH}/${PARAM}" &
+            "${CLION}" "${WORK_PATH}/${RANGE}/${PARAM}" &
  
         fi
 
         ;;
 
     [Pp][Yy][Tt][Hh][Oo][Nn]2)
-        echo "Copy Templates..."
-        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
 
-        echo "Generate readme.md"
-        gen_python3_readme
+		echo "Copy Templates..."
+		[ -d "${WORK_PATH}/${RANGE}/${PARAM}" ] || cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${RANGE}/${PARAM}"
 
         echo "code"
-        /usr/bin/code "${WORK_PATH}/${PARAM}" "${WORK_PATH}/${PARAM}/src/src.py"
+        /snap/bin/code "${WORK_PATH}/${RANGE}/${PARAM}_py2" "${WORK_PATH}/${RANGE}/${PARAM}/src/src.py"
 
         ;;
 
     [Pp][Yy][Tt][Hh][Oo][Nn]3)
-        echo "Copy Templates..."
-        [ -d "${WORK_PATH}/${PARAM}" ] || cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${PARAM}"
+		[ -d "${WORK_PATH}/${RANGE}/${PARAM}" ] || cp -rf "${PYTHON_TEMPLATE_PATH}" "${WORK_PATH}/${RANGE}/${PARAM}"
+		echo "Copy Templates..."
 
         echo "Generate readme.md"
         gen_python3_readme
 
         echo "code"
-        /usr/bin/code "${WORK_PATH}/${PARAM}" "${WORK_PATH}/${PARAM}/src/src.py"
+        /snap/bin/code "${WORK_PATH}/${RANGE}/${PARAM}_py3" "${WORK_PATH}/${RANGE}/${PARAM}/src/src.py"
 
 
         ;;

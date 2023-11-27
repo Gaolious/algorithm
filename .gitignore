@@ -37,3 +37,13 @@ __pycache__
 cmake-build-debug
 cmake-build-release
 .idea
+
+case_checker
+*.txt
+template*
+.vscode
+other*
+gen*
+*.sh
+Makefile
+readme*

@@ -1,2 +1,0 @@
-27 18
-Estimated Time : 0.000061 seconds.
