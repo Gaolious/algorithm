@@ -109,13 +109,21 @@ def P118():
 
     :return:
     """
-    P = Prime(1000000)
+    P = Prime(100000)
     P.sieve()
 
     def is_prime(n):
+        if n < P.number[0]:
+            return False
+
         for p in P.number:
-            if p*p > n: break
+            if p*p > n: return True
             if n % p == 0: return False
+
+        while p*p <= n:
+            p += 2
+            if n % p == 0: return False
+
         return True
 
     def generate_prime(numbers, ndigit):
@@ -125,7 +133,22 @@ def P118():
                 p = p * 10 + n
 
             if is_prime(p):
-                print(p)
+                yield p, set(num)
 
-    numbers = list(range(1,10))
-    generate_prime(numbers, 8)
+    def Find(nDigits, check, remain_cnt, tmp) -> int:
+
+        ret = 0
+        if remain_cnt == 0 :
+            return 1
+
+        for nRow in range(nDigits, 10):
+            for prime, digit_set in generate_prime(set(range(1,10)) - check, nRow):
+                if tmp and tmp[-1] > prime:
+                    continue
+                ret += Find(nRow, digit_set | check, remain_cnt - nRow, tmp + [prime])
+
+        return ret
+
+    check = set([])
+
+    print(Find(1, check, 9, []))
