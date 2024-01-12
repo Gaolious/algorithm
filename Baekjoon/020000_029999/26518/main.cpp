@@ -8,8 +8,11 @@ using namespace std;
 
 int main()
 {
-    fastio;
 
+    fastio;
+    long double b, c, a1, a2;
+    cin >> b >> c >> a1 >> a2;
+    cout << setprecision (20) << (b + sqrt(b*b+4*c)) / 2.0 << '\n';
     return 0;
 }
 

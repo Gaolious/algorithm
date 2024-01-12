@@ -9,7 +9,14 @@ using namespace std;
 int main()
 {
     fastio;
+    int T;
+    ll n ;
 
+    cin >> T ;
+    while ( T-- ) {
+        cin >> n ;
+        cout << (n>=3 ? 3 : 1) << '\n';
+    }
     return 0;
 }
 

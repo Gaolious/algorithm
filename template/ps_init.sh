@@ -45,7 +45,13 @@ case ${TYPE} in
     [Cc][Pp][Pp])
 
 		echo "Copy Templates..."
-		[ -d "${WORK_PATH}/${RANGE}/${PARAM}" ] || cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${RANGE}/${PARAM}"
+		VENV="/work/github/gaolious/algorithm/template/acmicpc/pythonProject/.venv/bin/python"
+		PYTHON_SCRIPT="/work/github/gaolious/algorithm/template/acmicpc/pythonProject/acmicpc_samples.py"
+
+		if [[ ! -d "${WORK_PATH}/${RANGE}/${PARAM}" ]]; then
+			cp -rf "${CPP_TEMPLATE_PATH}" "${WORK_PATH}/${RANGE}/${PARAM}"
+			${VENV} ${PYTHON_SCRIPT} ${PARAM} ${WORK_PATH}/${RANGE}/${PARAM}/input.txt
+		fi
 
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	        ${CLION} "${WORK_PATH}/${RANGE}/${PARAM}"

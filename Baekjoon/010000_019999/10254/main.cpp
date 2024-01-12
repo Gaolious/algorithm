@@ -1,21 +1,23 @@
 #include <bits/stdc++.h>
+#define fastio do {cin.tie(nullptr)->sync_with_stdio(false);} while (false);
+
+typedef long long int ll;
+typedef unsigned long long int ull;
+
 using namespace std;
 
-#ifndef BOJ_GEOMETRY_H
-#define BOJ_GEOMETRY_H
 const long double EPSILON = 1e-12;
 const long double PI_LONG = acos(-1);
 #define IS_ZERO(x) ( abs(x) < EPSILON )
-typedef long double T;
+typedef long long T;
 // Point
 struct Point {
     T x, y;
     Point(): x(0), y(0){}
     Point(T x, T y): x(x), y(y) {}
     T d2(const Point &p) {
-        T a = x - p.x, b = y - p.y  ;
-        return a*a + b*b;
-    }	
+        return (x-p.x) * (x-p.x) + (y-p.y)*(y-p.y);
+    }
     long double dist(const Point &p) {
         return sqrt(d2(p));
     }
@@ -126,34 +128,72 @@ struct ConvexHull {
     Point &p(int idx) {
         return ch[ idx % ch.size() ];
     }
-    pair<int, int> rotate_calipers() {
-        int idx1 = 0, idx2 = 0;
-        int i, n, l, r ;
-        Point p0(0,0);
+    pair<Point, Point> rotate_calipers() {
+        long double ret = p(0).dist(p(1));
+        int idx1 = 0, idx2 = 1;
+        for ( int i = 0, j = 0, k = 1 ; i < 2*ch.size() ; i ++ ) {
+            switch ( ccw( p(j+1) - p(j),  p(k) - p(k+1)) ) {
+                case -1: k++; break;
+                case 1: j++; break;
+                case 0: j++; k++; break;
+            }
 
-        if ( size() >= 2 ) {
-            auto ret = p(0).d2(p(1));
-            idx1 = 0, idx2 = 1;
-            n = size() * 2;
-
-            for ( i = 0, l = 0, r = 1 ; i < n ; i ++ ) {
-                Point p1 = p(l+1) - p(l);
-                Point p2 = p(r) - p(r+1);
-                if ( ccw(p0, p1, p2) > 0 )
-                    l++;
-                else
-                    r++;
-                auto d = p(l).d2(p(r));
-                if ( d > ret ) {
-                    idx1 = l, idx2 = r ;
-                    ret = d ;
-                }
+            auto d = p(j).dist(p(k));
+            if ( d > ret ) {
+                idx1 = j, idx2 = k ;
+                ret = d ;
             }
         }
-
-        return {idx1, idx2};
+        return {p(idx1), p(idx2)};
     }
 };
 
-#endif //BOJ_GEOMETRY_H
+int main()
+{
+    fastio;
+    int T ;
+
+    int C ;
+    cin >> T ;
+    while ( T-- ) {
+        ConvexHull H;
+
+        cin >> C ;
+
+        vector<Point> P(C);
+
+        for (auto &p: P) cin >> p;
+
+        H.build(P, false);
+
+        long double ret = H.p(0).dist(H.p(1));
+        int idx1 = 0, idx2 = 1;
+
+        Point p0(0,0);
+        for ( int i = 0, j = 0, k = 1 ; i < 2*H.ch.size() ; i ++ ) {
+            switch ( ccw( H.p(j+1) - H.p(j),  H.p(k) - H.p(k+1)) ) {
+                case -1:
+                    k++;
+                break;
+                case 1:
+                    j++;
+                break;
+                case 0:
+                    j++;
+                    k++;
+                break;
+            }
+
+            auto d = H.p(j).dist(H.p(k));
+            if ( d > ret ) {
+                idx1 = j, idx2 = k ;
+                ret = d ;
+            }
+        }
+        // cout << setprecision(0) << ret;
+        cout << H.p(idx1) << ' ' << H.p(idx2) << '\n';
+    }
+    return 0;
+}
+
 

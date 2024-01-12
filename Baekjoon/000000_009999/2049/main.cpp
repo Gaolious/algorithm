@@ -1,31 +1,35 @@
 #include <bits/stdc++.h>
+#define fastio do {cin.tie(nullptr)->sync_with_stdio(false);} while (false);
+
+typedef long long int ll;
+typedef unsigned long long int ull;
+
 using namespace std;
 
-#ifndef BOJ_GEOMETRY_H
-#define BOJ_GEOMETRY_H
 const long double EPSILON = 1e-12;
 const long double PI_LONG = acos(-1);
 #define IS_ZERO(x) ( abs(x) < EPSILON )
-typedef long double T;
+typedef long long T;
+
+
 // Point
 struct Point {
     T x, y;
     Point(): x(0), y(0){}
     Point(T x, T y): x(x), y(y) {}
-    T d2(const Point &p) {
-        T a = x - p.x, b = y - p.y  ;
-        return a*a + b*b;
-    }	
-    long double dist(const Point &p) {
-        return sqrt(d2(p));
+
+    Point operator + (Point b) const { return Point {x+b.x , y+b.y}; }
+    Point operator - (Point b) const { return Point {x-b.x , y-b.y}; }
+    T operator * (Point b) const { return x*b.x + y*b.y; } // dot
+    T operator / (Point b) const { return x*b.y - y*b.x; } // cross
+    Point operator * (T b) const { return {x * b, y * b}; }
+    Point operator / (T b) const { return {x / b, y / b}; }
+    long double dist(Point b) { Point t = *this - b; return sqrt(t*t); }
+    T d2(Point b) {
+        Point t = *this - b ;
+        return t*t;
     }
 };
-Point operator + (const Point &a, const Point &b) { return Point {a.x+b.x , a.y+b.y}; }
-Point operator - (const Point &a, const Point &b) { return Point {a.x-b.x , a.y-b.y}; }
-T operator * (const Point &a, const Point &b) { return a.x*b.x + a.y*b.y; } // dot
-T operator / (const Point &a, const Point &b) { return a.x*b.y - a.y*b.x; } // cross
-Point operator * (const Point &a, T b) { return Point{a.x * b, a.y * b}; }
-Point operator / (const Point &a, T b) { return Point{a.x / b, a.y / b}; }
 
 istream &operator >> (istream &in, Point &p) { in >> p.x >> p.y ; return in;}
 ostream &operator << (ostream &o, Point &p) { o << p.x << ' ' << p.y; return o; }
@@ -36,12 +40,12 @@ bool operator <= (const Point &a, const Point &b) { return (a==b) || (IS_ZERO(a.
 bool operator > (const Point &a, const Point &b) { return !(b<=a); }
 bool operator >= (const Point &a, const Point &b) { return !(b<a); }
 
-int ccw(const Point &a, const Point &b) {
+int ccw(Point a, Point b) {
     long double ret = a / b;
     return (ret>0) - (ret<0); // Left:-1, Right:1
 }
 
-int ccw(const Point &a, const Point &b, const Point &c) {
+int ccw(Point a, Point b, Point c) {
     return ccw(a-c, b-c);
 }
 
@@ -54,7 +58,7 @@ long double area(Point &a, Point &b, Point &c) {
 struct Line {
     Point s, e;
     Line(Point &a, Point &b): s(a), e(b) { if ( s > e ) swap(s, e); }
-    T dist( Point &p ) { return abs( (s-e) / (p-e) ) / s.dist(e); }
+    long double dist( Point &p ) { return abs( (s-e) / (p-e) ) / s.dist(e); }
     bool is_cross(const Line& o) {
         int a = ccw( s, e, o.s ) * ccw( s, e, o.e );
         int b = ccw( o.s, o.e, s ) * ccw( o.s, o.e, e );
@@ -64,7 +68,11 @@ struct Line {
         if ( !is_cross(o) ) return false;
         long double d = (e - s) / (o.e - o.s);
         if ( abs(d) < EPSILON) return false;
-        p = s + (e - s) * ( (o.s - s) / (o.e - o.s) / d ) ;
+
+        long double t = ( (o.s - s) / (o.e - o.s) / d );
+        p = s + (e - s) ;
+        p.x = (T)( p.x * t );
+        p.y = (T)( p.y * t );
         return true;
     }
     T dx() { return e.x - s.x; }
@@ -155,5 +163,26 @@ struct ConvexHull {
     }
 };
 
-#endif //BOJ_GEOMETRY_H
+int main()
+{
+    fastio;
+    int N ;
+    ConvexHull H;
+
+    cin >> N ;
+
+    vector<Point> P(N);
+    for (auto &p: P)
+        cin >> p;
+    sort(P.begin(), P.end());
+    P.erase(unique(P.begin(), P.end()), P.end());
+
+    H.build(P, false);
+
+    auto ans = H.rotate_calipers();
+
+    cout << H.p(ans.first).d2(H.p(ans.second));
+    return 0;
+}
+
 

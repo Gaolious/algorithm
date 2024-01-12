@@ -5,26 +5,24 @@ typedef unsigned long long int ull;
 
 using namespace std;
 #ifdef AJAVA_DEBUG
-#define MAXN (10)
+#define MAXN (20)
 #else
 #define MAXN (50'000)
 #endif
 
-vector<pair<int,int>> E[MAXN+1];
+vector<int> E[MAXN+1];
 int Depth[MAXN+1];
-int Dist[MAXN+1];
 char flag[MAXN+1];
 int Parent[MAXN+1][20];
 
-void makeTree(int curr, int depth, int dist) {
+void makeTree(int curr, int depth) {
     flag[curr] = 1;
     Depth[curr] = depth ;
-    Dist[curr] = dist;
 
-    for (auto [idx, c]: E[curr]) {
+    for (auto idx: E[curr]) {
         if (flag[idx]) continue;
         Parent[idx][0] = curr;
-        makeTree(idx, depth+1, dist+c);
+        makeTree(idx, depth+1);
     }
 }
 
@@ -53,11 +51,11 @@ int main()
 
     cin >> N ;
     for ( i = 0 ; i < N - 1; i ++ ) {
-        cin >> a >> b >> c ;
-        E[a].emplace_back(b,c);
-        E[b].emplace_back(a,c);
+        cin >> a >> b;
+        E[a].push_back(b);
+        E[b].push_back(a);
     }
-    makeTree(1, 0, 0);
+    makeTree(1, 0);
     for ( int d = 1 ; d < 20 ; d ++ )
         for ( i = 1 ; i <= N ; i ++ )
             Parent[i][d] = Parent[ Parent[i][d-1] ][d-1];
@@ -66,11 +64,11 @@ int main()
     while ( M -- ) {
         cin >> a >> b ;
         c = lca(a,b);
+
 #ifdef AJAVA_DEBUG
         cout << " A : " << a << " / B : " << b << " LCA : " << c << "\n";
-        cout << "distA = " << Dist[a] << " / distB = " << Dist[b] << " distC = " << Dist[c] << "\n";
 #endif
-        cout << Dist[a] + Dist[b] - Dist[c]*2 << '\n';
+        cout << c << '\n';
     }
     return 0;
 }

@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
-using namespace std;
+#define fastio do {cin.tie(nullptr)->sync_with_stdio(false);} while (false);
 
-#ifndef BOJ_GEOMETRY_H
-#define BOJ_GEOMETRY_H
+typedef long long int ll;
+typedef unsigned long long int ull;
+
+using namespace std;
 const long double EPSILON = 1e-12;
 const long double PI_LONG = acos(-1);
 #define IS_ZERO(x) ( abs(x) < EPSILON )
@@ -15,7 +17,7 @@ struct Point {
     T d2(const Point &p) {
         T a = x - p.x, b = y - p.y  ;
         return a*a + b*b;
-    }	
+    }
     long double dist(const Point &p) {
         return sqrt(d2(p));
     }
@@ -155,5 +157,19 @@ struct ConvexHull {
     }
 };
 
-#endif //BOJ_GEOMETRY_H
+int main()
+{
+    fastio;
+    int N ;
+    ConvexHull H;
 
+    cin >> N ;
+    vector<Point> P(N) ;
+    for (auto &p: P) cin >> p ;
+
+    H.build(P, false);
+
+    auto [i, j] = H.rotate_calipers();
+    cout << H.p(i) << ' ' << H.p(j);
+    return 0;
+}

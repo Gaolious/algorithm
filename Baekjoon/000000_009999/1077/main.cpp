@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
-using namespace std;
+#define fastio do {cin.tie(nullptr)->sync_with_stdio(false);} while (false);
 
-#ifndef BOJ_GEOMETRY_H
-#define BOJ_GEOMETRY_H
+typedef long long int ll;
+typedef unsigned long long int ull;
+
+using namespace std;
 const long double EPSILON = 1e-12;
 const long double PI_LONG = acos(-1);
 #define IS_ZERO(x) ( abs(x) < EPSILON )
@@ -12,12 +14,9 @@ struct Point {
     T x, y;
     Point(): x(0), y(0){}
     Point(T x, T y): x(x), y(y) {}
-    T d2(const Point &p) {
-        T a = x - p.x, b = y - p.y  ;
-        return a*a + b*b;
-    }	
-    long double dist(const Point &p) {
-        return sqrt(d2(p));
+    T dist(const Point &p) {
+        T ret = (x-p.x) * (x-p.x) + (y-p.y)*(y-p.y);
+        return sqrt(ret);
     }
 };
 Point operator + (const Point &a, const Point &b) { return Point {a.x+b.x , a.y+b.y}; }
@@ -26,9 +25,6 @@ T operator * (const Point &a, const Point &b) { return a.x*b.x + a.y*b.y; } // d
 T operator / (const Point &a, const Point &b) { return a.x*b.y - a.y*b.x; } // cross
 Point operator * (const Point &a, T b) { return Point{a.x * b, a.y * b}; }
 Point operator / (const Point &a, T b) { return Point{a.x / b, a.y / b}; }
-
-istream &operator >> (istream &in, Point &p) { in >> p.x >> p.y ; return in;}
-ostream &operator << (ostream &o, Point &p) { o << p.x << ' ' << p.y; return o; }
 
 bool operator == (const Point &a, const Point &b) { return IS_ZERO(a.x-b.x) && IS_ZERO(a.y - b.y); }
 bool operator < (const Point &a, const Point &b) { return IS_ZERO(a.y - b.y) ? a.x < b.x : a.y < b.y; }
@@ -123,37 +119,48 @@ struct ConvexHull {
         return true;
     }
     size_t size() const { return ch.size() ; }
-    Point &p(int idx) {
-        return ch[ idx % ch.size() ];
-    }
-    pair<int, int> rotate_calipers() {
-        int idx1 = 0, idx2 = 0;
-        int i, n, l, r ;
-        Point p0(0,0);
-
-        if ( size() >= 2 ) {
-            auto ret = p(0).d2(p(1));
-            idx1 = 0, idx2 = 1;
-            n = size() * 2;
-
-            for ( i = 0, l = 0, r = 1 ; i < n ; i ++ ) {
-                Point p1 = p(l+1) - p(l);
-                Point p2 = p(r) - p(r+1);
-                if ( ccw(p0, p1, p2) > 0 )
-                    l++;
-                else
-                    r++;
-                auto d = p(l).d2(p(r));
-                if ( d > ret ) {
-                    idx1 = l, idx2 = r ;
-                    ret = d ;
-                }
-            }
-        }
-
-        return {idx1, idx2};
-    }
 };
 
-#endif //BOJ_GEOMETRY_H
+int main()
+{
+    fastio;
+    int N, M ;
+    int i, j ;
+
+    cin >> N >> M ;
+
+    vector<Point> A(N), B(M);
+    ConvexHull H1, H2, H3;
+    vector<Point> overlap;
+
+    for (auto &p: A) cin >> p.x >> p.y ;
+    for (auto &p: B) cin >> p.x >> p.y ;
+    H1.build(A, true);
+    H2.build(B, true);
+
+    if ( H1.size() > 1 ) {
+        for (auto &p: B)
+            if ( H1.contain(p) )
+                overlap.push_back(p);
+    }
+    if ( H2.size() > 1 ) {
+        for (auto &p: A)
+            if ( H2.contain(p) )
+                overlap.push_back(p);
+    }
+
+    for ( i = 0 ; i < N ; i ++ ) {
+        Line l1( A[i], A[ (i+1)%N ]);
+        for ( j = 0 ; j < M ; j ++ ) {
+            Line l2( B[j], B[ (j+1)%M ]);
+            Point p ;
+            if ( l1.is_cross(l2, p) )
+                overlap.push_back(p);
+        }
+    }
+    H3.build(overlap, true);
+    cout << fixed << setprecision(20) << H3.area() << '\n';
+    return 0;
+}
+
 

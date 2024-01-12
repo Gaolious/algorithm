@@ -1,21 +1,13 @@
 import random
+
+R = lambda a, b: random.randint(a, b)  # random a ~ b; R(1,10)
+S = lambda a: random.shuffle(a)  # shuffle array of a; S(List)
+
 MaxN = 10 
 
-N = random.randint(1, MaxN)
-K = random.randint(0, N * (N+1) // 6 )
-A = [ [0 for _ in range(N+1)] for _ in range(N+1) ]
-for _ in range( K ):
-    y = random.randint(1, N)
-    x = random.randint(1, N)
-    A[y][x] = A[x][y] = 1
-K = 0
-for i in range(1, N+1):
-    for j in range(i+1, N+1):
-        if A[i][j] > 0:
-            K += 1
+N = R(1, MaxN)
+K = R(0, N * (N+1) // 6 )
+A = [ R(1,10) for _ in range(10) ]
+S(A)
+print(A)
 
-print(N, K)
-for i in range(1, N+1):
-    for j in range(i+1, N+1):
-        if A[i][j] > 0:
-            print(i, j)

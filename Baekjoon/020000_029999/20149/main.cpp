@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
-using namespace std;
+#define fastio do {cin.tie(nullptr)->sync_with_stdio(false);} while (false);
 
-#ifndef BOJ_GEOMETRY_H
-#define BOJ_GEOMETRY_H
+typedef long long int ll;
+typedef unsigned long long int ull;
+
+using namespace std;
 const long double EPSILON = 1e-12;
 const long double PI_LONG = acos(-1);
 #define IS_ZERO(x) ( abs(x) < EPSILON )
@@ -12,12 +14,9 @@ struct Point {
     T x, y;
     Point(): x(0), y(0){}
     Point(T x, T y): x(x), y(y) {}
-    T d2(const Point &p) {
-        T a = x - p.x, b = y - p.y  ;
-        return a*a + b*b;
-    }	
-    long double dist(const Point &p) {
-        return sqrt(d2(p));
+    T dist(const Point &p) {
+        T ret = (x-p.x) * (x-p.x) + (y-p.y)*(y-p.y);
+        return sqrt(ret);
     }
 };
 Point operator + (const Point &a, const Point &b) { return Point {a.x+b.x , a.y+b.y}; }
@@ -27,14 +26,11 @@ T operator / (const Point &a, const Point &b) { return a.x*b.y - a.y*b.x; } // c
 Point operator * (const Point &a, T b) { return Point{a.x * b, a.y * b}; }
 Point operator / (const Point &a, T b) { return Point{a.x / b, a.y / b}; }
 
-istream &operator >> (istream &in, Point &p) { in >> p.x >> p.y ; return in;}
-ostream &operator << (ostream &o, Point &p) { o << p.x << ' ' << p.y; return o; }
-
 bool operator == (const Point &a, const Point &b) { return IS_ZERO(a.x-b.x) && IS_ZERO(a.y - b.y); }
 bool operator < (const Point &a, const Point &b) { return IS_ZERO(a.y - b.y) ? a.x < b.x : a.y < b.y; }
 bool operator <= (const Point &a, const Point &b) { return (a==b) || (IS_ZERO(a.y - b.y) ? a.x < b.x : a.y < b.y); }
-bool operator > (const Point &a, const Point &b) { return !(b<=a); }
-bool operator >= (const Point &a, const Point &b) { return !(b<a); }
+bool operator > (const Point &a, const Point &b) { return !(a<=b); }
+bool operator >= (const Point &a, const Point &b) { return !(a<b); }
 
 int ccw(const Point &a, const Point &b) {
     long double ret = a / b;
@@ -62,10 +58,31 @@ struct Line {
     }
     bool is_cross(const Line &o, Point &p) {
         if ( !is_cross(o) ) return false;
-        long double d = (e - s) / (o.e - o.s);
-        if ( abs(d) < EPSILON) return false;
-        p = s + (e - s) * ( (o.s - s) / (o.e - o.s) / d ) ;
-        return true;
+
+        T dx1 = e.x - s.x, dy1 = e.y - s.y ;
+        T dx2 = o.e.x - o.s.x, dy2 = o.e.y - o.s.y ;
+        if (dx1 == dx2 && dy1 == dy2 ) {
+            T x = min( max(s.x, e.x), max(o.s.x, o.e.x)) - max( min(s.x, e.x), min(o.s.x, o.e.x));
+            T y = min( max(s.y, e.y), max(o.s.y, o.e.y)) - max( min(s.y, e.y), min(o.s.y, o.e.y));
+            if ( x > 0 || y > 0 ) return false ;
+            if ( s == o.s || s == o.e )
+                p.x = s.x, p.y = s.y;
+            else
+                p.x = e.x, p.y = e.y;
+            return true;
+        }
+
+        auto px = (s.x * e.y - s.y * e.x) * (o.s.x - o.e.x) - (s.x - e.x) * (o.s.x * o.e.y - o.s.y * o.e.x);
+        auto py = (s.x * e.y - s.y * e.x) * (o.s.y - o.e.y) - (s.y - e.y) * (o.s.x * o.e.y - o.s.y * o.e.x);
+        auto t  = (s.x - e.x) * (o.s.y - o.e.y) - (s.y - e.y) * (o.s.x - o.e.x);
+
+        p.x = (double)px / (double)t;
+        p.y = (double)py / (double)t;
+
+        // long double d = (e - s) / (o.e - o.s);
+        // if ( abs(d) < EPSILON) return false;
+        // p = s + (e - s) * ( (o.s - s) / (o.e - o.s) / d ) ;
+        // return true;
     }
     T dx() { return e.x - s.x; }
     T dy() { return e.y - s.y; }
@@ -123,37 +140,23 @@ struct ConvexHull {
         return true;
     }
     size_t size() const { return ch.size() ; }
-    Point &p(int idx) {
-        return ch[ idx % ch.size() ];
-    }
-    pair<int, int> rotate_calipers() {
-        int idx1 = 0, idx2 = 0;
-        int i, n, l, r ;
-        Point p0(0,0);
-
-        if ( size() >= 2 ) {
-            auto ret = p(0).d2(p(1));
-            idx1 = 0, idx2 = 1;
-            n = size() * 2;
-
-            for ( i = 0, l = 0, r = 1 ; i < n ; i ++ ) {
-                Point p1 = p(l+1) - p(l);
-                Point p2 = p(r) - p(r+1);
-                if ( ccw(p0, p1, p2) > 0 )
-                    l++;
-                else
-                    r++;
-                auto d = p(l).d2(p(r));
-                if ( d > ret ) {
-                    idx1 = l, idx2 = r ;
-                    ret = d ;
-                }
-            }
-        }
-
-        return {idx1, idx2};
-    }
 };
 
-#endif //BOJ_GEOMETRY_H
+int main()
+{
+    fastio;
+    Point s1, e1, s2, e2, p;
+    cin >> s1.x >> s1.y >> e1.x >> e1.y ;
+    cin >> s2.x >> s2.y >> e2.x >> e2.y ;
+    Line a(s1, e1), b(s2, e2);
+    if ( a.is_cross(b) ) {
+        cout << "1\n";
+        if ( a.is_cross(b, p) )
+            cout << fixed << setprecision(10) << p.x << ' ' << p.y << '\n';
+    }
+    else
+        cout << "0\n";
+    return 0;
+}
+
 
