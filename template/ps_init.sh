@@ -27,8 +27,8 @@ function check_param()
         usage
     fi
 }
-RANGE_S=`echo "${PARAM}/10000*10000" | bc`
-RANGE_E=`echo "${RANGE_S} + 9999" | bc`
+RANGE_S=`echo "${PARAM}/1000*1000" | bc`
+RANGE_E=`echo "${RANGE_S} + 999" | bc`
 RANGE=`printf "%06d_%06d" ${RANGE_S} ${RANGE_E}`
 
 [ -d "${WORK_PATH}/${RANGE}" ] || mkdir -p "${WORK_PATH}/${RANGE}"
