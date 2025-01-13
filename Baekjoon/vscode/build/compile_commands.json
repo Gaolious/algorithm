@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/work/github/gaolious/algorithm/Baekjoon/vscode/build",
+  "command": "/usr/bin/g++   -g -DAJAVA_DEBUG -o CMakeFiles/boj.dir/main.cpp.o -c /work/github/gaolious/algorithm/Baekjoon/vscode/main.cpp",
+  "file": "/work/github/gaolious/algorithm/Baekjoon/vscode/main.cpp"
+}
+]

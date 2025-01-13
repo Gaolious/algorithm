@@ -28,6 +28,7 @@ VENV="/work/github/gaolious/algorithm/template/acmicpc/pythonProject/.venv/bin/p
 PYTHON_SCRIPT="/work/github/gaolious/algorithm/template/acmicpc/pythonProject/acmicpc_samples.py"
 
 pushd /work/github/gaolious/algorithm/Baekjoon/clion 
+rm -rf cmake-build*
 rm -rf ./main.cpp
 rm -rf ./checker
 
@@ -37,6 +38,7 @@ rm -rf ./checker
 
 ln -fn "${WORK_PATH}/${RANGE}/${NO}/${NO}.cpp" ./main.cpp
 ln -sfn "${WORK_PATH}/${RANGE}/${NO}/checker" ./checker
+echo "${CLION} . >/dev/null 2>&1"
 ${CLION} . >/dev/null 2>&1
 # code .
 

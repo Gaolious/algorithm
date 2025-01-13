@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="" />
+    <list default="true" id="4ab89de5-5f68-4104-9722-51fbcf901794" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/000000_000999/1/1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/000000_000999/1/1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/001000_001999/1055/1055.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/001000_001999/1055/1055.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/002000_002999/2409/2409.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/002000_002999/2409/2409.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/005000_005999/5300/5300.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/005000_005999/5300/5300.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/010000_010999/10255/10255.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/010000_010999/10255/10255.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/017000_017999/17386/17386.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/017000_017999/17386/17386.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/027000_027999/27718/27718.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/027000_027999/27718/27718.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/clion/checker" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/clion/checker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/clion/main" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Baekjoon/clion/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Baekjoon/clion/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euler_python/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/euler_python/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euler_python/.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/euler_python/.idea/python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euler_python/P1xx/prob_p13x.py" beforeDir="false" afterPath="$PROJECT_DIR$/euler_python/P1xx/prob_p13x.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euler_python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/euler_python/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../template/clion_cpp_template/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../template/clion_cpp_template/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../template/ps_init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../template/ps_init.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,36 +44,30 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="1x2IgXTGD1yOaIGZ7ErGk5yL5nz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DefaultGoTemplateProperty" value="Go File" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="configurable..is.expanded" value="false" />
-    <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
-    <property name="go.formatter.settings.were.checked" value="true" />
-    <property name="go.import.settings.migrated" value="true" />
-    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
-    <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/euler_go" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="go.sdk" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/boj20240420",
+    "last_opened_file_path": "/work/github/gaolious/algorithm/ProjectEuler/euler_python",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/euler" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build euler">
+  <component name="RunManager">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="ProjectEuler" />
       <working_directory value="$PROJECT_DIR$" />
@@ -63,6 +77,18 @@
       <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="ProjectEuler" />
+      <working_directory value="$PROJECT_DIR$" />
+      <envs>
+        <env name="GOPATH" value="$PROJECT_DIR$" />
+      </envs>
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <configuration name="go build euler" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
@@ -99,18 +125,14 @@
       <directory value="$PROJECT_DIR$/src" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="ProjectEuler" />
-      <working_directory value="$PROJECT_DIR$" />
-      <envs>
-        <env name="GOPATH" value="$PROJECT_DIR$" />
-      </envs>
-      <kind value="DIRECTORY" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.24807.21" />
+        <option value="bundled-python-sdk-00717045f1d3-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.24807.21" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -122,6 +144,7 @@
       <updated>1629550471016</updated>
       <workItem from="1629550472400" duration="3000" />
       <workItem from="1629711161931" duration="179000" />
+      <workItem from="1736193352887" duration="14000" />
     </task>
     <servers />
   </component>
@@ -138,21 +161,11 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/src/euler/p0xx/prob_02x.go</url>
-          <line>45</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="GoApplicationRunConfiguration">
         <watch expression="count.String()" />
@@ -160,9 +173,9 @@
         <watch expression="check_cnt.String()" />
         <watch expression="next_n.String()" />
         <watch expression="next_c.String()" />
-        <watch expression="D[ 220 ]" language="go" />
-        <watch expression="D[ 284 ]" language="go" />
-        <watch expression="D[ i ]" language="go" />
+        <watch expression="D[ 220 ]" />
+        <watch expression="D[ 284 ]" />
+        <watch expression="D[ i ]" />
       </configuration>
     </watches-manager>
   </component>

@@ -47,3 +47,5 @@ gen*
 *.sh
 Makefile
 readme*
+
+checker

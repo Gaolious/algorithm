@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+template <typename T> istream &operator >>(istream &in, pair<T,T> &a) {in >> a.first >> a.second; return in;}
+template <typename T> ostream &operator <<(ostream &out, pair<T,T> &a) {out << a.first << ' ' << a.second; return out;}
+template <typename T> pair<T,T> operator - (pair<T,T> a, pair<T,T> b){return {a.first-b.first, a.second-b.second};}
+template <typename T> pair<T,T> minxy(pair<T,T> a, pair<T,T> b) { return { min(a.first, b.first), min(a.second, b.second) }; }
+template <typename T> pair<T,T> maxxy(pair<T,T> a, pair<T,T> b) { return { max(a.first, b.first), max(a.second, b.second) }; }
+template <typename T> ll DIST2(pair<T,T>  a) {return a.first*a.first + a.second*a.second;}
+template <typename T> ll DISTm(pair<T,T>  a) {return abs(a.first) + abs(a.second);}
+const ld PI = acos(-1);
+
+void init(){
+}
+void process(int Case) {
+    ll R, A, B ;
+    ll s = 0 ;
+    cin >> R >> A >> B;
+    s += R*R;
+    while( R > 0 ) {
+        R = R*A;
+        s += R*R;
+        R /= B;
+        s += R*R;
+    }
+    cout << "Case #" << Case << ": " << setprecision(12) << fixed << s * PI << '\n';
+}
+
+int main()
+{
+#ifdef AJAVA_DEBUG
+freopen("input.txt", "rt", stdin);freopen("output.txt", "wt", stdout);
+#endif
+    cin.tie(nullptr)->sync_with_stdio(false);
+	int T=1;
+	init();
+	cin >> T;
+	for ( int i=1 ; i <= T ; i ++ )
+	    process(i);
+    return 0;
+}

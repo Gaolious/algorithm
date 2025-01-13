@@ -1,114 +1,110 @@
 #include <bits/stdc++.h>
-#define fastio do {ios_base::sync_with_stdio(false); cin.tie(NULL);} while (false);
-typedef long long int ll;
-typedef unsigned long long int ull;
-
 using namespace std;
-const long double EPSILON = 1e-10;
-
-template <typename T>
-struct Vector2D {
-    T x, y ;
-    T cross(Vector2D &other) {
-        return x * other.y - y * other.x;
-    }
-    Vector2D operator -(Vector2D &other ) {
-        Vector2D ret = Vector2D{ x - other.x, y - other.y};
-        return ret;
-    }
-    bool operator ==(Vector2D &other ) { return ( x == other.x && y == other.y ); }
-    bool operator <(Vector2D &other ) {
-        return y == other.y ? x < other.x : y < other.y ;
-    }
-    bool operator <=(Vector2D &other ) {
-        return y == other.y ? x <= other.x : y <= other.y ;
-    }
-    bool operator > (Vector2D &other ) {
-        return y == other.y ? x > other.x : y > other.y ;
-    }
-    bool operator >= (Vector2D &other ) {
-        return y == other.y ? x >= other.x : y >= other.y ;
-    }
-};
-template <typename T>
-int ccw2(Vector2D<T> &a, Vector2D<T> &b) {
-    T ret = a.cross(b);
-    if ( ret < 0 ) return -1;
-    else if ( ret > 0 ) return 1;
-    else return 0;
+#define x first
+#define y second
+typedef long long int ll;
+typedef long double ld;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+using Pt = pair<ld, ld> ;
+enum DIR {LEFT, COLLINEAR, RIGHT};
+const ld EPS = 1.0e-12;
+istream &operator >>(istream &in, Pt &a) {in >> a.x >> a.y; return in;}
+ostream &operator <<(ostream &out, Pt &a) {out << a.x << ' ' << a.y; return out;}
+Pt operator - (Pt A, Pt B) { return {A.x - B.x, A.y - B.y};}
+Pt operator + (Pt A, Pt B) { return {A.x + B.x, A.y + B.y};}
+Pt operator * (Pt A, ld n) { return {A.x * n, A.y * n};}
+Pt operator * (ld n, Pt A) { return {A.x * n, A.y * n};}
+bool operator == (Pt A, Pt B) { return abs(A.x - B.x) < EPS && abs(A.y - B.y) < EPS;}
+struct Line {Pt s, e;};
+ld size(Pt A) { // |A| 원점에서 A까지의 길이
+    return sqrt ( A.x * A.x + A.y * A.y );
 }
-template <typename T>
-int ccw3(Vector2D<T> &a, Vector2D<T> &b, Vector2D<T> &c) {
-    Vector2D a1 = a - c ;
-    Vector2D b1 = b - c ;
-    return ccw2(a1, b1);
+ld dot(Pt A, Pt B) {
+    // Dot Product A·B = |A|·|B|· cos(Θ)
+    // A.x * B.x + A.y + B.y = size(A) * size(B) * cos( Θ )
+    return A.x * B.x + A.y * B.y;
+}
+ld cross(Pt A, Pt B) {
+    // Cross Product AxB = |A|·|B|· sin(Θ)
+    return A.x * B.y - A.y * B.x;
+}
+ld dist(Pt A, Pt B) {
+    return sqrt( (A.x-B.x)*(A.x-B.x) + (A.y-B.y)*(A.y-B.y) );
+}
+DIR ccw( Pt A, Pt B, Pt C) {
+    auto ret = cross(B-A, C-A);
+    if ( ret > 0 ) return LEFT;
+    if ( ret < 0 ) return RIGHT;
+    return COLLINEAR;
+}
+bool between(Pt S, Pt p, Pt E) {
+    // S <= p <= E
+    return min(S.x, E.x) - EPS <= p.x && p.x <= max(S.x, E.x) + EPS &&
+           min(S.y, E.y) - EPS <= p.y && p.y <= max(S.y, E.y) + EPS;
+}
+bool between(Line &l, Pt p) {
+    return between(l.s, p, l.e);
+}
+bool segmentsIntersect(Line l1, Line l2, Line &overlapLine, bool &isTouchBothEndPoint, bool &isTouchSingleEndPoint, bool &isCollinear, bool &isOverlap) {
+    // isTouchBothEndPoint    isTouchSingleEndPoint    isCollinear     isOverlap
+    //                        |
+    // +---                   +---                     --+--           --+--+--
+    // |                      |
+    Pt A = l1.e - l1.s;
+    Pt B = l2.s - l2.e;
+    Pt C = l2.s - l1.s;
+
+    auto denom = cross(A, B);
+    auto cp = cross(C, A);
+
+    isCollinear = abs(cp) < EPS;
+    isOverlap = false;
+    isTouchBothEndPoint = (l1.s == l2.s || l1.s == l2.e || l1.e == l2.s || l1.e == l2.e);
+    isTouchSingleEndPoint = false;
+
+    if (abs(denom) < EPS) { // 평행
+        if (isCollinear) { // 일직선
+            if ( between(l1, l2.s) || between(l1, l2.e) || between(l2, l1.s) || between(l2, l1.e) ) {
+                overlapLine.s = max(min(l1.s, l1.e), min(l2.s, l2.e));
+                overlapLine.e = min(max(l1.s, l1.e), max(l2.s, l2.e));
+                isOverlap = !(overlapLine.s == overlapLine.e);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    // Check if endpoints touch
+
+    auto t = cross(C, B) / denom;
+    auto u = -cross(C, A) / denom;
+
+    if (-EPS < t && t < 1 + EPS && -EPS < u && u < 1 + EPS) {
+        overlapLine.s = overlapLine.e = l1.s + A * t;
+        if ( abs(t) < EPS || abs(t-1) < EPS || abs(u) < EPS || abs(u-1) < EPS )
+            isTouchSingleEndPoint = true;
+        return true;
+    }
+    return false;
+}
+void init(){
 }
 
-template <typename T>
-struct Line {
-    Vector2D<T> s, e ;
-    Line(T x1, T y1, T x2, T y2) {
-        s.x = x1, s.y = y1 ;
-        e.x = x2, e.y = y2 ;
-        if ( s > e ) swap(s, e);
-    }
-    bool is_cross(Line& other) {
-        int a = ccw3( s, e, other.s ) * ccw3( s, e, other.e );
-        int b = ccw3( other.s, other.e, s ) * ccw3( other.s, other.e, e );
-        if ( a == 0 && b == 0 ) {
-            if ( s > e ) swap(s,e);
-            if (other.s > other.e) swap(other.s, other.e);
-            return other.s <= e && s <= other.e ;
-        }
-        return a <= 0 && b <= 0 ;
-    }
-    T dx() { return s.x - e.x ; }
-    T dy() { return s.y - e.y ; }
-    T det() { return s.x * e.y - s.y * e.x ; }
+void process(int Case) {
+    Line l1, l2;
+    cin >> l1.s >> l1.e;
+    cin >> l2.s >> l2.e;
 
-    bool getPoint(Line& other, Vector2D<double> &c) {
-        T dx1 = e.x - s.x, dy1 = e.y - s.y ;
-        T dx2 = other.e.x - other.s.x, dy2 = other.e.y - other.s.y ;
-        if (this->dx() == other.dx() && this->dy() == other.dy() ) {
-            T x = min( max(s.x, e.x), max(other.s.x, other.e.x)) - max( min(s.x, e.x), min(other.s.x, other.e.x));
-            T y = min( max(s.y, e.y), max(other.s.y, other.e.y)) - max( min(s.y, e.y), min(other.s.y, other.e.y));
-            if ( x > 0 || y > 0 ) return false ;
-            if ( s == other.s || s == other.e )
-                c.x = s.x, c.y = s.y;
-            else
-                c.x = e.x, c.y = e.y;
-            return true;
-        }
+    bool isCross, isCollinear, isOverlap, isTouchBothEndPoint, isTouchSingleEndPoint;
+    Line overlapLine;
+    isCross = segmentsIntersect(l1, l2, overlapLine, isTouchBothEndPoint, isTouchSingleEndPoint, isCollinear, isOverlap);
 
-        auto px = this->det() * other.dx() - this->dx() * other.det();
-        auto py = this->det() * other.dy() - this->dy() * other.det();
-        auto p  = this->dx() * other.dy() - this->dy() * other.dx();
-
-        c.x = (double)px / (double)p;
-        c.y = (double)py / (double)p;
-        return true ;
-    }
-};
-
-void process() {
-    fastio;
-    ll sx, sy, ex, ey;
-
-    cin >> sx >> sy >> ex >> ey ;
-    Line<ll> a(sx, sy, ex, ey) ;
-
-    cin >> sx >> sy >> ex >> ey ;
-    Line<ll> b(sx, sy, ex, ey) ;
-
-    if ( a.is_cross(b) )
-    {
-        cout << "1\n" ;
-        Vector2D<double> c ;
-        if ( a.getPoint(b, c) ) {
-            cout << fixed;
-            cout.precision(12);
-            cout << c.x << " " << c.y;
-        }
+    if (isCross) {
+        cout << "1\n";
+        if ( !isOverlap )
+            cout << setprecision(18) << fixed << overlapLine.s ;
     }
     else
         cout << "0\n";
@@ -117,16 +113,13 @@ void process() {
 int main()
 {
 #ifdef AJAVA_DEBUG
-    clock_t t = clock();
+freopen("input.txt", "rt", stdin);freopen("output.txt", "wt", stdout);
 #endif
-
-    process();
-
-#ifdef AJAVA_DEBUG
-    t = clock() - t;
-    printf ("Estimated Time : %f seconds.\n",((float)t)/CLOCKS_PER_SEC);
-#endif
+    cin.tie(nullptr)->sync_with_stdio(false);
+	int T=1;
+	init();
+	// cin >> T;
+	for ( int i=1 ; i <= T ; i ++ )
+	    process(i);
     return 0;
 }
-
-

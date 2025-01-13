@@ -1,157 +1,131 @@
 #include <bits/stdc++.h>
 #define fastio do {cin.tie(nullptr)->sync_with_stdio(false);} while (false);
-
-typedef long long int ll;
-typedef unsigned long long int ull;
-
 using namespace std;
-const long double EPSILON = 1e-12;
-const long double PI_LONG = acos(-1);
-#define IS_ZERO(x) ( abs(x) < EPSILON )
-typedef long double T;
-// Point
-struct Point {
-    T x, y;
-    Point(): x(0), y(0){}
-    Point(T x, T y): x(x), y(y) {}
-    T dist(const Point &p) {
-        T ret = (x-p.x) * (x-p.x) + (y-p.y)*(y-p.y);
-        return sqrt(ret);
-    }
-};
-Point operator + (const Point &a, const Point &b) { return Point {a.x+b.x , a.y+b.y}; }
-Point operator - (const Point &a, const Point &b) { return Point {a.x-b.x , a.y-b.y}; }
-T operator * (const Point &a, const Point &b) { return a.x*b.x + a.y*b.y; } // dot
-T operator / (const Point &a, const Point &b) { return a.x*b.y - a.y*b.x; } // cross
-Point operator * (const Point &a, T b) { return Point{a.x * b, a.y * b}; }
-Point operator / (const Point &a, T b) { return Point{a.x / b, a.y / b}; }
-
-bool operator == (const Point &a, const Point &b) { return IS_ZERO(a.x-b.x) && IS_ZERO(a.y - b.y); }
-bool operator < (const Point &a, const Point &b) { return IS_ZERO(a.y - b.y) ? a.x < b.x : a.y < b.y; }
-bool operator <= (const Point &a, const Point &b) { return (a==b) || (IS_ZERO(a.y - b.y) ? a.x < b.x : a.y < b.y); }
-bool operator > (const Point &a, const Point &b) { return !(b<=a); }
-bool operator >= (const Point &a, const Point &b) { return !(b<a); }
-istream &operator >>(istream &in, Point &a) { in >> a.x >> a.y ; return in;}
-
-int ccw(const Point &a, const Point &b) {
-    long double ret = a / b;
-    return (ret>0) - (ret<0); // Left:-1, Right:1
+#define x first
+#define y second
+typedef long long int ll;
+typedef long double ld;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+using Pt = pair<ld, ld> ;
+enum DIR {LEFT, COLLINEAR, RIGHT};
+const ld EPS = 1.0e-12;
+istream &operator >>(istream &in, Pt &a) {in >> a.x >> a.y; return in;}
+ostream &operator <<(ostream &out, Pt &a) {out << a.x << ' ' << a.y; return out;}
+Pt operator - (Pt A, Pt B) { return {A.x - B.x, A.y - B.y};}
+Pt operator + (Pt A, Pt B) { return {A.x + B.x, A.y + B.y};}
+Pt operator * (Pt A, ld n) { return {A.x * n, A.y * n};}
+Pt operator * (ld n, Pt A) { return {A.x * n, A.y * n};}
+bool operator == (Pt A, Pt B) { return abs(A.x - B.x) < EPS && abs(A.y - B.y) < EPS;}
+struct Line {Pt s, e;};
+ld size(Pt A) { // |A| 원점에서 A까지의 길이
+    return sqrt ( A.x * A.x + A.y * A.y );
 }
-
-int ccw(const Point &a, const Point &b, const Point &c) {
-    return ccw(a-c, b-c);
+ld dot(Pt A, Pt B) {
+    // Dot Product A·B = |A|·|B|· cos(Θ)
+    // A.x * B.x + A.y + B.y = size(A) * size(B) * cos( Θ )
+    return A.x * B.x + A.y * B.y;
 }
-
-long double area(Point &a, Point &b, Point &c) {
-    long double ret = (a-c) / (b-c);
-    return abs(ret) / 2.0;
+ld cross(Pt A, Pt B) {
+    // Cross Product AxB = |A|·|B|· sin(Θ)
+    return A.x * B.y - A.y * B.x;
 }
+ld dist(Pt A, Pt B) {
+    return sqrt( (A.x-B.x)*(A.x-B.x) + (A.y-B.y)*(A.y-B.y) );
+}
+DIR ccw( Pt A, Pt B, Pt C) {
+    auto ret = cross(B-A, C-A);
+    if ( ret > 0 ) return LEFT;
+    if ( ret < 0 ) return RIGHT;
+    return COLLINEAR;
+}
+bool between(Pt S, Pt p, Pt E) {
+    // S <= p <= E
+    return min(S.x, E.x) - EPS <= p.x && p.x <= max(S.x, E.x) + EPS &&
+           min(S.y, E.y) - EPS <= p.y && p.y <= max(S.y, E.y) + EPS;
+}
+bool between(Line &l, Pt p) {
+    return between(l.s, p, l.e);
+}
+bool segmentsIntersect(Line l1, Line l2, Line &overlapLine, bool &isTouchBothEndPoint, bool &isTouchSingleEndPoint, bool &isCollinear, bool &isOverlap) {
+    // isTouchBothEndPoint    isTouchSingleEndPoint    isCollinear     isOverlap
+    //                        |
+    // +---                   +---                     --+--           --+--+--
+    // |                      |
+    Pt A = l1.e - l1.s;
+    Pt B = l2.s - l2.e;
+    Pt C = l2.s - l1.s;
 
-const int IS_NOT_CROSS = 0x0001;
-const int IS_CROSS_ONE_POINT_END_OF_LINE = 0x0002;
-const int IS_CROSS_ONE_POINT_IN_OF_LINE = 0x0004;
-const int IS_CROSS_MULTIPLE_POINT = 0x0008;
+    auto denom = cross(A, B);
+    auto cp = cross(C, A);
 
-// Line
-struct Line {
-    Point s, e;
-    Line(){}
-    Line(Point &a, Point &b): s(a), e(b) { if ( s > e ) swap(s, e); }
-    T dist( Point &p ) { return abs( (s-e) / (p-e) ) / s.dist(e); }
-    int is_cross(const Line& o) {
-        int a = ccw( s, e, o.s ) * ccw( s, e, o.e );
-        int b = ccw( o.s, o.e, s ) * ccw( o.s, o.e, e );
-        if ( a == 0 && b == 0 ) {
-            return o.s <= e && s <= o.e ? IS_CROSS_MULTIPLE_POINT : IS_NOT_CROSS;
-        }
-        else {
-            return a <= 0 && b <= 0 ? IS_CROSS_ONE_POINT_END_OF_LINE : IS_NOT_CROSS;
-        }
-    }
-    bool is_cross(const Line &o, Point &p) {
-        if ( !is_cross(o) ) return false;
-        long double d = (e - s) / (o.e - o.s);
-        if ( abs(d) < EPSILON) return false;
-        p = s + (e - s) * ( (o.s - s) / (o.e - o.s) / d ) ;
-        return true;
-    }
-    T dx() { return e.x - s.x; }
-    T dy() { return e.y - s.y; }
-    T det() { return s.x * e.y - s.y * e.x ; }
-};
-istream &operator >>(istream &in, Line &a) { in >> a.s >> a.e ; return in;}
+    isCollinear = abs(cp) < EPS;
+    isOverlap = false;
+    isTouchBothEndPoint = (l1.s == l2.s || l1.s == l2.e || l1.e == l2.s || l1.e == l2.e);
+    isTouchSingleEndPoint = false;
 
-struct ConvexHull {
-    vector<Point> ch;
-    void build(vector<Point> &A, bool remove_line) {
-        ch.clear();
-
-        if ( A.size() < 2 ) {
-            for (auto p:A) ch.push_back(p);
-            return ;
-        }
-
-        sort(A.begin(), A.end(), [](Point &a, Point &b) {
-            return a < b;
-        });
-        sort(A.begin()+1, A.end(), [&](Point &a, Point &b) {
-            int ret = ccw(A[0], a, b);
-            if (ret) return ret == 1;
-            return a < b;
-        });
-        ch = { A[0], A[1] };
-
-        for (int i = 2; i < A.size(); i++) {
-            while ( ch.size() >= 2) {
-                int dir = ccw(ch[ch.size()-2], ch.back(), A[i]);
-                if ( dir < 0 || (remove_line && dir == 0)) {
-                    ch.pop_back();
-                    continue;
-                }
-                break;
+    if (abs(denom) < EPS) { // 평행
+        if (isCollinear) { // 일직선
+            if ( between(l1, l2.s) || between(l1, l2.e) || between(l2, l1.s) || between(l2, l1.e) ) {
+                overlapLine.s = max(min(l1.s, l1.e), min(l2.s, l2.e));
+                overlapLine.e = min(max(l1.s, l1.e), max(l2.s, l2.e));
+                isOverlap = !(overlapLine.s == overlapLine.e);
+                return true;
             }
-            ch.push_back(A[i]);
+            return false;
         }
+        return false;
     }
-    T area() const {
-        T ret = 0 ;
-        int i, j;
-        for ( j = i = 0 ; i < ch.size() ; i ++ ) {
-            j = (j+1) % ch.size();
-            ret += ch[i] / ch[j];
-        }
-        return abs(ret) / 2.0;
-    }
-    bool contain (const Point &p) {
-        int len = ch.size() ;
-        int dir = ccw(ch[0], ch[1], p);
-        for( int i = 1 ; i < len ; i ++ ) {
-            if ( dir * ccw(ch[i], ch[ (i+1) % len ], p) <= 0 )
-                return false;
-        }
+
+    // Check if endpoints touch
+
+    auto t = cross(C, B) / denom;
+    auto u = -cross(C, A) / denom;
+
+    if (-EPS < t && t < 1 + EPS && -EPS < u && u < 1 + EPS) {
+        overlapLine.s = overlapLine.e = l1.s + A * t;
+        if ( abs(t) < EPS || abs(t-1) < EPS || abs(u) < EPS || abs(u-1) < EPS )
+            isTouchSingleEndPoint = true;
         return true;
     }
-    size_t size() const { return ch.size() ; }
-};
-
+    return false;
+}
+vector<string> ans;
 
 int main()
 {
+#ifdef AJAVA_DEBUG
+    freopen("input.txt", "rt", stdin);freopen("output.txt", "wt", stdout);
+#endif
     fastio;
     int N ;
     int i, j;
 
     cin >> N;
-
+    ans.resize(N, string(N, '0'));
     vector<Line> A(N);
-    for (auto &l : A) cin >> l;
+    for (auto &[s, e] : A) cin >> s >> e;
+
+    bool isCross, isCollinear, isOverlap, isTouchBothEndPoint, isTouchSingleEndPoint;
+    Line overlapLine;
 
     for ( i = 0 ; i < N ; i ++) {
-        for ( j = 0 ; j < N ; j ++ ) {
-            cout << A[i].is_cross(A[j]);
+        ans[i][i] = '3';
+
+        for ( j = i+1 ; j < N ; j ++ ) {
+            isCross = segmentsIntersect(A[i], A[j], overlapLine, isTouchBothEndPoint, isTouchSingleEndPoint, isCollinear, isOverlap);
+            if ( !isCross )
+                ans[j][i] = ans[i][j] = '0';
+            else if ( isOverlap)
+                ans[j][i] = ans[i][j] = '3';
+            else if (isTouchBothEndPoint || isTouchSingleEndPoint )
+                ans[j][i] = ans[i][j] = '1';
+            else
+                ans[j][i] = ans[i][j] = '2';
         }
-        cout << '\n';
     }
+    for (auto &s: ans)
+        cout << s << '\n';
     return 0;
 }
 

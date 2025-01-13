@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20240504-0343-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.22.1"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="server.gaolious.com"
+	OSRelease="6.5.0-34-generic"
+	OSVersion="#34~22.04.2-Ubuntu SMP PREEMPT_DYNAMIC Fri Apr 19 13:57:24 UTC 2"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="165"
+	ProcessorCacheSize="20480"
+	NumberOfLogicalCPU="20"
+	NumberOfPhysicalCPU="10"
+	TotalVirtualMemory="2047"
+	TotalPhysicalMemory="128672"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="4599.8"
+	>
+	<Testing>
+		<StartDateTime>May 04 12:47 KST</StartDateTime>
+		<StartTestTime>1714794475</StartTestTime>
+		<TestList/>
+		<EndDateTime>May 04 12:47 KST</EndDateTime>
+		<EndTestTime>1714794475</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>
